@@ -350,10 +350,14 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/scripts/charController.cs"
 "Assets/scripts/FinalizarSala.cs"
+"Assets/scripts/gameManager.cs"
 "Assets/scripts/generarSala.cs"
 "Assets/scripts/salas.cs"
 "Assets/scripts/SizeManager.cs"
 "Assets/scripts/spawnMuros.cs"
+"Assets/scripts/statsEnemigo.cs"
+"Assets/scripts/statsJugador.cs"
+"Assets/scripts/statsProyectil.cs"
 "Assets/scripts/updateCam.cs"
 -langversion:9.0
 

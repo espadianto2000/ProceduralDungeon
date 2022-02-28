@@ -13,9 +13,12 @@ public class updateCam : MonoBehaviour
     public GameObject puertas;
     public List<GameObject> pr;
     public bool finalizado = false;
+    public float velocidadTemp = -500f;
+    public gameManager gm;
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("GameManager").GetComponent<gameManager>();
         cam = GameObject.Find("Camara");
         salas = GameObject.FindGameObjectWithTag("salas").GetComponent<salas>();
         player = GameObject.Find("player");
@@ -25,29 +28,29 @@ public class updateCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if(player == null)
-        {
-            player = GameObject.Find("player");
-            Debug.Log(player);
-        }*/
+        
         if (entrada)
         {
+            gm.InputEnable = false;
             cam.transform.position = Vector3.MoveTowards(cam.transform.position, transform.position+new Vector3(0,50,0), 10 * Time.deltaTime);
             if(Vector3.Distance(cam.transform.position, transform.position + new Vector3(0, 50, 0))<0.01f)
             {
-                player.GetComponent<charController>().enabled = true;
+                gm.InputEnable = true;
                 entrada = false;
             }
         }
         if (moverjugador)
         {
-            player.transform.position = Vector3.MoveTowards(player.transform.position, destino, 10 * Time.deltaTime);
+            //player.GetComponent<charController>().speed = 0f;
+            player.transform.position = Vector3.MoveTowards(player.transform.position, destino, 5 * Time.deltaTime);
             if(Vector3.Distance(player.transform.position, destino) < 0.01f)
             {
                 //Debug.Log("moviendo hacia: " + destino);
+                player.GetComponentInChildren<Animator>().SetBool("corriendo", false);
                 moverjugador = false;
                 if (!finalizado)
                 {
+                    player.GetComponent<charController>().animador.Play("Idle_Battle");
                     GameObject puerta1 = Instantiate(puertas, transform.position + new Vector3(5.5f, 0.95f, 0), Quaternion.Euler(new Vector3(0, 90, 0)));
                     GameObject puerta3 = Instantiate(puertas, transform.position + new Vector3(-5.5f, 0.95f, 0), Quaternion.Euler(new Vector3(0, 90, 0)));
                     GameObject puerta2 = Instantiate(puertas, transform.position + new Vector3(0, 0.95f, 5.5f), new Quaternion(0, 0, 0, 0));
@@ -65,14 +68,15 @@ public class updateCam : MonoBehaviour
         if (other.CompareTag("player"))
         {
             entrada = true;
+            player.GetComponent<charController>().animador.Play("RunForwardBattle");
             Debug.Log("se ha entrado a la sala en: " + transform.position);
-            if(other.transform.position.x ==transform.position.x && other.transform.position.z == transform.position.z)
+            if(Mathf.Abs(other.transform.position.x - transform.position.x) < 0.1f && Mathf.Abs(other.transform.position.z - transform.position.z) < 0.1f)
             {
                 Debug.Log("sala Inicial");
             }
             else
             {
-                //Debug.Log("se debe mover");
+                Debug.Log("se debe mover");
                 float posXJ = player.transform.position.x;
                 float posZJ = player.transform.position.z;
                 float destX = transform.position.x;
@@ -95,12 +99,12 @@ public class updateCam : MonoBehaviour
                     destZ -= 4.25f;
                 }
                 else { destZ = posZJ; }
-                destino = new Vector3(destX, 1.1f, destZ);
+                destino = new Vector3(destX, other.transform.position.y, destZ);
                 Debug.Log("moviendo hacia: " + destino);
-                other.GetComponent<charController>().enabled = false;
+
+                velocidadTemp = other.GetComponent<charController>().speed;
                 moverjugador = true;
             }
-            //cam.transform.position = transform.position + new Vector3(0,50,0);
         }
     }
     public void FinalizarSala()
