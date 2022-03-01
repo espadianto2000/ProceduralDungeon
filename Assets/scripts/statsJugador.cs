@@ -6,8 +6,8 @@ public class statsJugador : MonoBehaviour
 {
     public int vida;
     public float velocidad;
-    public float dañoMelee;
-    public float dañoRango;
+    public float danoMelee;
+    public float danoRango;
     public float rango;
     public int armaMelee;
     public int armaRango;

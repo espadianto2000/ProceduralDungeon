@@ -10,6 +10,7 @@ TagManager:
   - muro
   - player
   - entrada
+  - enemigo
   layers:
   - Default
   - TransparentFX

@@ -12,6 +12,7 @@ public class charController : MonoBehaviour
     public bool corriendo = false;
     public Animator animador;
     public gameManager gm;
+    public GameObject arma;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +24,9 @@ public class charController : MonoBehaviour
     {
         Plane playerPlane = new Plane(Vector3.up, transform.position);
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        float hitDist = 0.0f;
-        if(playerPlane.Raycast(ray, out hitDist) && gm.InputEnable){
+        float hitDist = 1.0f;
+        if(playerPlane.Raycast(ray, out hitDist) && gm.InputEnable /*&& !(animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "Attack02" || animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "Attack01")*/)
+        {
             Vector3 targetPoint = ray.GetPoint(hitDist);
             Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
             targetRotation.x = 0;
@@ -52,8 +54,12 @@ public class charController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && animador.GetCurrentAnimatorClipInfo(1)[0].clip.name != "Attack02" && gm.InputEnable)
+        if (Input.GetKey(KeyCode.Mouse0) && !(animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "Clip1"/* || animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "Attack01"*/) && gm.InputEnable)
         {
+            /*if (Random.Range(0, 2) == 0)
+            {
+                animador.SetTrigger("atacar2");
+            }*/
             animador.SetTrigger("atacar");
         }
     }
