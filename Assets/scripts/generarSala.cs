@@ -10,6 +10,7 @@ public class generarSala : MonoBehaviour
     private salas salas;
     private int rand;
     public bool spawned = false;
+    public GameObject salaGenerada=null;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,24 +56,28 @@ public class generarSala : MonoBehaviour
                     rand = Random.Range(0, salas.salasDer.Count);
                     inst = Instantiate(salas.salasDer[rand], transform.position, new Quaternion(0, 0, 0, 0));
                     salas.salasInstanciadas.Add(inst);
+                    salaGenerada = inst.gameObject;
                     //Debug.Log("Instanciado: " + inst.name + "; desde: " + transform.parent.name);
                     break;
                 case 2:
                     rand = Random.Range(0, salas.salasAba.Count);
                     inst = Instantiate(salas.salasAba[rand], transform.position, new Quaternion(0, 0, 0, 0));
                     salas.salasInstanciadas.Add(inst);
+                    salaGenerada = inst.gameObject;
                     //Debug.Log("Instanciado: " + inst.name + "; desde: " + transform.parent.name);
                     break;
                 case 3:
                     rand = Random.Range(0, salas.salasIzq.Count);
                     inst = Instantiate(salas.salasIzq[rand], transform.position, new Quaternion(0, 0, 0, 0));
                     salas.salasInstanciadas.Add(inst);
+                    salaGenerada = inst.gameObject;
                     //Debug.Log("Instanciado: " + inst.name + "; desde: " + transform.parent.name);
                     break;
                 case 4:
                     rand = Random.Range(0, salas.salasArr.Count);
                     inst = Instantiate(salas.salasArr[rand], transform.position, new Quaternion(0, 0, 0, 0));
                     salas.salasInstanciadas.Add(inst);
+                    salaGenerada = inst.gameObject;
                     //Debug.Log("Instanciado: " + inst.name + "; desde: " + transform.parent.name);
                     break;
             }

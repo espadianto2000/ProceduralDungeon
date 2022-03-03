@@ -20,11 +20,14 @@ public class atacando : MonoBehaviour
     {
         if (other.CompareTag("enemigo") && player.GetComponentInChildren<Animator>().GetCurrentAnimatorClipInfo(1)[0].clip.name == "Clip1")
         {
-            Debug.Log("recibir daño");
-            other.GetComponent<statsEnemigo>().recibirDano(player.GetComponent<statsJugador>().danoMelee);
-            if(other.GetComponent<statsEnemigo>().vida < 0)
+            if(other.GetComponent<statsEnemigo>().vulnerable == true)
             {
-                Destroy(other.gameObject);
+                Debug.Log("Se hace daño al enemigo");
+                other.GetComponent<statsEnemigo>().recibirDano(player.GetComponent<statsJugador>().danoMelee);
+            }
+            else
+            {
+                Debug.Log("no recibe daño");
             }
         }
     }

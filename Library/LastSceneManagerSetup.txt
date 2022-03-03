@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/UMotionExamples/Example Scene/UMotionExampleScene.unity
+- path: Assets/Scenes/gen.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

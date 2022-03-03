@@ -13,6 +13,7 @@ public class charController : MonoBehaviour
     public Animator animador;
     public gameManager gm;
     public GameObject arma;
+    public GameObject cuerpo;
     // Start is called before the first frame update
     void Start()
     {

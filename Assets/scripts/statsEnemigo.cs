@@ -10,6 +10,7 @@ public class statsEnemigo : MonoBehaviour
     public int danoMelee;
     public int danoRango;
     public float rango;
+    public bool vulnerable = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +20,14 @@ public class statsEnemigo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(vida <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     public void recibirDano(float dano)
     {
+        vulnerable = false;
         vida = vida - dano;
     }
 }

@@ -11,6 +11,7 @@ TagManager:
   - player
   - entrada
   - enemigo
+  - spawnMuro
   layers:
   - Default
   - TransparentFX
@@ -18,10 +19,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - player
+  - enemigo
+  - boss
+  - paredes
   - 
   - 
   - 

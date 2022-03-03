@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7372952627878652112}
   - component: {fileID: 6941560891697751891}
   - component: {fileID: 662562629958182701}
+  - component: {fileID: 1416533420195769367}
   m_Layer: 0
   m_Name: limite
   m_TagString: Untagged
@@ -67,6 +68,21 @@ MonoBehaviour:
   destino: {x: 0, y: 0, z: 0}
   puertas: {fileID: 1567648041466569050, guid: 1399f79a9ef9ebe42b492c2840d3cfa1, type: 3}
   pr: []
+  finalizado: 0
+  velocidadTemp: -500
+  gm: {fileID: 0}
+--- !u!114 &1416533420195769367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8619227647078813118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 911df5d98c2065947adf5b454ba99cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8789381577026393887
 GameObject:
   m_ObjectHideFlags: 0

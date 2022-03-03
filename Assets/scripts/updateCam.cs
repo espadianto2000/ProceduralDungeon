@@ -48,9 +48,10 @@ public class updateCam : MonoBehaviour
                 //Debug.Log("moviendo hacia: " + destino);
                 player.GetComponentInChildren<Animator>().SetBool("corriendo", false);
                 moverjugador = false;
+                player.GetComponent<charController>().cuerpo.transform.localPosition = new Vector3(0, -0.5f, 0);
+                player.GetComponent<charController>().animador.Play("Idle_Battle");
                 if (!finalizado)
-                {
-                    player.GetComponent<charController>().animador.Play("Idle_Battle");
+                {                    
                     GameObject puerta1 = Instantiate(puertas, transform.position + new Vector3(5.5f, 0.95f, 0), Quaternion.Euler(new Vector3(0, 90, 0)));
                     GameObject puerta3 = Instantiate(puertas, transform.position + new Vector3(-5.5f, 0.95f, 0), Quaternion.Euler(new Vector3(0, 90, 0)));
                     GameObject puerta2 = Instantiate(puertas, transform.position + new Vector3(0, 0.95f, 5.5f), new Quaternion(0, 0, 0, 0));

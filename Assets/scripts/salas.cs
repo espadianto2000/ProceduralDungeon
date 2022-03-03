@@ -24,6 +24,7 @@ public class salas : MonoBehaviour
     public bool juegoListo = false;
     public GameObject player;
     public GameObject SalaLimite;
+    public UnityEngine.AI.NavMeshSurface surface;
 
     private void Update()
     {
@@ -57,6 +58,7 @@ public class salas : MonoBehaviour
                 var jefe = Instantiate(boss, salasInstanciadas[salasInstanciadas.Count - 1].transform.position, Quaternion.identity);
                 jefe.transform.parent = salasInstanciadas[salasInstanciadas.Count - 1].transform;
                 spawnedBoss = true;
+                surface.BuildNavMesh();
             }
             else
             {
@@ -75,10 +77,20 @@ public class salas : MonoBehaviour
         foreach(GameObject sp in spawners)
         {
             Vector3 temp = sp.transform.position;
+            GameObject padre = sp.GetComponent<generarSala>().salaGenerada;
             Destroy(sp.gameObject);
-            Instantiate(SalaLimite, temp, Quaternion.identity);
+            if (padre != null)
+            {
+                var lim = Instantiate(SalaLimite, temp, Quaternion.identity);
+                lim.transform.SetParent(padre.transform);
+            }
         }
-        player.SetActive(true);
+        GameObject[] spawnmuros = GameObject.FindGameObjectsWithTag("spawnMuro");
+        foreach (GameObject sp in spawnmuros)
+        {
+            Destroy(sp.gameObject);
+        }
+            player.SetActive(true);
     }
 
 }
