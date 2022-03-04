@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
 
 public class generarDistribucion : MonoBehaviour
 {
@@ -10,10 +11,15 @@ public class generarDistribucion : MonoBehaviour
     public float[,] acumulado3 = new float[10, 10];
     public float[,] acumulado4 = new float[10, 10];
     public float[,] mapeado = new float[10, 10];
+    Stopwatch sw1 = new Stopwatch();
+    Stopwatch sw2 = new Stopwatch();
+    public GameObject[] obstaculos;
+    public GameObject[] enemigos;
 
     // Start is called before the first frame update
     void Start()
     {
+        sw1.Start();
         for(int i = 0; i < 10; i++)
         {
             //string cadena = "";
@@ -52,24 +58,30 @@ public class generarDistribucion : MonoBehaviour
         mapeado[0, 5] = 9;
         mapeado[9, 4] = 9;
         mapeado[9, 5] = 9;
+        sw1.Stop();
 
-        generarElementos(40, 5, 5);
+        sw2.Start();
+        generarElementos2(30, 5, 5);
+        sw2.Stop();
+        UnityEngine.Debug.Log("tiempo de carga: " + sw2.ElapsedMilliseconds);
 
+        string fila = "";
         for (int i=0; i < 10; i++)
         {
-            string fila = "";
             for(int j = 0; j < 10; j++)
             {
                 if (mapeado[i, j] == 9)
                 {
-                    fila += "," + 1;
-                }else fila += "," + mapeado[i, j];
+                    fila += 1 + ",";
+                }else fila += mapeado[i, j] + ",";
 
             }
-            Debug.Log(fila);
-            fila = "";
+            
+            fila += "\n";
         }
-        Debug.Log("----------");
+        UnityEngine.Debug.Log(fila);
+        UnityEngine.Debug.Log("----------");
+        instanciarElementos();
     }
 
     // Update is called once per frame
@@ -138,6 +150,7 @@ public class generarDistribucion : MonoBehaviour
     void generarElementos(int mxObs, int mxEnem, int mxTramp)
     {
         List<int> opciones = new List<int> { 2, 2, 3, 3, 4, 4, 5, 5};
+        //ruta a puertas = 1
         //obstaculo = 3;
         //enemigo = 4;
         //trampa = 5;
@@ -187,11 +200,133 @@ public class generarDistribucion : MonoBehaviour
 
     void generarElementos2(int mxObs, int mxEnem, int mxTramp)
     {
+        
         //ruta a puertas = 1
         //ruta nueva = 2
-        //obstaculos = 3
-        //enemigos = 4
-        //trampa = 5
-        //premio = 6
+        //obstaculos = 3,4
+        //enemigos = 5
+        //trampa = 6
+        //premio = 7
+        int contObs = 0;
+        int contEnem = 0;
+        int contTramp = 0;
+        bool premio = false;
+        for (int x = 0; x < 5; x++)
+        {
+            for (int y = 0; y < 10; y++)
+            {
+                if (mapeado[x, y] == 0)
+                {
+                    if (contObs < mxObs)
+                    {
+                        mapeado[x, y] = Random.Range(2, 4/*5*/);
+                        if (mapeado[x, y] == 3 || mapeado[x, y] == 4) { contObs++; }
+                    }
+                    else { mapeado[x, y] = 2; }
+                }
+                if (mapeado[9 - x, 9 - y] == 0)
+                {
+                    if (contObs < mxObs)
+                    {
+                        mapeado[9 - x, 9 - y] = Random.Range(2, 4/*5*/);
+                        if (mapeado[9 - x, 9 - y] == 3 || mapeado[x, y] == 4) { contObs++; }
+                    }
+                    else { mapeado[9 - x, 9 - y] = 2; }
+                }
+            }
+        }
+        for (int x = 1; x < 6; x++)
+        {
+            for(int y = 1; y < 6; y++)
+            {
+                if (mapeado[5 - x, 5 - y] == 2) {
+                    try { if (mapeado[5 - x - 1, 5 - y] == 1 || mapeado[5 - x - 1, 5 - y] == 9) { mapeado[5 - x, 5 - y] = 1; } } catch { /*Debug.Log("no se puede buscar arriba de:" + (5 - x) + "," + (5 - y));*/ }
+                    try { if (mapeado[5 - x + 1, 5 - y] == 1 || mapeado[5 - x + 1, 5 - y] == 9) { mapeado[5 - x, 5 - y] = 1; } } catch { /*Debug.Log("no se puede buscar abajo de:" + (5 - x) + "," + (5 - y));*/ }
+                    try { if (mapeado[5 - x, 5 - y - 1] == 1 || mapeado[5 - x, 5 - y - 1] == 9) { mapeado[5 - x, 5 - y] = 1; } } catch { /*Debug.Log("no se puede buscar izquierda de:" + (5 - x) + "," + (5 - y));*/  }
+                    try { if (mapeado[5 - x, 5 - y + 1] == 1 || mapeado[5 - x, 5 - y + 1] == 9) { mapeado[5 - x, 5 - y] = 1; } } catch { /*Debug.Log("no se puede buscar derecha de:" + (5 - x) + "," + (5 - y));*/ }
+                }
+                if (mapeado[4 + x, 4 + y] == 2)
+                {
+                    try { if (mapeado[4 + x - 1, 4 + y] == 1 || mapeado[4 + x - 1, 4 + y] == 9) { mapeado[4 + x, 4 + y] = 1; } } catch { /*Debug.Log("no se puede buscar arriba de:" + (4 + x) + "," + (4 + y));*/ }
+                    try { if (mapeado[4 + x + 1, 4 + y] == 1 || mapeado[4 + x + 1, 4 + y] == 9) { mapeado[4 + x, 4 + y] = 1; } } catch { /*Debug.Log("no se puede buscar abajo de:" + (4 + x) + "," + (4 + y));*/  }
+                    try { if (mapeado[4 + x, 4 + y - 1] == 1 || mapeado[4 + x, 4 + y - 1] == 9) { mapeado[4 + x, 4 + y] = 1; } } catch { /*Debug.Log("no se puede buscar izquierda de:" + (4 + x) + "," + (4 + y));*/ }
+                    try { if (mapeado[4 + x, 4 + y + 1] == 1 || mapeado[4 + x, 4 + y + 1] == 9) { mapeado[4 + x, 4 + y] = 1; } } catch { /*Debug.Log("no se puede buscar derecha de:" + (4 + x) + "," + (4 + y));*/ }
+                }
+                if (mapeado[5 - x, 4 + y] == 2)
+                {
+                    try { if (mapeado[5 - x - 1, 4 + y] == 1 || mapeado[5 - x - 1, 4 + y] == 9) { mapeado[5 - x, 4 + y] = 1; } } catch { /*Debug.Log("no se puede buscar arriba de:" + (5 - x) + "," + (4 + y));*/ }
+                    try { if (mapeado[5 - x + 1, 4 + y] == 1 || mapeado[5 - x + 1, 4 + y] == 9) { mapeado[5 - x, 4 + y] = 1; } } catch { /*Debug.Log("no se puede buscar abajo de:" + (5 - x) + "," + (4 + y));*/  }
+                    try { if (mapeado[5 - x, 4 + y - 1] == 1 || mapeado[5 - x, 4 + y - 1] == 9) { mapeado[5 - x, 4 + y] = 1; } } catch { /*Debug.Log("no se puede buscar izquierda de:" + (5 - x) + "," + (4 + y));*/ }
+                    try { if (mapeado[5 - x, 4 + y + 1] == 1 || mapeado[5 - x, 4 + y + 1] == 9) { mapeado[5 - x, 4 + y] = 1; } } catch { /*Debug.Log("no se puede buscar derecha de:" + (5 - x) + "," + (4 + y));*/ }
+                }
+                if (mapeado[4 + x, 5 - y] == 2)
+                {
+                    try { if (mapeado[4 + x - 1, 5 - y] == 1 || mapeado[4 + x - 1, 5 - y] == 9) { mapeado[4 + x, 5 - y] = 1; } } catch { /*Debug.Log("no se puede buscar arriba de:" + (4 + x) + "," + (5 - y));*/ }
+                    try { if (mapeado[4 + x + 1, 5 - y] == 1 || mapeado[4 + x + 1, 5 - y] == 9) { mapeado[4 + x, 5 - y] = 1; } } catch { /*Debug.Log("no se puede buscar abajo de:" + (4 + x) + "," + (5 - y));*/  }
+                    try { if (mapeado[4 + x, 5 - y - 1] == 1 || mapeado[4 + x, 5 - y - 1] == 9) { mapeado[4 + x, 5 - y] = 1; } } catch { /*Debug.Log("no se puede buscar izquierda de:" + (4 + x) + "," + (5 - y));*/ }
+                    try { if (mapeado[4 + x, 5 - y + 1] == 1 || mapeado[4 + x, 5 - y + 1] == 9) { mapeado[4 + x, 5 - y] = 1; } } catch { /*Debug.Log("no se puede buscar derecha de:" + (4 + x) + "," + (5 - y));*/ }
+                }
+            }
+        }
+        while (!premio)
+        {
+            int randomX = Random.Range(0, 9);
+            int randomY = Random.Range(0, 9);
+            if (mapeado[randomX, randomY] == 1)
+            {
+                mapeado[randomX, randomY] = 7;
+                premio = true;
+            }
+        }
+        while (contEnem < mxEnem)
+        {
+            int randomX = Random.Range(0, 9);
+            int randomY = Random.Range(0, 9);
+            if (mapeado[randomX, randomY] == 1)
+            {
+                mapeado[randomX, randomY] = 5;
+                contEnem++;
+            }
+        }
+        while (contTramp < mxTramp)
+        {
+            int randomX = Random.Range(0, 9);
+            int randomY = Random.Range(0, 9);
+            if (mapeado[randomX, randomY] == 1)
+            {
+                mapeado[randomX, randomY] = 6;
+                contTramp++;
+            }
+        }
+        
+    }
+    void instanciarElementos()
+    {
+        float posXIni = transform.position.x - 4.5f;
+        float posZIni = transform.position.z + 4.5f;
+        for(int x = 0; x < 10; x++)
+        {
+            for(int y = 0; y < 10; y++)
+            {
+                if(mapeado[x,y]==3|| mapeado[x, y] == 4)
+                {
+                    Instantiate(obstaculos[Random.Range(0, obstaculos.Length)], new Vector3(posXIni + x, 0, posZIni - y), Quaternion.identity);
+                    //instanciamos obstaculos (rocas)
+                }
+                else if(mapeado[x, y] == 5)
+                {
+                    transform.GetComponent<updateCam>().enemigosInstanciados.Add(Instantiate(enemigos[Random.Range(0, enemigos.Length)], new Vector3(posXIni + x, 0.5f, posZIni - y), Quaternion.identity));
+                    //instanciamos enemigo
+                }
+                else if (mapeado[x, y] == 6)
+                {
+                    //instanciamos trampa
+                }
+                else if (mapeado[x, y] == 7)
+                {
+                    //instanciamos premio posible
+                }
+            }
+        }
     }
 }

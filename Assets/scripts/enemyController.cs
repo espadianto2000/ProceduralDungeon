@@ -15,6 +15,17 @@ public class enemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float distX = Mathf.Abs(transform.position.x - player.transform.position.x);
+        float distZ = Mathf.Abs(transform.position.z - player.transform.position.z);
         agent.SetDestination(player.transform.position);
+        /*if (distX+distZ > 3f)
+        {
+            agent.SetDestination(player.transform.position);
+        }
+        else
+        {
+            agent.SetDestination(transform.position);
+        }*/
+
     }
 }

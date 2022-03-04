@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UMotionEditor\Shaders\WiresOnly.shader" />
+    <None Include="Assets\Rocks\readme.txt" />
     <None Include="Assets\UMotionEditor\Shaders\UnlitLine.shader" />
     <None Include="Assets\UMotionEditor\Shaders\UnlitDashedLine.shader" />
     <None Include="Assets\UMotionEditor\Shaders\CameraLit.shader" />

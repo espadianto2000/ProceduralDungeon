@@ -58,7 +58,7 @@ public class salas : MonoBehaviour
                 var jefe = Instantiate(boss, salasInstanciadas[salasInstanciadas.Count - 1].transform.position, Quaternion.identity);
                 jefe.transform.parent = salasInstanciadas[salasInstanciadas.Count - 1].transform;
                 spawnedBoss = true;
-                surface.BuildNavMesh();
+                
             }
             else
             {
@@ -68,6 +68,7 @@ public class salas : MonoBehaviour
         {
             borrarSpawners();
             juegoListo = true;
+            Invoke("refrescarNavMesh", 0.5f);
         }
         
     }
@@ -91,6 +92,10 @@ public class salas : MonoBehaviour
             Destroy(sp.gameObject);
         }
             player.SetActive(true);
+    }
+    void refrescarNavMesh()
+    {
+        surface.BuildNavMesh();
     }
 
 }

@@ -83,6 +83,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911df5d98c2065947adf5b454ba99cc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstaculos:
+  - {fileID: 3511516429096935860, guid: 1e8b2f2a7af4e9a4b83f0f788f1f27d7, type: 3}
+  - {fileID: 8914487071346236136, guid: f9bbfbfdd4fdf0d43901b0485c11f2bb, type: 3}
+  - {fileID: 843039373545645386, guid: 8e1a6eb53696a884687a8940216247bc, type: 3}
+  enemigos:
+  - {fileID: 9207432993689619392, guid: 03b2a73445fb82a4992d7f21eeb1739e, type: 3}
 --- !u!1 &8789381577026393887
 GameObject:
   m_ObjectHideFlags: 0

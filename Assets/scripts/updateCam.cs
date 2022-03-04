@@ -15,6 +15,8 @@ public class updateCam : MonoBehaviour
     public bool finalizado = false;
     public float velocidadTemp = -500f;
     public gameManager gm;
+    public List<GameObject> enemigosInstanciados;
+    public bool spawnEnemigos = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +38,13 @@ public class updateCam : MonoBehaviour
             if(Vector3.Distance(cam.transform.position, transform.position + new Vector3(0, 50, 0))<0.01f)
             {
                 gm.InputEnable = true;
+                if (spawnEnemigos || !finalizado)
+                {
+                    foreach(GameObject en in enemigosInstanciados)
+                    {
+                        en.gameObject.SetActive(true);
+                    }
+                }
                 entrada = false;
             }
         }
@@ -48,7 +57,7 @@ public class updateCam : MonoBehaviour
                 //Debug.Log("moviendo hacia: " + destino);
                 player.GetComponentInChildren<Animator>().SetBool("corriendo", false);
                 moverjugador = false;
-                player.GetComponent<charController>().cuerpo.transform.localPosition = new Vector3(0, -0.5f, 0);
+                //player.GetComponent<charController>().cuerpo.transform.localPosition = new Vector3(-0.08f, -0.5f, -0.15f);
                 player.GetComponent<charController>().animador.Play("Idle_Battle");
                 if (!finalizado)
                 {                    
@@ -74,6 +83,7 @@ public class updateCam : MonoBehaviour
             if(Mathf.Abs(other.transform.position.x - transform.position.x) < 0.1f && Mathf.Abs(other.transform.position.z - transform.position.z) < 0.1f)
             {
                 Debug.Log("sala Inicial");
+                spawnEnemigos = false;
             }
             else
             {
@@ -84,20 +94,20 @@ public class updateCam : MonoBehaviour
                 float destZ = transform.position.z;
                 if ((posXJ - destX) > 3)
                 {
-                    destX += 4.25f;
+                    destX += 4.5f;
                 }
                 else if((posXJ - destX) < -3)
                 {
-                    destX -= 4.25f;
+                    destX -= 4.5f;
                 }
                 else { destX = posXJ; }
                 if((posZJ - destZ) > 3)
                 {
-                    destZ += 4.25f;
+                    destZ += 4.5f;
                 }
                 else if((posZJ - destZ) < -3)
                 {
-                    destZ -= 4.25f;
+                    destZ -= 4.5f;
                 }
                 else { destZ = posZJ; }
                 destino = new Vector3(destX, other.transform.position.y, destZ);

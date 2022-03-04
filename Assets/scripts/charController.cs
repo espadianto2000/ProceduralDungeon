@@ -23,6 +23,7 @@ public class charController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        cuerpo.transform.localPosition= new Vector3(-0.08f, -0.5f, -0.15f);
         Plane playerPlane = new Plane(Vector3.up, transform.position);
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         float hitDist = 1.0f;
