@@ -990,6 +990,10 @@ PrefabInstance:
       propertyPath: danoMelee
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3016736432789920720, guid: 0aefdfc2a766b73469b20181317363d4, type: 3}
+      propertyPath: knockbackMelee
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5423486282143268776, guid: 0aefdfc2a766b73469b20181317363d4, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1026,6 +1030,10 @@ PrefabInstance:
       propertyPath: cuerpo
       value: 
       objectReference: {fileID: 1394341657}
+    - target: {fileID: 7085347024125854919, guid: 0aefdfc2a766b73469b20181317363d4, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7085347024125854921, guid: 0aefdfc2a766b73469b20181317363d4, type: 3}
       propertyPath: m_Name
       value: player

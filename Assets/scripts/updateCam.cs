@@ -38,7 +38,7 @@ public class updateCam : MonoBehaviour
             if(Vector3.Distance(cam.transform.position, transform.position + new Vector3(0, 50, 0))<0.01f)
             {
                 gm.InputEnable = true;
-                if (spawnEnemigos || !finalizado)
+                if (spawnEnemigos && !finalizado)
                 {
                     foreach(GameObject en in enemigosInstanciados)
                     {

@@ -11,6 +11,7 @@ public class statsJugador : MonoBehaviour
     public float rango;
     public int armaMelee;
     public int armaRango;
+    public float knockbackMelee;
     // Start is called before the first frame update
     void Start()
     {

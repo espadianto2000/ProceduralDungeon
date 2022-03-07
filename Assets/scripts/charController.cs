@@ -56,12 +56,8 @@ public class charController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && !(animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "Clip1"/* || animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "Attack01"*/) && gm.InputEnable)
+        if (Input.GetKey(KeyCode.Mouse0) && !((animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "Clip1") || (animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "WalkForwardBattle")) && gm.InputEnable)
         {
-            /*if (Random.Range(0, 2) == 0)
-            {
-                animador.SetTrigger("atacar2");
-            }*/
             animador.SetTrigger("atacar");
         }
     }
