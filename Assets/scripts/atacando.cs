@@ -22,12 +22,12 @@ public class atacando : MonoBehaviour
         {
             if(other.GetComponent<statsEnemigo>().vulnerable == true)
             {
-                Debug.Log("Se hace daño al enemigo");
+                //Debug.Log("Se hace daño al enemigo");
                 other.GetComponent<statsEnemigo>().recibirDano(player.GetComponent<statsJugador>().danoMelee,transform.position,player.GetComponent<statsJugador>().knockbackMelee);
             }
             else
             {
-                Debug.Log("no recibe daño");
+                //Debug.Log("no recibe daño");
             }
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class charController : MonoBehaviour
 {
-    public float speed = 3f;
+    public float speed;
     Vector3 movimiento;
     public CharacterController cont;
     Vector2 mousePosition;
@@ -14,15 +14,21 @@ public class charController : MonoBehaviour
     public gameManager gm;
     public GameObject arma;
     public GameObject cuerpo;
+    public statsJugador stats;
+    public float cooldownMelee=0;
+    public GameObject trail;
+    public UnityEngine.UI.Slider sliderMelee;
     // Start is called before the first frame update
     void Start()
     {
+        speed = stats.velocidad;
         cam = GameObject.Find("Camara").GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        sliderMelee.value = 1 - (cooldownMelee / stats.cooldownMelee);
         cuerpo.transform.localPosition= new Vector3(-0.08f, -0.5f, -0.15f);
         Plane playerPlane = new Plane(Vector3.up, transform.position);
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -52,13 +58,23 @@ public class charController : MonoBehaviour
         {
             cont.Move(movimiento * speed * Time.deltaTime);
         }
+        if(cooldownMelee > 0)
+        {
+            cooldownMelee -= Time.deltaTime;
+        }
+        else { cooldownMelee = 0; }
         
     }
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && !((animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "Clip1") || (animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "WalkForwardBattle")) && gm.InputEnable)
+        if (Input.GetKey(KeyCode.Mouse1) && !((animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "Clip1") || (animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "WalkForwardBattle") || (animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "lanzar")) && cooldownMelee <= 0 && gm.InputEnable)
         {
+            cooldownMelee = stats.cooldownMelee;
+            trail.SetActive(true);
             animador.SetTrigger("atacar");
+        }else if (Input.GetKey(KeyCode.Mouse0) && !((animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "Clip1") || (animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "lanzar")) && gm.InputEnable)
+        {
+            animador.SetTrigger("atacar2");
         }
     }
 }

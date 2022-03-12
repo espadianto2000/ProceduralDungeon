@@ -53,7 +53,7 @@ public class enemyController : MonoBehaviour
         transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         transform.GetComponent<Rigidbody>().AddForce(dir.normalized * knockbackMelee, ForceMode.Impulse);
         knock = true;
-        Invoke("activarKnock", 0.075f);
+        Invoke("activarKnock", 0.1f);
 
     }
     void activarKnock()

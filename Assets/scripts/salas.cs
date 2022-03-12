@@ -26,6 +26,16 @@ public class salas : MonoBehaviour
     public GameObject SalaLimite;
     public UnityEngine.AI.NavMeshSurface surface;
 
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotspot;
+
+    private void Start()
+    {
+        hotspot = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
+        Cursor.SetCursor(cursorTexture, hotspot, cursorMode);
+    }
+
     private void Update()
     {
         if (!spawnedBoss)

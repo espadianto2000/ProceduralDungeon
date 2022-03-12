@@ -12,6 +12,7 @@ TagManager:
   - entrada
   - enemigo
   - spawnMuro
+  - piso
   layers:
   - Default
   - TransparentFX
