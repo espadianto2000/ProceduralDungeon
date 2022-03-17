@@ -18,6 +18,7 @@ public class charController : MonoBehaviour
     public float cooldownMelee=0;
     public GameObject trail;
     public UnityEngine.UI.Slider sliderMelee;
+    public bool paused = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +64,19 @@ public class charController : MonoBehaviour
             cooldownMelee -= Time.deltaTime;
         }
         else { cooldownMelee = 0; }
+        if (Input.GetKeyDown("p"))
+        {
+            if (paused)
+            {
+                Time.timeScale = 1;
+                paused = false;
+            }
+            else
+            {
+                Time.timeScale = 0;
+                paused = true;
+            }
+        }
         
     }
     private void FixedUpdate()

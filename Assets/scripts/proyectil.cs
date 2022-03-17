@@ -34,6 +34,10 @@ public class proyectil : MonoBehaviour
         //Debug.Log("pos destino: " + destino);
         timerVida += Time.deltaTime;
         direccion = destino - pos;
+        //Debug.Log(direccion.normalized);
+        transform.GetChild(0).transform.rotation = Quaternion.LookRotation(direccion.normalized);
+        //-135,90,-90
+
         //Debug.Log("direccion: " + direccion.normalized);
         transform.Translate(direccion.normalized * 7f * Time.deltaTime);
 
