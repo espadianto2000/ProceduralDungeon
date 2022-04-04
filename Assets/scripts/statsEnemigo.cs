@@ -25,12 +25,12 @@ public class statsEnemigo : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void recibirDano(float dano, Vector3 player, float knockbackMelee)
+    public void recibirDano(float dano, Vector3 player, float knockbackMelee, int tipoAtaque)
     {
-        vulnerable = false;
+        //vulnerable = false;
         Vector3 direccion = transform.position-player;
         direccion.y = 0;
-        transform.GetComponent<enemyController>().knockback(direccion, knockbackMelee);
+        transform.GetComponent<enemyController>().knockback(direccion, knockbackMelee, tipoAtaque);
         vida = vida - dano;
     }
 }

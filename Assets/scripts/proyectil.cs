@@ -13,11 +13,11 @@ public class proyectil : MonoBehaviour
     public Rigidbody rb;
     public float timerVida=0;
     public float tiempoVida;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-        
-        
+        player = GameObject.Find("player");
     }
 
     // Update is called once per frame
@@ -51,7 +51,12 @@ public class proyectil : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("piso") || other.name.Contains("Cube"))
+        if (other.CompareTag("enemigo"))
+        {
+            other.GetComponent<statsEnemigo>().recibirDano(player.GetComponent<statsJugador>().danoRango, transform.position, player.GetComponent<statsJugador>().knockbackMelee * 0.1f,1);
+            Destroy(transform.gameObject);
+        }
+        else if (other.CompareTag("piso") || other.name.Contains("Cube"))
         {
             Destroy(transform.gameObject);
         }

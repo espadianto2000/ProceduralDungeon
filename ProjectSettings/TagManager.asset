@@ -13,6 +13,7 @@ TagManager:
   - enemigo
   - spawnMuro
   - piso
+  - proyectilJugador
   layers:
   - Default
   - TransparentFX

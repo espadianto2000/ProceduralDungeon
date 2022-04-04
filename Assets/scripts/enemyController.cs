@@ -9,6 +9,7 @@ public class enemyController : MonoBehaviour
     public statsEnemigo stats;
     public Vector3 posicionEstatica=new Vector3(0,0,0);
     public bool knock = false;
+    private IEnumerator coroutine;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,20 +47,36 @@ public class enemyController : MonoBehaviour
         }*/
 
     }
-    public void knockback(Vector3 dir, float knockbackMelee)
+    public void knockback(Vector3 dir, float knockbackMelee, int tipoAtaque)
     {
         Debug.Log("empujando");
+        Vector3 velocidadG = transform.GetComponent<Rigidbody>().velocity;
+        Vector3 velocidadAngG = transform.GetComponent<Rigidbody>().angularVelocity;
         transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
         transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         transform.GetComponent<Rigidbody>().AddForce(dir.normalized * knockbackMelee, ForceMode.Impulse);
         knock = true;
-        Invoke("activarKnock", 0.1f);
-
+        if(tipoAtaque == 1)
+        {
+            coroutine = activarKnock(velocidadG, velocidadAngG, 0.03f);
+            StartCoroutine(coroutine);
+            //Invoke("activarKnock", 0.04f, velocidadG,velocidadAngG);
+        }
+        else if(tipoAtaque == 0)
+        {
+            coroutine = activarKnock(velocidadG, velocidadAngG, 0.1f);
+            StartCoroutine(coroutine);
+            //Invoke("activarKnock", 0.1f, velocidadG, velocidadAngG);
+        }
     }
-    void activarKnock()
+    IEnumerator activarKnock(Vector3 velocidadG, Vector3 velocidadAngG, float tiempo)
     {
+        yield return new WaitForSeconds(tiempo);
         knock = false;
-        transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        transform.GetComponent<Rigidbody>().velocity = velocidadG;
+        transform.GetComponent<Rigidbody>().angularVelocity = velocidadAngG;
+        //transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        //transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        yield return null;
     }
 }
