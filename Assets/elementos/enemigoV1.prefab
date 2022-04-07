@@ -237,6 +237,7 @@ MonoBehaviour:
   danoRango: 0
   rango: 5
   vulnerable: 1
+  damageInd: {fileID: 1657997380636792352, guid: 12050d6263fa9ea4b967035b2643f5ac, type: 3}
 --- !u!195 &5355899111746673682
 NavMeshAgent:
   m_ObjectHideFlags: 0

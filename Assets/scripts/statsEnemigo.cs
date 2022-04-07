@@ -11,6 +11,8 @@ public class statsEnemigo : MonoBehaviour
     public int danoRango;
     public float rango;
     public bool vulnerable = true;
+
+    public GameObject damageInd;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +32,9 @@ public class statsEnemigo : MonoBehaviour
         //vulnerable = false;
         Vector3 direccion = transform.position-player;
         direccion.y = 0;
-        transform.GetComponent<enemyController>().knockback(direccion, knockbackMelee, tipoAtaque);
+        transform.GetComponent<enemyController>().knocks(direccion, knockbackMelee, tipoAtaque);
         vida = vida - dano;
+        GameObject ind = Instantiate(damageInd, transform.position, Quaternion.identity);
+        ind.GetComponent<DamagePopup>().setDamageValue(dano);
     }
 }

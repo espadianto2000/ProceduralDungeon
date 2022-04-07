@@ -18,6 +18,8 @@ public class proyectil : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("player");
+        Invoke("delete", 5f);
+
     }
 
     // Update is called once per frame
@@ -56,9 +58,13 @@ public class proyectil : MonoBehaviour
             other.GetComponent<statsEnemigo>().recibirDano(player.GetComponent<statsJugador>().danoRango, transform.position, player.GetComponent<statsJugador>().knockbackMelee * 0.1f,1);
             Destroy(transform.gameObject);
         }
-        else if (other.CompareTag("piso") || other.name.Contains("Cube"))
+        else if (other.CompareTag("piso"))
         {
             Destroy(transform.gameObject);
         }
+    }
+    private void delete()
+    {
+        Destroy(gameObject);
     }
 }
