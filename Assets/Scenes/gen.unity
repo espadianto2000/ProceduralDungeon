@@ -364,7 +364,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2643603, y: 1.5045692, z: 0.075077266}
-  m_Center: {x: -0.005149135, y: -0.40826654, z: 0.0000001982968}
+  m_Center: {x: 0, y: -0.40826654, z: 0.0000001982968}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,7 +1476,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7841677026503186179, guid: 1d3143f39638cde4dbbf4b01f85e83f4, type: 3}
       propertyPath: knockbackMelee
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7841677026503186179, guid: 1d3143f39638cde4dbbf4b01f85e83f4, type: 3}
       propertyPath: velocidadAtaqueMelee
@@ -1484,7 +1484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7841677026503186179, guid: 1d3143f39638cde4dbbf4b01f85e83f4, type: 3}
       propertyPath: velocidadAtaqueRango
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7900410304913454286, guid: 1d3143f39638cde4dbbf4b01f85e83f4, type: 3}
       propertyPath: cam

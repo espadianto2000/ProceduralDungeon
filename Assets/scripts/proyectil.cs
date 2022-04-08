@@ -55,7 +55,7 @@ public class proyectil : MonoBehaviour
     {
         if (other.CompareTag("enemigo"))
         {
-            other.GetComponent<statsEnemigo>().recibirDano(player.GetComponent<statsJugador>().danoRango, transform.position, player.GetComponent<statsJugador>().knockbackMelee * 0.1f,1);
+            other.GetComponent<statsEnemigo>().recibirDano(player.GetComponent<statsJugador>().danoRango, transform.position, player.GetComponent<statsJugador>().knockbackMelee, 1);
             Destroy(transform.gameObject);
         }
         else if (other.CompareTag("piso"))

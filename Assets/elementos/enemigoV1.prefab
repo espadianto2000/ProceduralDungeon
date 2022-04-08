@@ -233,8 +233,8 @@ MonoBehaviour:
   vidaMax: 15
   vida: 0
   velocidad: 2
-  danoMelee: 0
-  danoRango: 0
+  danoMelee: 1
+  danoRango: 1
   rango: 5
   vulnerable: 1
   damageInd: {fileID: 1657997380636792352, guid: 12050d6263fa9ea4b967035b2643f5ac, type: 3}
@@ -277,6 +277,7 @@ MonoBehaviour:
   stats: {fileID: 9207432993689619407}
   posicionEstatica: {x: 0, y: 0, z: 0}
   knock: 0
+  knockSpeed: 3
 --- !u!208 &2496160786768487735
 NavMeshObstacle:
   m_ObjectHideFlags: 0

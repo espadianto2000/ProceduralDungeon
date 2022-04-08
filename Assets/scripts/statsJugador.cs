@@ -26,6 +26,7 @@ public class statsJugador : MonoBehaviour
         animations.SetFloat("multipleSpeedMelee", velocidadAtaqueMelee);
         espada.transform.localScale = new Vector3(espada.transform.localScale.x, rangoMelee, espada.transform.localScale.z);
         vida = vidaMax;
+        animations.SetFloat("multipleSpeedThrow", velocidadAtaqueRango);
     }
 
     // Update is called once per frame
@@ -142,5 +143,9 @@ public class statsJugador : MonoBehaviour
         {
             knockbackMelee = knockbackMelee + knockbackExtra;
         }
+    }
+    public void recibirDano()
+    {
+        //TODO
     }
 }
