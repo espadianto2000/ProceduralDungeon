@@ -81,7 +81,7 @@ public class charController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Mouse1) && !((animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "Clip1") || (animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "WalkForwardBattle") || (animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "lanzar")) && cooldownMelee <= 0 && gm.InputEnable)
+        if (Input.GetKey(KeyCode.Mouse1) && !((animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "Clip1") || (animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "WalkForwardBattle") /*|| (animador.GetCurrentAnimatorClipInfo(1)[0].clip.name == "lanzar")*/) && cooldownMelee <= 0 && gm.InputEnable)
         {
             cooldownMelee = stats.cooldownMelee;
             trail.SetActive(true);

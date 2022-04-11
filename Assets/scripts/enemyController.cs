@@ -131,4 +131,11 @@ public class enemyController : MonoBehaviour
         //transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         yield return null;
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("player"))
+        {
+            other.GetComponent<statsJugador>().recibirDano(this.GetComponent<statsEnemigo>().danoMelee);
+        }
+    }
 }

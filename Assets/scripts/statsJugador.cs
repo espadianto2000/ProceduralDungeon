@@ -19,6 +19,8 @@ public class statsJugador : MonoBehaviour
     public charController control;
     public Animator animations;
     public GameObject espada;
+
+    private bool pGracia = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +34,17 @@ public class statsJugador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (pGracia)
+        {
+            if (this.GetComponentInChildren<SkinnedMeshRenderer>().enabled)
+            {
+                this.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+            }
+            else
+            {
+                this.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+            }
+        }
     }
     public void CambiarVidaMax(int vidaExtra)
     {
@@ -144,8 +156,18 @@ public class statsJugador : MonoBehaviour
             knockbackMelee = knockbackMelee + knockbackExtra;
         }
     }
-    public void recibirDano()
+    public void recibirDano(int dano)
     {
-        //TODO
+        if (!pGracia)
+        {
+            pGracia = true;
+            vida -= dano;
+            Invoke("disolverGracia", 1f);
+        }
+    }
+    private void disolverGracia()
+    {
+        pGracia = false;
+        this.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
     }
 }
