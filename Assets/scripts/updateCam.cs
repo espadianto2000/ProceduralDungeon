@@ -16,6 +16,7 @@ public class updateCam : MonoBehaviour
     public float velocidadTemp = -500f;
     public gameManager gm;
     public List<GameObject> enemigosInstanciados;
+    public int contadorEnemigos=-1000;
     public bool spawnEnemigos = true;
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,7 @@ public class updateCam : MonoBehaviour
                     {
                         en.gameObject.SetActive(true);
                     }
+                    contadorEnemigos = enemigosInstanciados.Count;
                 }
                 entrada = false;
             }
@@ -71,6 +73,10 @@ public class updateCam : MonoBehaviour
                     pr.Add(puerta4);
                 }
             }
+        }
+        if(contadorEnemigos == 0)
+        {
+            FinalizarSala();
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -125,6 +131,5 @@ public class updateCam : MonoBehaviour
         {
             Destroy(p);
         }
-        
     }
 }

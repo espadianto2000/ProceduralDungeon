@@ -304,6 +304,7 @@ public class generarDistribucion : MonoBehaviour
     {
         float posXIni = transform.position.x - 4.5f;
         float posZIni = transform.position.z + 4.5f;
+        int contEnem = 0;
         for(int x = 0; x < 10; x++)
         {
             for(int y = 0; y < 10; y++)
@@ -315,7 +316,11 @@ public class generarDistribucion : MonoBehaviour
                 }
                 else if(mapeado[x, y] == 5)
                 {
-                    transform.GetComponent<updateCam>().enemigosInstanciados.Add(Instantiate(enemigos[Random.Range(0, enemigos.Length)], new Vector3(posXIni + x, 0.5f, posZIni - y), Quaternion.identity));
+                    GameObject enem = Instantiate(enemigos[Random.Range(0, enemigos.Length)], new Vector3(posXIni + x, 0.5f, posZIni - y), Quaternion.identity);
+                    enem.name = contEnem + "";
+                    contEnem++;
+                    enem.transform.SetParent(transform); 
+                    transform.GetComponent<updateCam>().enemigosInstanciados.Add(enem);
                     //instanciamos enemigo
                 }
                 else if (mapeado[x, y] == 6)

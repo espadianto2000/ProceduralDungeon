@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class statsJugador : MonoBehaviour
@@ -19,6 +20,10 @@ public class statsJugador : MonoBehaviour
     public charController control;
     public Animator animations;
     public GameObject espada;
+    public GameObject contenedorBarraVida;
+    public GameObject contenedorContenedoresVida;
+    public GameObject ContenedorVida;
+    public GameObject cuadradoVida;
 
     private bool pGracia = false;
     // Start is called before the first frame update
@@ -29,10 +34,19 @@ public class statsJugador : MonoBehaviour
         espada.transform.localScale = new Vector3(espada.transform.localScale.x, rangoMelee, espada.transform.localScale.z);
         vida = vidaMax;
         animations.SetFloat("multipleSpeedThrow", velocidadAtaqueRango);
+        float cont = vidaMax / 2;
+        for (int i =0; i < Math.Floor(cont); i++)
+        {
+            Instantiate(ContenedorVida, contenedorContenedoresVida.transform);
+        }
+        for(int j = 0; j < vida; j++)
+        {
+            Instantiate(cuadradoVida, contenedorBarraVida.transform);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+// Update is called once per frame
+    private void FixedUpdate()
     {
         if (pGracia)
         {
@@ -48,8 +62,53 @@ public class statsJugador : MonoBehaviour
     }
     public void CambiarVidaMax(int vidaExtra)
     {
+        int cont = contenedorContenedoresVida.transform.childCount;
         vidaMax += vidaExtra;
-        vida += vidaExtra;
+        int vidaAntes = vida;
+        if (vidaExtra > 0)
+        {
+            vida += vidaExtra;
+        }
+        float temp = (vidaMax / 2);
+        if (cont < Math.Floor(temp))
+        {
+            for(int i = 0; i < (Math.Floor(temp) - cont); i++)
+            {
+                Instantiate(ContenedorVida, contenedorContenedoresVida.transform);
+                Instantiate(cuadradoVida, contenedorBarraVida.transform);
+                Instantiate(cuadradoVida, contenedorBarraVida.transform);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < cont - (Math.Floor(temp)); i++)
+            {
+                Destroy(contenedorContenedoresVida.transform.GetChild(0).gameObject);
+            }
+            if (vidaAntes > vidaMax)
+            {
+                Debug.Log("vida antes: " + vidaAntes);
+                for (int j = 0; j < (vidaAntes - vidaMax); j++)
+                {
+                    Destroy(contenedorBarraVida.transform.GetChild(j).gameObject);
+                }
+                vida = vidaMax;
+            }
+        }
+    }
+    public void cambiarVida(int punt)
+    {
+        Debug.Log("se llama al cambiar vida");
+        for(int i = 0; i < punt; i++){
+            Debug.Log("se entra al bucle 1 vez");
+            if (vida < vidaMax)
+            {
+                Debug.Log("se suma 1 de vida");
+                vida++;
+                Instantiate(cuadradoVida, contenedorBarraVida.transform);
+            }
+        }
+        
     }
     public void cambiarVelocidad(float velocidadExtra, bool multiplier)
     {
@@ -163,6 +222,13 @@ public class statsJugador : MonoBehaviour
             pGracia = true;
             vida -= dano;
             Invoke("disolverGracia", 1f);
+            for(int i = 0; i < dano; i++)
+            {
+                if (contenedorBarraVida.transform.childCount >= 1)
+                {
+                    Destroy(contenedorBarraVida.transform.GetChild(0).gameObject);
+                }
+            }
         }
     }
     private void disolverGracia()

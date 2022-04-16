@@ -24,6 +24,7 @@ public class statsEnemigo : MonoBehaviour
     {
         if(vida <= 0)
         {
+            transform.parent.GetComponent<updateCam>().contadorEnemigos -= 1;
             Destroy(gameObject);
         }
     }
