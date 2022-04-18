@@ -80,7 +80,7 @@ public class enemyController : MonoBehaviour
         //transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         if(tipoAtaque == 1)
         {
-            knockSpeed = knockbackMelee *0.5f;
+            knockSpeed = knockbackMelee *0.25f;
             knock = true;
             /*agent.speed = stats.velocidad;
             agent.angularSpeed = 0;
@@ -94,7 +94,7 @@ public class enemyController : MonoBehaviour
             //transform.GetComponent<Rigidbody>().AddForce(dir.normalized * knockbackMelee, ForceMode.Impulse);
         }else if(tipoAtaque == 0)
         {
-            knockSpeed = knockbackMelee * 2.75f;
+            knockSpeed = knockbackMelee * 2.5f;
             knock = true;
             /*agent.speed = stats.velocidad;
             agent.angularSpeed = 0;

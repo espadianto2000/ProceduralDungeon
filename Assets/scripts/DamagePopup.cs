@@ -38,7 +38,7 @@ public class DamagePopup : MonoBehaviour
         else if (timer > fraction) { text.GetComponent<TextMeshProUGUI>().color = Color.Lerp(text.GetComponent<TextMeshProUGUI>().color, Color.clear, (timer - fraction) / (lifetime - fraction)); }
         transform.position = iniPos;
         //transform.position = Vector3.Lerp(iniPos, targetPos, Mathf.Sin(timer/lifetime));
-        transform.localScale = Vector3.Lerp(new Vector3(0.0005f, 0.0005f, 0.0005f), new Vector3(0.0015f,0.0015f,0.0015f), Mathf.Sin(timer / lifetime));
+        transform.localScale = Vector3.Lerp(new Vector3(0.00025f, 0.00025f, 0.00025f), new Vector3(0.0012f,0.0012f,0.0012f), Mathf.Sin(timer / lifetime));
     }
     public void setDamageValue(float damage)
     {
