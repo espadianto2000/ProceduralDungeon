@@ -120,6 +120,7 @@ public class statsJugador : MonoBehaviour
         {
             velocidad = velocidad + velocidadExtra;
         }
+        if (velocidad < 1) { velocidad = 1; }
         control.speed = velocidad;
     }
     public void cambiarDanoMelee(float danoExtra, bool multiplier)
@@ -132,6 +133,7 @@ public class statsJugador : MonoBehaviour
         {
             danoMelee = danoMelee + danoExtra;
         }
+        if (danoMelee < 1.5f) { danoMelee = 1.5f; }
     }
     public void cambiarDanoRango(float danoExtra, bool multiplier)
     {
@@ -143,6 +145,7 @@ public class statsJugador : MonoBehaviour
         {
             danoRango = danoRango + danoExtra;
         }
+        if (danoRango < 0.5f) { danoRango = 0.5f; }
     }
     public void cambiarVelocidadAtaqueMelee(float velocidadExtra, bool multiplier)
     {
@@ -153,6 +156,10 @@ public class statsJugador : MonoBehaviour
         else
         {
             velocidadAtaqueMelee = velocidadAtaqueMelee + velocidadExtra;
+        }
+        if (velocidadAtaqueMelee < 0.5f)
+        {
+            velocidadAtaqueMelee = 0.5f;
         }
         animations.SetFloat("multipleSpeedMelee", velocidadAtaqueMelee);
     }
@@ -166,10 +173,12 @@ public class statsJugador : MonoBehaviour
         {
             velocidadAtaqueRango = velocidadAtaqueRango + velocidadExtra;
         }
+        if (velocidadAtaqueRango < 0.5f) { velocidadAtaqueRango = 0.5f; }
         animations.SetFloat("multipleSpeedThrow", velocidadAtaqueRango);
     }
     public void cambiarCooldownMelee(float cooldownExtra, bool multiplier)
     {
+
         if (multiplier)
         {
             cooldownMelee = cooldownMelee * cooldownExtra;
@@ -178,6 +187,8 @@ public class statsJugador : MonoBehaviour
         {
             cooldownMelee = cooldownMelee + cooldownExtra;
         }
+        if (cooldownMelee > 10) { cooldownMelee = 10; }
+        if (cooldownMelee < 1) { cooldownMelee = 1; }
     }
     public void cambiarTamañoEspada(float rangoExtra, bool multiplier)
     {
@@ -189,6 +200,7 @@ public class statsJugador : MonoBehaviour
         {
             rangoMelee = rangoMelee + rangoExtra;
         }
+        if (rangoMelee < 1) { rangoMelee = 1; }
         espada.transform.localScale = new Vector3(espada.transform.localScale.x,rangoMelee, espada.transform.localScale.z);
     }
     public void cambiarRangoDistancia(float rangoExtra, bool multiplier)
@@ -201,6 +213,7 @@ public class statsJugador : MonoBehaviour
         {
             rangoRango = rangoRango + rangoExtra;
         }
+        if (rangoRango < 0.1f) { rangoRango = 0.1f; } 
         // TODO
         // cambiar tiempo de vida de proyectil
     }
@@ -214,6 +227,7 @@ public class statsJugador : MonoBehaviour
         {
             knockbackMelee = knockbackMelee + knockbackExtra;
         }
+        if (knockbackMelee < 0.5f) { knockbackMelee = 0.5f; }
     }
     public void recibirDano(int dano)
     {

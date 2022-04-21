@@ -72,6 +72,7 @@ MonoBehaviour:
   velocidadTemp: -500
   gm: {fileID: 0}
   enemigosInstanciados: []
+  contadorEnemigos: -1000
   spawnEnemigos: 1
 --- !u!114 &1416533420195769367
 MonoBehaviour:
@@ -91,6 +92,7 @@ MonoBehaviour:
   - {fileID: 843039373545645386, guid: 8e1a6eb53696a884687a8940216247bc, type: 3}
   enemigos:
   - {fileID: 9207432993689619392, guid: 03b2a73445fb82a4992d7f21eeb1739e, type: 3}
+  premio: {fileID: 705537483042271215, guid: fba9bb974afc48745a62cb64e3936261, type: 3}
 --- !u!1 &8789381577026393887
 GameObject:
   m_ObjectHideFlags: 0

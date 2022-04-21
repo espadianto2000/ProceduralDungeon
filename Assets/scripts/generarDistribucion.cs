@@ -15,6 +15,7 @@ public class generarDistribucion : MonoBehaviour
     Stopwatch sw2 = new Stopwatch();
     public GameObject[] obstaculos;
     public GameObject[] enemigos;
+    public GameObject premio;
 
     // Start is called before the first frame update
     void Start()
@@ -311,7 +312,8 @@ public class generarDistribucion : MonoBehaviour
             {
                 if(mapeado[x,y]==3|| mapeado[x, y] == 4)
                 {
-                    Instantiate(obstaculos[Random.Range(0, obstaculos.Length)], new Vector3(posXIni + x, 0, posZIni - y), Quaternion.identity);
+                    GameObject obs = Instantiate(obstaculos[Random.Range(0, obstaculos.Length)], new Vector3(posXIni + x, 0, posZIni - y), Quaternion.identity);
+                    obs.transform.SetParent(transform);
                     //instanciamos obstaculos (rocas)
                 }
                 else if(mapeado[x, y] == 5)
@@ -329,6 +331,16 @@ public class generarDistribucion : MonoBehaviour
                 }
                 else if (mapeado[x, y] == 7)
                 {
+                    int r = Random.Range(0, 100);
+                    if(r <100 && r > 1)
+                    {
+                        GameObject prem = Instantiate(premio, new Vector3(posXIni + x, 0.5f, posZIni - y), Quaternion.identity);
+                        prem.transform.SetParent(transform);
+                        transform.GetComponent<updateCam>().premio = prem;
+                        prem.transform.rotation = Quaternion.Euler(90, 0, 180);
+                        GetComponent<updateCam>().premio = prem;
+                        prem.GetComponent<statsRegalo>().pseudoStart();
+                    }
                     //instanciamos premio posible
                 }
             }

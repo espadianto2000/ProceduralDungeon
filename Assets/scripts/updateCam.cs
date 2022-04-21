@@ -18,6 +18,8 @@ public class updateCam : MonoBehaviour
     public List<GameObject> enemigosInstanciados;
     public int contadorEnemigos=-1000;
     public bool spawnEnemigos = true;
+    public GameObject premio = null;
+    public GameObject PanelInfo;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class updateCam : MonoBehaviour
         cam = GameObject.Find("Camara");
         salas = GameObject.FindGameObjectWithTag("salas").GetComponent<salas>();
         player = GameObject.Find("player");
+        PanelInfo = gm.panelInfo;
         //Debug.Log(player);
     }
 
@@ -84,12 +87,17 @@ public class updateCam : MonoBehaviour
         if (other.CompareTag("player"))
         {
             entrada = true;
+            if (premio != null)
+            {
+                PanelInfo.GetComponent<seguirMouse>().actualizar(premio);
+            }
             player.GetComponent<charController>().animador.Play("RunForwardBattle");
             Debug.Log("se ha entrado a la sala en: " + transform.position);
             if(Mathf.Abs(other.transform.position.x - transform.position.x) < 0.1f && Mathf.Abs(other.transform.position.z - transform.position.z) < 0.1f)
             {
                 Debug.Log("sala Inicial");
                 spawnEnemigos = false;
+                finalizado = true;
             }
             else
             {
@@ -127,6 +135,10 @@ public class updateCam : MonoBehaviour
     public void FinalizarSala()
     {
         finalizado = true;
+        if (premio != null)
+        {
+            premio.SetActive(true);
+        }
         foreach (GameObject p in pr)
         {
             Destroy(p);
