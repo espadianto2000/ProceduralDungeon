@@ -92,13 +92,9 @@ public class statsRegalo : MonoBehaviour
             {
                 other.GetComponent<statsJugador>().cambiarVelocidadAtaqueRango(0.5f * cambiarVelocidadAtaqueRango, false);
             }
-            if (cambiarCooldownMelee > 0)
+            if (cambiarCooldownMelee != 0)
             {
-                other.GetComponent<statsJugador>().cambiarCooldownMelee(0.85f * cambiarCooldownMelee, true);
-            }
-            else if (cambiarCooldownMelee < 0)
-            {
-                other.GetComponent<statsJugador>().cambiarCooldownMelee(1.1765f * Mathf.Abs(cambiarCooldownMelee), true);
+                other.GetComponent<statsJugador>().cambiarCooldownMelee(0.5f * -cambiarCooldownMelee, false);
             }
             if (cambiarTamañoEspada != 0)
             {

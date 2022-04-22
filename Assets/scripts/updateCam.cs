@@ -20,6 +20,9 @@ public class updateCam : MonoBehaviour
     public bool spawnEnemigos = true;
     public GameObject premio = null;
     public GameObject PanelInfo;
+    public GameObject map;
+    public GameObject salaIn;
+    public GameObject salaOut;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +31,7 @@ public class updateCam : MonoBehaviour
         salas = GameObject.FindGameObjectWithTag("salas").GetComponent<salas>();
         player = GameObject.Find("player");
         PanelInfo = gm.panelInfo;
+        map = GameObject.Find("mapa");
         //Debug.Log(player);
     }
 
@@ -86,6 +90,8 @@ public class updateCam : MonoBehaviour
     {
         if (other.CompareTag("player"))
         {
+            salaOut.SetActive(false);
+            salaIn.SetActive(true);
             entrada = true;
             if (premio != null)
             {
@@ -130,6 +136,15 @@ public class updateCam : MonoBehaviour
                 velocidadTemp = other.GetComponent<charController>().speed;
                 moverjugador = true;
             }
+            map.transform.position = transform.position + new Vector3(0, 60, 0);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("player"))
+        {
+            salaIn.SetActive(false);
+            salaOut.SetActive(true);
         }
     }
     public void FinalizarSala()

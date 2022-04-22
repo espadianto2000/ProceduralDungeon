@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using TMPro;
 
 public class statsJugador : MonoBehaviour
 {
@@ -24,6 +25,16 @@ public class statsJugador : MonoBehaviour
     public GameObject contenedorContenedoresVida;
     public GameObject ContenedorVida;
     public GameObject cuadradoVida;
+    public TextMeshProUGUI velocidadUI;
+    public TextMeshProUGUI danoMeleeUI;
+    public TextMeshProUGUI danoRangoUI;
+    public TextMeshProUGUI velocidadAtaqueMeleeUI;
+    public TextMeshProUGUI velocidadAtaqueRangoUI;
+    public TextMeshProUGUI cooldownMeleeUI;
+    public TextMeshProUGUI rangoMeleeUI;
+    public TextMeshProUGUI rangoRangoUI;
+    public TextMeshProUGUI knockbackMeleeUI;
+
 
     private bool pGracia = false;
     // Start is called before the first frame update
@@ -43,6 +54,14 @@ public class statsJugador : MonoBehaviour
         {
             Instantiate(cuadradoVida, contenedorBarraVida.transform);
         }
+        velocidadUI.text = ((velocidad / 0.5f) - 1) + "";
+        danoMeleeUI.text = (danoMelee / 1.5f) + "";
+        danoRangoUI.text = (danoRango / 0.5f) + "";
+        velocidadAtaqueRangoUI.text = (velocidadAtaqueRango / 0.5f) + "";
+        cooldownMeleeUI.text = (cooldownMelee + "s");
+        rangoMeleeUI.text = ((rangoMelee/0.5)-1f)+"";
+        rangoRangoUI.text = (Mathf.Log(rangoRango * 10, 2) + 1) + "";
+        knockbackMeleeUI.text = (Math.Round(knockbackMelee / 0.1f) - 4) + "";
     }
 
 // Update is called once per frame
@@ -122,6 +141,7 @@ public class statsJugador : MonoBehaviour
         }
         if (velocidad < 1) { velocidad = 1; }
         control.speed = velocidad;
+        velocidadUI.text = ((velocidad / 0.5) - 1) + "";
     }
     public void cambiarDanoMelee(float danoExtra, bool multiplier)
     {
@@ -134,6 +154,7 @@ public class statsJugador : MonoBehaviour
             danoMelee = danoMelee + danoExtra;
         }
         if (danoMelee < 1.5f) { danoMelee = 1.5f; }
+        danoMeleeUI.text = (danoMelee / 1.5) + "";
     }
     public void cambiarDanoRango(float danoExtra, bool multiplier)
     {
@@ -146,6 +167,7 @@ public class statsJugador : MonoBehaviour
             danoRango = danoRango + danoExtra;
         }
         if (danoRango < 0.5f) { danoRango = 0.5f; }
+        danoRangoUI.text = (danoRango / 0.5) + "";
     }
     public void cambiarVelocidadAtaqueMelee(float velocidadExtra, bool multiplier)
     {
@@ -175,6 +197,7 @@ public class statsJugador : MonoBehaviour
         }
         if (velocidadAtaqueRango < 0.5f) { velocidadAtaqueRango = 0.5f; }
         animations.SetFloat("multipleSpeedThrow", velocidadAtaqueRango);
+        velocidadAtaqueRangoUI.text = (velocidadAtaqueRango / 0.5) + "";
     }
     public void cambiarCooldownMelee(float cooldownExtra, bool multiplier)
     {
@@ -187,8 +210,9 @@ public class statsJugador : MonoBehaviour
         {
             cooldownMelee = cooldownMelee + cooldownExtra;
         }
-        if (cooldownMelee > 10) { cooldownMelee = 10; }
+        if (cooldownMelee > 7.5f) { cooldownMelee = 7.5f; }
         if (cooldownMelee < 1) { cooldownMelee = 1; }
+        cooldownMeleeUI.text = (cooldownMelee + "s");
     }
     public void cambiarTamañoEspada(float rangoExtra, bool multiplier)
     {
@@ -202,6 +226,7 @@ public class statsJugador : MonoBehaviour
         }
         if (rangoMelee < 1) { rangoMelee = 1; }
         espada.transform.localScale = new Vector3(espada.transform.localScale.x,rangoMelee, espada.transform.localScale.z);
+        rangoMeleeUI.text = ((rangoMelee / 0.5) - 1) + "";
     }
     public void cambiarRangoDistancia(float rangoExtra, bool multiplier)
     {
@@ -213,7 +238,8 @@ public class statsJugador : MonoBehaviour
         {
             rangoRango = rangoRango + rangoExtra;
         }
-        if (rangoRango < 0.1f) { rangoRango = 0.1f; } 
+        if (rangoRango < 0.1f) { rangoRango = 0.1f; }
+        rangoRangoUI.text = (Mathf.Log(rangoRango * 10, 2) + 1) + "";
         // TODO
         // cambiar tiempo de vida de proyectil
     }
@@ -228,6 +254,7 @@ public class statsJugador : MonoBehaviour
             knockbackMelee = knockbackMelee + knockbackExtra;
         }
         if (knockbackMelee < 0.5f) { knockbackMelee = 0.5f; }
+        knockbackMeleeUI.text = (Math.Round(knockbackMelee / 0.1f) - 4) + "";
     }
     public void recibirDano(int dano)
     {
