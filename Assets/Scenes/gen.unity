@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4397561, g: 0.4881789, b: 0.5683985, a: 1}
+  m_IndirectSpecularColor: {r: 0.43975648, g: 0.48817974, b: 0.5683996, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -515,7 +515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 86.8, y: 2.199997}
+  m_AnchoredPosition: {x: 86.79999, y: 2.1999817}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &151703992
@@ -785,7 +785,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 58.800003, y: 2.199997}
+  m_AnchoredPosition: {x: 58.799988, y: 2.1999817}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &295948650
@@ -2257,7 +2257,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.78898185, g: 0.8490566, b: 0.8361798, a: 0}
+  m_BackGroundColor: {r: 0.4488252, g: 0.7735849, b: 0.692395, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2523,8 +2523,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 116.5, y: 2.199997}
-  m_SizeDelta: {x: 90, y: 30}
+  m_AnchoredPosition: {x: 138.38397, y: 2.1999817}
+  m_SizeDelta: {x: 58.0256, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1011698877
 MonoBehaviour:
@@ -2580,7 +2580,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -3861,8 +3861,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Mejoras de drop:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f230e86b97b863445a73f3181314060f, type: 2}
+  m_sharedMaterial: {fileID: 3558401545516380222, guid: f230e86b97b863445a73f3181314060f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3968,7 +3968,7 @@ RectTransform:
   m_Children:
   - {fileID: 106196230}
   m_Father: {fileID: 1645922053}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3988,7 +3988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4839,8 +4839,8 @@ RectTransform:
   - {fileID: 732486461}
   - {fileID: 1249967831}
   - {fileID: 1228976256}
-  - {fileID: 1706666660}
   - {fileID: 1324898055}
+  - {fileID: 1706666660}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4884,8 +4884,8 @@ Camera:
   m_GameObject: {fileID: 1649626956}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.050729793, g: 0.3098275, b: 0.7169812, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5103,7 +5103,7 @@ RectTransform:
   m_Children:
   - {fileID: 1302995392}
   m_Father: {fileID: 1645922053}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -5123,7 +5123,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCanvas: {fileID: 1645922052}
-  TextoStat: {fileID: 7352929071302408153, guid: 533aa924fdfeb4942a453b2721e9a277, type: 3}
+  TextoStat: {fileID: 7190675024947517640, guid: ebbf43bf47e0dc740bf685d1dffe65a9, type: 3}
+  VidaMax: {fileID: 21300000, guid: 5d6cec7e900f93849956ee0913de5830, type: 3}
+  Vida: {fileID: 21300000, guid: aa8cb8b87ce50a0438930df2e6d444c9, type: 3}
+  velocidad: {fileID: 21300000, guid: f4d112d1f8d18e740b8c0cd0010900f9, type: 3}
+  DanoMelee: {fileID: 21300000, guid: 9971fc4d129099849893500c0bf20e46, type: 3}
+  DanoRango: {fileID: 21300000, guid: 0d36613353179fd4d9f1f59ea5607213, type: 3}
+  VelocidadAtkRango: {fileID: 21300000, guid: 85dec7e10e45bf14a8bdc923143286ca, type: 3}
+  CooldownMelee: {fileID: 21300000, guid: 94dec4fa510c9e443aa60f5ae986906f, type: 3}
+  TamanoEspada: {fileID: 21300000, guid: 1ce663944bb0f7740aa1c1aa986b2343, type: 3}
+  RangoDist: {fileID: 21300000, guid: b35dc625240b2a14cb8dfdb178e7d77e, type: 3}
+  Knockback: {fileID: 21300000, guid: da0d4aa152a4e014fbad9bdb303c105c, type: 3}
 --- !u!114 &1706666662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5934,7 +5944,7 @@ MonoBehaviour:
   timer: 5
   spawnedBoss: 0
   salasInstanciadas: []
-  boss: {fileID: 139696, guid: eb58e8f2831a51f45a44a261e6710cdd, type: 3}
+  boss: {fileID: 2517300769757566139, guid: f8d0cc86e1c0f1f4a9683b948397a3ef, type: 3}
   SpawnMuros: {fileID: 1962552170136533241, guid: 7674411b0a38df34a9f4a4a5c9dfb5b9, type: 3}
   muros: {fileID: 6058240287959539859, guid: af609db8247502f40b5cf27eb3232bb6, type: 3}
   juegoListo: 0

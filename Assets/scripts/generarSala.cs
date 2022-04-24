@@ -22,6 +22,7 @@ public class generarSala : MonoBehaviour
     {
         if (destroyer)
         { 
+            if(!other.CompareTag("boss"))
             other.gameObject.SetActive(false);
             //Debug.Log("desactivando: " + other.name + "; de: " + other.transform.parent.name);
             //Destroy(other.gameObject);

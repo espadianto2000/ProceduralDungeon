@@ -78,7 +78,7 @@ public class salas : MonoBehaviour
         {
             borrarSpawners();
             juegoListo = true;
-            Invoke("refrescarNavMesh", 0.5f);
+            Invoke("refrescarNavMesh", 1f);
         }
         
     }
