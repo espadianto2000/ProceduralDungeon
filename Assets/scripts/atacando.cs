@@ -31,5 +31,23 @@ public class atacando : MonoBehaviour
                 //Debug.Log("no recibe daño");
             }
         }
+        /*
+        else if (other.CompareTag("boss") && player.GetComponentInChildren<Animator>().GetCurrentAnimatorClipInfo(1)[0].clip.name == "Clip1")
+        {
+            while (!other.transform.parent.CompareTag("jefe1"))
+            {
+                other = other.transform.parent.gameObject;
+            }
+            if (other.GetComponent<statsBoss1>().vulnerable == true)
+            {
+                //Debug.Log("Se hace daño al enemigo");
+                other.GetComponent<statsBoss1>().vulnerable = false;
+                other.GetComponent<statsBoss1>().recibirDano(player.GetComponent<statsJugador>().danoMelee, transform.position, 0);
+            }
+            else
+            {
+                //Debug.Log("no recibe daño");
+            }
+        }*/
     }
 }

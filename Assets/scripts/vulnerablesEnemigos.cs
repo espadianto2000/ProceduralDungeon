@@ -16,6 +16,10 @@ public class vulnerablesEnemigos : MonoBehaviour
         {
             en.GetComponent<statsEnemigo>().vulnerable = true;
         }
+        if (GameObject.FindGameObjectWithTag("jefe1"))
+        {
+            GameObject.FindGameObjectWithTag("jefe1").GetComponent<statsBoss1>().vulnerable = true;
+        }
     }
     public void slash()
     {

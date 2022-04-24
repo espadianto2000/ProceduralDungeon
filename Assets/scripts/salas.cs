@@ -16,6 +16,7 @@ public class salas : MonoBehaviour
     public bool lim2=false;
     public float timer = 3;
     public bool spawnedBoss = false;
+    public GameObject jefeinstanciado;
 
     public List<GameObject> salasInstanciadas;
     public GameObject boss;
@@ -68,7 +69,7 @@ public class salas : MonoBehaviour
                 var jefe = Instantiate(boss, salasInstanciadas[salasInstanciadas.Count - 1].transform.position, Quaternion.identity);
                 jefe.transform.parent = salasInstanciadas[salasInstanciadas.Count - 1].transform;
                 spawnedBoss = true;
-                
+                jefeinstanciado = jefe;
             }
             else
             {
@@ -89,11 +90,17 @@ public class salas : MonoBehaviour
         {
             Vector3 temp = sp.transform.position;
             GameObject padre = sp.GetComponent<generarSala>().salaGenerada;
+            
             Destroy(sp.gameObject);
             if (padre != null)
             {
+
                 var lim = Instantiate(SalaLimite, temp, Quaternion.identity);
                 lim.transform.SetParent(padre.transform);
+                if (padre == salasInstanciadas[salasInstanciadas.Count - 1])
+                {
+                    lim.GetComponent<updateCam>().boss = jefeinstanciado;
+                }
             }
         }
         GameObject[] spawnmuros = GameObject.FindGameObjectsWithTag("spawnMuro");

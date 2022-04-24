@@ -23,6 +23,7 @@ public class updateCam : MonoBehaviour
     public GameObject map;
     public GameObject salaIn;
     public GameObject salaOut;
+    public GameObject boss;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +54,11 @@ public class updateCam : MonoBehaviour
                         en.gameObject.SetActive(true);
                     }
                     contadorEnemigos = enemigosInstanciados.Count;
+                    if (boss != null)
+                    {
+                        boss.SetActive(true);
+                        contadorEnemigos++;
+                    }
                 }
                 entrada = false;
             }

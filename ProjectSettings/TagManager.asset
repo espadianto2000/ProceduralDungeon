@@ -17,6 +17,8 @@ TagManager:
   - present
   - boss
   - obstaculo
+  - jefe1
+  - sword
   layers:
   - Default
   - TransparentFX

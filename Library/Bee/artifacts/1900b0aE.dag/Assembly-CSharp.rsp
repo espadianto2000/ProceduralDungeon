@@ -370,6 +370,7 @@
 "Assets/scripts/seguirMouse.cs"
 "Assets/scripts/SizeManager.cs"
 "Assets/scripts/spawnMuros.cs"
+"Assets/scripts/statsBoss1.cs"
 "Assets/scripts/statsEnemigo.cs"
 "Assets/scripts/statsJugador.cs"
 "Assets/scripts/statsProyectil.cs"
