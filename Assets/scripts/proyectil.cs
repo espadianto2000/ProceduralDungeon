@@ -62,6 +62,7 @@ public class proyectil : MonoBehaviour
         {
             Destroy(transform.gameObject);
         }
+        
     }
     private void delete()
     {

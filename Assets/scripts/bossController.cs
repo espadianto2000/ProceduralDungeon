@@ -10,10 +10,14 @@ public class bossController : MonoBehaviour
     public Animator anim;
     private bool atk = false;
     private bool caminando = false;
+    public ParticleSystem flama;
+    public GameObject cabeza;
     // Start is called before the first frame update
     void Start()
     {
-        
+        flama.enableEmission = false;
+        flama.GetComponent<datosFuego>().dano = GetComponent<statsBoss1>().danoRango;
+        //flama.transform.GetChild(0).GetComponent<ParticleSystem>().enableEmission = false;
     }
 
     // Update is called once per frame
@@ -40,43 +44,28 @@ public class bossController : MonoBehaviour
                     anim.SetTrigger("caminar");
                     caminando = true;
                 }
-                Debug.Log("diferencia entre quaternions: " + (transform.rotation.normalized * targetRotation.normalized));
+                //Debug.Log("diferencia entre quaternions: " + (transform.rotation.normalized * targetRotation.normalized));
                 if(Vector3.Distance(player.transform.position, transform.position) > 2f)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z), 1f * Time.deltaTime);
-                    /*if (!caminando)
-                    {
-                        anim.SetTrigger("caminar");
-                        caminando = true;
-                    }*/
-                }
-                else
-                {
-                    /*if (caminando)
-                    {
-                        anim.SetTrigger("pararCaminar");
-                        caminando = false;
-                    }*/
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z), GetComponent<statsBoss1>().velocidad * Time.deltaTime);
                 }
             }
             else if(estado == 1 && !atk)
             {
                 //ataque fuego
-                Debug.Log("atacar fuego");
                 anim.SetTrigger("atk1");
                 atk = true;
             }
             else if(estado == 2 && !atk)
             {
                 //ataque fisico
-                Debug.Log("atacar fisico");
                 anim.SetTrigger("atk2");
                 atk = true;
             }
             if(timer <= 0)
             {
                 caminando = false;
-                if(Vector3.Distance(player.transform.position, transform.position) > 2.5f)
+                if(Vector3.Distance(player.transform.position, transform.position) > 3f)
                 {
                     estado = 1;
                 }
@@ -100,17 +89,48 @@ public class bossController : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("obstaculo"))
+        if (GetComponent<statsBoss1>().vida > 0)
         {
-            Destroy(other.gameObject);
-        }
-        if (other.transform.CompareTag("sword") && player.GetComponentInChildren<Animator>().GetCurrentAnimatorClipInfo(1)[0].clip.name == "Clip1")
-        {
-            if (GetComponent<statsBoss1>().vulnerable)
+            if (other.CompareTag("proyectilJugador"))
             {
-                GetComponent<statsBoss1>().vulnerable = false;
-                GetComponent<statsBoss1>().recibirDano(player.GetComponent<statsJugador>().danoMelee, other.GetComponent<atacando>().player.transform.position, 0);
-            } 
+                GetComponent<statsBoss1>().recibirDano(player.GetComponent<statsJugador>().danoRango, other.transform.position, 1);
+                Destroy(other.gameObject);
+            }
+            if (other.transform.CompareTag("obstaculo"))
+            {
+                Destroy(other.gameObject);
+            }
+            if (other.transform.CompareTag("sword") && player.GetComponentInChildren<Animator>().GetCurrentAnimatorClipInfo(1)[0].clip.name == "Clip1")
+            {
+                if (GetComponent<statsBoss1>().vulnerable)
+                {
+                    GetComponent<statsBoss1>().vulnerable = false;
+                    GetComponent<statsBoss1>().recibirDano(player.GetComponent<statsJugador>().danoMelee, other.GetComponent<atacando>().player.transform.position, 0);
+                }
+            }
+            if (other.CompareTag("player") && GetComponent<statsBoss1>().vida > 0)
+            {
+                other.GetComponent<statsJugador>().recibirDano(GetComponent<statsBoss1>().danoMelee);
+            }
         }
+    }
+    public void activarFuego()
+    {
+        flama.enableEmission = true;
+
+        //flama.transform.GetChild(0).GetComponent<ParticleSystem>().enableEmission = true;
+    }
+    public void desactivarFuego()
+    {
+        flama.enableEmission = false;
+        //flama.transform.GetChild(0).GetComponent<ParticleSystem>().enableEmission = false;
+    }
+    public void activarAreaFuego()
+    {
+        
+    }
+    public void desactivarAreaFuego()
+    {
+        
     }
 }

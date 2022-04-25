@@ -28,7 +28,10 @@ public class statsBoss1 : MonoBehaviour
             muerto = true;
             GetComponent<bossController>().timer = 100;
             GetComponent<bossController>().anim.SetTrigger("morir");
+            GetComponent<bossController>().desactivarAreaFuego();
+            GetComponent<bossController>().desactivarFuego();
             GetComponent<bossController>().enabled = false;
+
         }
     }
     public void recibirDano(float dano, Vector3 player, int tipoAtaque)

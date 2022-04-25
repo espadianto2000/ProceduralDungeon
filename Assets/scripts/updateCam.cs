@@ -49,15 +49,18 @@ public class updateCam : MonoBehaviour
                 gm.InputEnable = true;
                 if (spawnEnemigos && !finalizado)
                 {
-                    foreach(GameObject en in enemigosInstanciados)
-                    {
-                        en.gameObject.SetActive(true);
-                    }
-                    contadorEnemigos = enemigosInstanciados.Count;
                     if (boss != null)
                     {
                         boss.SetActive(true);
-                        contadorEnemigos++;
+                        contadorEnemigos = 1;
+                    }
+                    else
+                    {
+                        foreach (GameObject en in enemigosInstanciados)
+                        {
+                            en.gameObject.SetActive(true);
+                        }
+                        contadorEnemigos = enemigosInstanciados.Count;
                     }
                 }
                 entrada = false;

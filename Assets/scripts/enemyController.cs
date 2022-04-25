@@ -73,7 +73,7 @@ public class enemyController : MonoBehaviour
     IEnumerator knockback(Vector3 dir, float knockbackMelee, int tipoAtaque)
     {
         direction = dir.normalized;
-        Debug.Log("direccion normalizada: " + dir.normalized);
+        //Debug.Log("direccion normalizada: " + dir.normalized);
         //Vector3 velocidadG = transform.GetComponent<Rigidbody>().velocity;
         //Vector3 velocidadAngG = transform.GetComponent<Rigidbody>().angularVelocity;
         //transform.GetComponent<Rigidbody>().velocity = Vector3.zero;

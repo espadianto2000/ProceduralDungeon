@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 513735362844943668}
   m_Layer: 0
   m_Name: proyectil
-  m_TagString: Untagged
+  m_TagString: proyectilJugador
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,6 +151,7 @@ MonoBehaviour:
   rb: {fileID: 513735362844943668}
   timerVida: 0
   tiempoVida: 0
+  player: {fileID: 0}
 --- !u!54 &513735362844943668
 Rigidbody:
   m_ObjectHideFlags: 0

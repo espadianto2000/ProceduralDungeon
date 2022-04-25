@@ -91,4 +91,11 @@ public class charController : MonoBehaviour
             animador.SetTrigger("atacar2");
         }
     }
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.CompareTag("fuego"))
+        {
+            GetComponent<statsJugador>().recibirDano(other.GetComponent<datosFuego>().dano);
+        }
+    }
 }
