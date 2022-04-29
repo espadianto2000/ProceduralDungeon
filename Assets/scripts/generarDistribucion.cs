@@ -319,7 +319,7 @@ public class generarDistribucion : MonoBehaviour
                 else if(mapeado[x, y] == 5)
                 {
                     GameObject enem = Instantiate(enemigos[Random.Range(0, enemigos.Length)], new Vector3(posXIni + x, 0.5f, posZIni - y), Quaternion.identity);
-                    enem.name = contEnem + "";
+                    //enem.name = contEnem + "";
                     contEnem++;
                     enem.transform.SetParent(transform); 
                     transform.GetComponent<updateCam>().enemigosInstanciados.Add(enem);

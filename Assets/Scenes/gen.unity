@@ -1458,6 +1458,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HP_Golem
       objectReference: {fileID: 0}
+    - target: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4168634819871070, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -6022,8 +6026,8 @@ MonoBehaviour:
   - {fileID: 3088259885755772125, guid: 7705323b4f0792f4586a6aca92061927, type: 3}
   - {fileID: 3088259885755772125, guid: 7705323b4f0792f4586a6aca92061927, type: 3}
   contadorSalas: 0
-  Limite1: 0
-  Limite2: 0
+  Limite1: 8
+  Limite2: 16
   lim1: 0
   lim2: 0
   timer: 5
@@ -6842,7 +6846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7841677026503186179, guid: 1d3143f39638cde4dbbf4b01f85e83f4, type: 3}
       propertyPath: danoRango
-      value: 6
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7841677026503186179, guid: 1d3143f39638cde4dbbf4b01f85e83f4, type: 3}
       propertyPath: velocidad

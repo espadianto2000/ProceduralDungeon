@@ -14,7 +14,14 @@ public class vulnerablesEnemigos : MonoBehaviour
         GameObject[] enemigos = GameObject.FindGameObjectsWithTag("enemigo");
         foreach (GameObject en in enemigos)
         {
-            en.GetComponent<statsEnemigo>().vulnerable = true;
+            if(en.name.Contains("enemigoV1"))
+            {
+                en.GetComponent<statsEnemigo>().vulnerable = true;
+            }
+            else if(en.name.Contains("enemigoV2"))
+            {
+                en.GetComponent<statsEnemigo2>().vulnerable = true;
+            }
         }
         if (GameObject.FindGameObjectWithTag("jefe1"))
         {

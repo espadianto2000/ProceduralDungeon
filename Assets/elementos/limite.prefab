@@ -277,6 +277,7 @@ MonoBehaviour:
   map: {fileID: 0}
   salaIn: {fileID: 8175020802937225705}
   salaOut: {fileID: 8038472799428445432}
+  boss: {fileID: 0}
 --- !u!114 &1416533420195769367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,7 +295,7 @@ MonoBehaviour:
   - {fileID: 8914487071346236136, guid: f9bbfbfdd4fdf0d43901b0485c11f2bb, type: 3}
   - {fileID: 843039373545645386, guid: 8e1a6eb53696a884687a8940216247bc, type: 3}
   enemigos:
-  - {fileID: 9207432993689619392, guid: 03b2a73445fb82a4992d7f21eeb1739e, type: 3}
+  - {fileID: 2280587981189891139, guid: 690e7815c77d5a04bac9484368d937af, type: 3}
   premio: {fileID: 705537483042271215, guid: fba9bb974afc48745a62cb64e3936261, type: 3}
 --- !u!1 &8789381577026393887
 GameObject:
