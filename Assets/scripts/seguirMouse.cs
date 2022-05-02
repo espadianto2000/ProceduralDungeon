@@ -109,8 +109,8 @@ public class seguirMouse : MonoBehaviour
             GameObject panel = Instantiate(TextoStat, transform);
             GameObject texto = panel.transform.GetChild(0).gameObject;
             if (stats.cambiarTamañoEspada < 0)
-                texto.GetComponent<TextMeshProUGUI>().text = "Largo de Espada: " + stats.cambiarTamañoEspada;
-            else { texto.GetComponent<TextMeshProUGUI>().text = "Largo de Espada: +" + stats.cambiarTamañoEspada; }
+                texto.GetComponent<TextMeshProUGUI>().text = "Largo Espada: " + stats.cambiarTamañoEspada;
+            else { texto.GetComponent<TextMeshProUGUI>().text = "Largo Espada: +" + stats.cambiarTamañoEspada; }
             panel.transform.GetChild(1).GetComponent<RawImage>().texture = TamanoEspada.texture;
         }
         if (stats.cambiarRangoDistancia != 0)

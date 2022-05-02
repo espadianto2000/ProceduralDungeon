@@ -19,7 +19,7 @@ public class salas : MonoBehaviour
     public GameObject jefeinstanciado;
 
     public List<GameObject> salasInstanciadas;
-    public GameObject boss;
+    public GameObject[] boss;
     public GameObject SpawnMuros;
     public GameObject muros;
     public bool juegoListo = false;
@@ -66,7 +66,8 @@ public class salas : MonoBehaviour
             }
             if (timer <= 0 && spawnedBoss == false)
             {
-                var jefe = Instantiate(boss, salasInstanciadas[salasInstanciadas.Count - 1].transform.position, Quaternion.identity);
+                int orden = Random.Range(0, boss.Length);
+                var jefe = Instantiate(boss[orden], salasInstanciadas[salasInstanciadas.Count - 1].transform.position, Quaternion.identity);
                 jefe.transform.parent = salasInstanciadas[salasInstanciadas.Count - 1].transform;
                 spawnedBoss = true;
                 jefeinstanciado = jefe;

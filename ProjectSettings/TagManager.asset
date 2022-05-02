@@ -19,6 +19,8 @@ TagManager:
   - obstaculo
   - jefe1
   - sword
+  - fuego
+  - spikeBall
   layers:
   - Default
   - TransparentFX

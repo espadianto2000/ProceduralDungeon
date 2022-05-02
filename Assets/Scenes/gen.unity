@@ -1460,7 +1460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4168634819871070, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
       propertyPath: m_RootOrder
@@ -3957,8 +3957,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 3120562175
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.7254902}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5236,7 +5236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.009137154, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.009137154, a: 0.7254902}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6026,15 +6026,16 @@ MonoBehaviour:
   - {fileID: 3088259885755772125, guid: 7705323b4f0792f4586a6aca92061927, type: 3}
   - {fileID: 3088259885755772125, guid: 7705323b4f0792f4586a6aca92061927, type: 3}
   contadorSalas: 0
-  Limite1: 8
-  Limite2: 16
+  Limite1: 0
+  Limite2: 0
   lim1: 0
   lim2: 0
   timer: 5
   spawnedBoss: 0
   jefeinstanciado: {fileID: 0}
   salasInstanciadas: []
-  boss: {fileID: 2517300769757566139, guid: f8d0cc86e1c0f1f4a9683b948397a3ef, type: 3}
+  boss:
+  - {fileID: 9062522958490759112, guid: 4c9af94e3e8573749893917453370d9e, type: 3}
   SpawnMuros: {fileID: 1962552170136533241, guid: 7674411b0a38df34a9f4a4a5c9dfb5b9, type: 3}
   muros: {fileID: 6058240287959539859, guid: af609db8247502f40b5cf27eb3232bb6, type: 3}
   juegoListo: 0

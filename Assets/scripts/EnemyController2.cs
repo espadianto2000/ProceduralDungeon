@@ -13,6 +13,7 @@ public class EnemyController2 : MonoBehaviour
     Vector3 direction;
     public float knockSpeed = 3;
     public float CooldownDisparo = 5;
+    public GameObject spikeball;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +44,7 @@ public class EnemyController2 : MonoBehaviour
             if (CooldownDisparo <= 0)
             {
                 //Disparar
-                Debug.Log("Ataque a distancia de enemigo");
+                ataqueDistancia();
                 CooldownDisparo = stats.velocidadAtaque;
             }
         }
@@ -84,6 +85,16 @@ public class EnemyController2 : MonoBehaviour
             agent.SetDestination(transform.position);
         }*/
 
+    }
+
+    private void ataqueDistancia()
+    {
+        GameObject obj = Instantiate(spikeball,transform.position,Quaternion.identity);
+        obj.transform.localPosition = new Vector3(transform.position.x, 0.8f, transform.position.z);
+        obj.GetComponent<proyectilEnemigo>().dano = stats.danoRango;
+        obj.GetComponent<proyectilEnemigo>().velocidadProyectil = stats.velocidadProyectil;
+        obj.GetComponent<proyectilEnemigo>().tiempoVida = stats.rango;
+        obj.GetComponent<proyectilEnemigo>().destino = player.transform.position;
     }
     public void knocks(Vector3 dir, float knockbackMelee, int tipoAtaque)
     {
@@ -155,7 +166,7 @@ public class EnemyController2 : MonoBehaviour
     {
         if (other.CompareTag("player"))
         {
-            other.GetComponent<statsJugador>().recibirDano(this.GetComponent<statsEnemigo>().danoMelee);
+            other.GetComponent<statsJugador>().recibirDano(this.GetComponent<statsEnemigo2>().danoMelee);
         }
     }
 }

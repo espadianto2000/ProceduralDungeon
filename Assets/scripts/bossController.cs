@@ -23,13 +23,16 @@ public class bossController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        try
+        if(player == null)
         {
-            player = GameObject.Find("player");
-        }
-        catch
-        {
+            try
+            {
+                player = GameObject.Find("player");
+            }
+            catch
+            {
 
+            }
         }
         if (player != null)
         {
