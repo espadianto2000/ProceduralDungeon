@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2835745955924453313}
   - component: {fileID: 2835745955924453343}
   - component: {fileID: 2835745955924453312}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5001,6 +5001,8 @@ MonoBehaviour:
   stats: {fileID: 7841677026503186179}
   cooldownMelee: 0
   trail: {fileID: 2835745955924453314}
+  sliderMelee: {fileID: 0}
+  paused: 0
 --- !u!54 &2835745955957491732
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5029,15 +5031,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6c1814f556e1240b7f7a8347747b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vidaMax: 0
   vida: 0
   velocidad: 0
   danoMelee: 3
   danoRango: 0
   velocidadAtaqueMelee: 2
-  rango: 0
-  armaMelee: 0
-  armaRango: 0
+  velocidadAtaqueRango: 0
+  cooldownMelee: 0
+  rangoMelee: 0
+  rangoRango: 0
   knockbackMelee: 150
+  control: {fileID: 0}
+  animations: {fileID: 0}
+  espada: {fileID: 0}
+  contenedorBarraVida: {fileID: 0}
+  contenedorContenedoresVida: {fileID: 0}
+  ContenedorVida: {fileID: 0}
+  cuadradoVida: {fileID: 0}
+  velocidadUI: {fileID: 0}
+  danoMeleeUI: {fileID: 0}
+  danoRangoUI: {fileID: 0}
+  velocidadAtaqueMeleeUI: {fileID: 0}
+  velocidadAtaqueRangoUI: {fileID: 0}
+  cooldownMeleeUI: {fileID: 0}
+  rangoMeleeUI: {fileID: 0}
+  rangoRangoUI: {fileID: 0}
+  knockbackMeleeUI: {fileID: 0}
 --- !u!1 &2835745956664029822
 GameObject:
   m_ObjectHideFlags: 0
@@ -5093,7 +5113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2835745957127265929}
   - component: {fileID: 2835745957127265928}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: sonido
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5396,7 +5416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2066896392038628070, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2066896392038628072, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       propertyPath: m_Layer
@@ -5608,7 +5628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3951229398020017800, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3951229398022279240, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       propertyPath: m_Enabled
@@ -5682,6 +5702,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 7841677026503186179}
   proyectil: {fileID: 0}
+  cam: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &4320500968735125834 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2066896392038628070, guid: 45288819fde2143449a96207b14db0bb, type: 3}

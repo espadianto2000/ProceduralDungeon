@@ -297,6 +297,7 @@ MonoBehaviour:
   enemigos:
   - {fileID: 9207432993689619392, guid: 03b2a73445fb82a4992d7f21eeb1739e, type: 3}
   - {fileID: 2280587981189891139, guid: 690e7815c77d5a04bac9484368d937af, type: 3}
+  - {fileID: 7806567643571461517, guid: 91cac279552c3914f9c47b2bc37487ad, type: 3}
   premio: {fileID: 705537483042271215, guid: fba9bb974afc48745a62cb64e3936261, type: 3}
 --- !u!1 &8789381577026393887
 GameObject:

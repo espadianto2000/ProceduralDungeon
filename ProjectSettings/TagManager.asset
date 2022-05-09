@@ -21,11 +21,13 @@ TagManager:
   - sword
   - fuego
   - spikeBall
+  - jefe2
+  - jefe3
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - obstaculo
   - Water
   - UI
   - player
@@ -33,8 +35,8 @@ TagManager:
   - boss
   - paredes
   - map
-  - 
-  - 
+  - armaEnemigo
+  - armaPlayer
   - 
   - 
   - 

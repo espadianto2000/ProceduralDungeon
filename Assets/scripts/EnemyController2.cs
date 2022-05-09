@@ -62,29 +62,11 @@ public class EnemyController2 : MonoBehaviour
     void Update()
     {
 
-        /*float distX = Mathf.Abs(transform.position.x - player.transform.position.x);
-        float distZ = Mathf.Abs(transform.position.z - player.transform.position.z);*/
-
-        /*else
-        {
-            posicionEstatica = transform.position;
-            agent.SetDestination(posicionEstatica);
-            agent.updatePosition = false;
-        }*/
+        
         Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
         targetRotation.x = 0;
         targetRotation.z = 0;
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
-
-        /*if (distX+distZ > 3f)
-        {
-            agent.SetDestination(player.transform.position);
-        }
-        else
-        {
-            agent.SetDestination(transform.position);
-        }*/
-
     }
 
     private void ataqueDistancia()

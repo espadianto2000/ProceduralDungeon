@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class statsEnemigo2 : MonoBehaviour
 {
@@ -39,5 +41,12 @@ public class statsEnemigo2 : MonoBehaviour
         vida = vida - dano;
         GameObject ind = Instantiate(damageInd, transform.position, Quaternion.identity);
         ind.GetComponent<DamagePopup>().setDamageValue(dano);
+    }
+    public void curarDano(float dano)
+    {
+        vida = vida + dano;
+        GameObject ind = Instantiate(damageInd, transform.position, Quaternion.identity);
+        ind.GetComponent<DamagePopup>().setDamageValue(dano);
+        ind.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.green;
     }
 }

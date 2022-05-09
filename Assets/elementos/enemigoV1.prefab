@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 9207432993689619407}
   - component: {fileID: 5355899111746673682}
   - component: {fileID: 3541359750525350728}
+  - component: {fileID: 5331112441152357627}
   m_Layer: 7
   m_Name: enemigoV1
   m_TagString: enemigo
@@ -208,7 +209,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9207432993689619392}
   serializedVersion: 2
-  m_Mass: 20
+  m_Mass: 40
   m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -233,6 +234,7 @@ MonoBehaviour:
   velocidad: 2
   danoMelee: 1
   danoRango: 1
+  velocidadAtaque: 0
   rango: 5
   vulnerable: 1
   damageInd: {fileID: 1657997380636792352, guid: 12050d6263fa9ea4b967035b2643f5ac, type: 3}
@@ -276,3 +278,17 @@ MonoBehaviour:
   posicionEstatica: {x: 0, y: 0, z: 0}
   knock: 0
   knockSpeed: 3
+--- !u!136 &5331112441152357627
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9207432993689619392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

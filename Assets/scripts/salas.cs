@@ -67,6 +67,7 @@ public class salas : MonoBehaviour
             if (timer <= 0 && spawnedBoss == false)
             {
                 int orden = Random.Range(0, boss.Length);
+                refrescarNavMesh();
                 var jefe = Instantiate(boss[orden], salasInstanciadas[salasInstanciadas.Count - 1].transform.position, Quaternion.identity);
                 jefe.transform.parent = salasInstanciadas[salasInstanciadas.Count - 1].transform;
                 spawnedBoss = true;
@@ -80,7 +81,7 @@ public class salas : MonoBehaviour
         {
             borrarSpawners();
             juegoListo = true;
-            Invoke("refrescarNavMesh", 1f);
+            //Invoke("refrescarNavMesh", 1f);
         }
         
     }

@@ -31,14 +31,10 @@ public class statsBoss1 : MonoBehaviour
             GetComponent<bossController>().desactivarAreaFuego();
             GetComponent<bossController>().desactivarFuego();
             GetComponent<bossController>().enabled = false;
-
         }
     }
     public void recibirDano(float dano, Vector3 player, int tipoAtaque)
     {
-        //vulnerable = false;
-        Vector3 direccion = transform.position - player;
-        direccion.y = 0;
         vida = vida - dano;
         GameObject ind = Instantiate(damageInd, transform.position, Quaternion.identity);
         ind.GetComponent<DamagePopup>().setDamageValue(dano);
