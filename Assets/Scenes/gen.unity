@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.25
     agentHeight: 2
     agentSlope: 45
-    agentClimb: 0.4
+    agentClimb: 0.2
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.083333336
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -5347,7 +5347,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.11666667
+  m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: e3d10062036fc1643844704e367a6c2b, type: 2}
 --- !u!4 &1738384464
@@ -5953,8 +5953,8 @@ MonoBehaviour:
   - {fileID: 3088259885755772125, guid: 7705323b4f0792f4586a6aca92061927, type: 3}
   - {fileID: 3088259885755772125, guid: 7705323b4f0792f4586a6aca92061927, type: 3}
   contadorSalas: 0
-  Limite1: 0
-  Limite2: 0
+  Limite1: 8
+  Limite2: 16
   lim1: 0
   lim2: 0
   timer: 5
@@ -5963,6 +5963,8 @@ MonoBehaviour:
   salasInstanciadas: []
   boss:
   - {fileID: 3791787470559802540, guid: edc18a352a0868e49b4889caa1fafb1a, type: 3}
+  - {fileID: 9062522958490759112, guid: 4c9af94e3e8573749893917453370d9e, type: 3}
+  - {fileID: 2517300769757566139, guid: f8d0cc86e1c0f1f4a9683b948397a3ef, type: 3}
   SpawnMuros: {fileID: 1962552170136533241, guid: 7674411b0a38df34a9f4a4a5c9dfb5b9, type: 3}
   muros: {fileID: 6058240287959539859, guid: af609db8247502f40b5cf27eb3232bb6, type: 3}
   juegoListo: 0
@@ -6679,6 +6681,14 @@ PrefabInstance:
     - target: {fileID: 1265232081108059428, guid: 1d3143f39638cde4dbbf4b01f85e83f4, type: 3}
       propertyPath: m_TagString
       value: sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835745955924453314, guid: 1d3143f39638cde4dbbf4b01f85e83f4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835745955924453343, guid: 1d3143f39638cde4dbbf4b01f85e83f4, type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2835745955957491732, guid: 1d3143f39638cde4dbbf4b01f85e83f4, type: 3}
       propertyPath: m_Mass

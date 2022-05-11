@@ -70,6 +70,11 @@ public class proyectil : MonoBehaviour
                 other.GetComponent<statsEnemigo3>().recibirDano(player.GetComponent<statsJugador>().danoRango, transform.position, player.GetComponent<statsJugador>().knockbackMelee, 1);
                 Destroy(transform.gameObject);
             }
+            else if (other.name.Contains("enemigoV4"))
+            {
+                other.GetComponent<statsEnemigo4>().recibirDano(player.GetComponent<statsJugador>().danoRango, transform.position, player.GetComponent<statsJugador>().knockbackMelee, 1);
+                Destroy(transform.gameObject);
+            }
 
         }
         else if (other.CompareTag("piso"))

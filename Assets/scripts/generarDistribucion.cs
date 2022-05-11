@@ -20,7 +20,7 @@ public class generarDistribucion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sw1.Start();
+        //sw1.Start();
         for(int i = 0; i < 10; i++)
         {
             //string cadena = "";
@@ -59,13 +59,35 @@ public class generarDistribucion : MonoBehaviour
         mapeado[0, 5] = 9;
         mapeado[9, 4] = 9;
         mapeado[9, 5] = 9;
-        sw1.Stop();
+        //sw1.Stop();
+        if(transform.position == Vector3.zero)
+        {
+            generarElementos2(45, 0, 0);
+            /*string fila = "";
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (mapeado[i, j] == 9)
+                    {
+                        fila += 1 + ",";
+                    }
+                    else fila += mapeado[i, j] + ",";
+                }
+                fila += "\n";
+            }
+            UnityEngine.Debug.Log(fila);
+            UnityEngine.Debug.Log("----------");*/
+            instanciarElementos();
+        }
+        //sw2.Start();
 
-        sw2.Start();
-        generarElementos2(30, 5, 5);
-        sw2.Stop();
-        UnityEngine.Debug.Log("tiempo de carga: " + sw2.ElapsedMilliseconds);
+        //generarElementos2(30, 5, 5);
 
+        //sw2.Stop();
+        //UnityEngine.Debug.Log("tiempo de carga: " + sw2.ElapsedMilliseconds);
+
+        /*
         string fila = "";
         for (int i=0; i < 10; i++)
         {
@@ -82,7 +104,9 @@ public class generarDistribucion : MonoBehaviour
         }
         UnityEngine.Debug.Log(fila);
         UnityEngine.Debug.Log("----------");
-        instanciarElementos();
+        */
+
+        //instanciarElementos();
     }
 
     // Update is called once per frame
@@ -199,7 +223,7 @@ public class generarDistribucion : MonoBehaviour
         }
     }
 
-    void generarElementos2(int mxObs, int mxEnem, int mxTramp)
+    public void generarElementos2(int mxObs, int mxEnem, int mxTramp)
     {
         
         //ruta a puertas = 1
@@ -301,7 +325,7 @@ public class generarDistribucion : MonoBehaviour
         }
         
     }
-    void instanciarElementos()
+    public void instanciarElementos()
     {
         float posXIni = transform.position.x - 4.5f;
         float posZIni = transform.position.z + 4.5f;

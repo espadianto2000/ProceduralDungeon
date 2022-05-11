@@ -24,6 +24,7 @@ public class updateCam : MonoBehaviour
     public GameObject salaIn;
     public GameObject salaOut;
     public GameObject boss;
+    public bool contenidoGenerado = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +35,10 @@ public class updateCam : MonoBehaviour
         PanelInfo = gm.panelInfo;
         map = GameObject.Find("mapa");
         //Debug.Log(player);
+        if(transform.position == Vector3.zero)
+        {
+            contenidoGenerado = true;
+        }
     }
 
     // Update is called once per frame
@@ -42,6 +47,13 @@ public class updateCam : MonoBehaviour
         
         if (entrada)
         {
+            if (!contenidoGenerado)
+            {
+                GetComponent<generarDistribucion>().generarElementos2(30, 3, 5);
+                GetComponent<generarDistribucion>().instanciarElementos();
+                contenidoGenerado = true;
+                
+            }
             gm.InputEnable = false;
             cam.transform.position = Vector3.MoveTowards(cam.transform.position, transform.position+new Vector3(0,50,0), 10 * Time.deltaTime);
             if(Vector3.Distance(cam.transform.position, transform.position + new Vector3(0, 50, 0))<0.01f)
@@ -49,6 +61,7 @@ public class updateCam : MonoBehaviour
                 gm.InputEnable = true;
                 if (spawnEnemigos && !finalizado)
                 {
+                    
                     if (boss != null)
                     {
                         boss.SetActive(true);
@@ -73,6 +86,10 @@ public class updateCam : MonoBehaviour
             if(Vector3.Distance(player.transform.position, destino) < 0.01f)
             {
                 //Debug.Log("moviendo hacia: " + destino);
+                if (premio != null)
+                {
+                    PanelInfo.GetComponent<seguirMouse>().actualizar(premio);
+                }
                 player.GetComponentInChildren<Animator>().SetBool("corriendo", false);
                 moverjugador = false;
                 //player.GetComponent<charController>().cuerpo.transform.localPosition = new Vector3(-0.08f, -0.5f, -0.15f);
@@ -102,21 +119,17 @@ public class updateCam : MonoBehaviour
             salaOut.SetActive(false);
             salaIn.SetActive(true);
             entrada = true;
-            if (premio != null)
-            {
-                PanelInfo.GetComponent<seguirMouse>().actualizar(premio);
-            }
             player.GetComponent<charController>().animador.Play("RunForwardBattle");
-            Debug.Log("se ha entrado a la sala en: " + transform.position);
+            //Debug.Log("se ha entrado a la sala en: " + transform.position);
             if(Mathf.Abs(other.transform.position.x - transform.position.x) < 0.1f && Mathf.Abs(other.transform.position.z - transform.position.z) < 0.1f)
             {
-                Debug.Log("sala Inicial");
+                //Debug.Log("sala Inicial");
                 spawnEnemigos = false;
                 finalizado = true;
             }
             else
             {
-                Debug.Log("se debe mover");
+                //Debug.Log("se debe mover");
                 float posXJ = player.transform.position.x;
                 float posZJ = player.transform.position.z;
                 float destX = transform.position.x;

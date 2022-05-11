@@ -278,6 +278,7 @@ MonoBehaviour:
   salaIn: {fileID: 8175020802937225705}
   salaOut: {fileID: 8038472799428445432}
   boss: {fileID: 0}
+  contenidoGenerado: 0
 --- !u!114 &1416533420195769367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +299,7 @@ MonoBehaviour:
   - {fileID: 9207432993689619392, guid: 03b2a73445fb82a4992d7f21eeb1739e, type: 3}
   - {fileID: 2280587981189891139, guid: 690e7815c77d5a04bac9484368d937af, type: 3}
   - {fileID: 7806567643571461517, guid: 91cac279552c3914f9c47b2bc37487ad, type: 3}
+  - {fileID: 6854097625098139469, guid: 41a69a6a11442c74187f39f6b0b7beb7, type: 3}
   premio: {fileID: 705537483042271215, guid: fba9bb974afc48745a62cb64e3936261, type: 3}
 --- !u!1 &8789381577026393887
 GameObject:

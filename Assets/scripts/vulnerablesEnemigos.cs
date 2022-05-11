@@ -22,6 +22,14 @@ public class vulnerablesEnemigos : MonoBehaviour
             {
                 en.GetComponent<statsEnemigo2>().vulnerable = true;
             }
+            else if (en.name.Contains("enemigoV3"))
+            {
+                en.GetComponent<statsEnemigo3>().vulnerable = true;
+            }
+            else if (en.name.Contains("enemigoV4"))
+            {
+                en.GetComponent<statsEnemigo4>().vulnerable = true;
+            }
         }
         if (GameObject.FindGameObjectWithTag("jefe1"))
         {

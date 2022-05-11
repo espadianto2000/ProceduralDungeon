@@ -45,6 +45,15 @@ public class atacando : MonoBehaviour
                     other.GetComponent<statsEnemigo3>().recibirDano(player.GetComponent<statsJugador>().danoMelee, transform.position, player.GetComponent<statsJugador>().knockbackMelee, 0);
                 }
             }
+            else if (other.name.Contains("enemigoV4"))
+            {
+                if (other.GetComponent<statsEnemigo4>().vulnerable == true)
+                {
+                    //Debug.Log("Se hace daño al enemigo");
+                    other.GetComponent<statsEnemigo4>().vulnerable = false;
+                    other.GetComponent<statsEnemigo4>().recibirDano(player.GetComponent<statsJugador>().danoMelee, transform.position, player.GetComponent<statsJugador>().knockbackMelee, 0);
+                }
+            }
 
         }
         /*

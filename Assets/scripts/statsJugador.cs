@@ -119,10 +119,10 @@ public class statsJugador : MonoBehaviour
     {
         Debug.Log("se llama al cambiar vida");
         for(int i = 0; i < punt; i++){
-            Debug.Log("se entra al bucle 1 vez");
+            //Debug.Log("se entra al bucle 1 vez");
             if (vida < vidaMax)
             {
-                Debug.Log("se suma 1 de vida");
+                //Debug.Log("se suma 1 de vida");
                 vida++;
                 Instantiate(cuadradoVida, contenedorBarraVida.transform);
             }
