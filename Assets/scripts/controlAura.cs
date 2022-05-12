@@ -70,5 +70,9 @@ public class controlAura : MonoBehaviour
         {
             other.GetComponent<statsEnemigo3>().curarDano(stats.curacion);
         }
+        else if (other.name == "enemigoV4(Clone)")
+        {
+            other.GetComponent<statsEnemigo4>().curarDano(stats.curacion);
+        }
     }
 }

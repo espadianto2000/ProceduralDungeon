@@ -14,6 +14,7 @@ public class enemyController4 : MonoBehaviour
     public float knockSpeed = 3;
     Vector3 posCentral;
     public float timerCooldown;
+    public GameObject explo;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,24 +28,24 @@ public class enemyController4 : MonoBehaviour
         switch (Random.Range(0, 4))
         {
             case 0:
-                destX = posCentral.x + (Random.Range(2f, 4f) * -1);
-                destZ = posCentral.z + (Random.Range(2f, 4f));
+                destX = posCentral.x + (Random.Range(3f, 4.5f) * -1);
+                destZ = posCentral.z + (Random.Range(3f, 4.5f));
                 break;
             case 1:
-                destZ = posCentral.z + (Random.Range(2f, 4f) * -1);
-                destX = posCentral.x + (Random.Range(2f, 4f));
+                destZ = posCentral.z + (Random.Range(3f, 4.5f) * -1);
+                destX = posCentral.x + (Random.Range(3f, 4.5f));
                 break;
             case 2:
-                destZ = posCentral.z + (Random.Range(2f, 4f) * -1);
-                destX = posCentral.x + (Random.Range(2f, 4f) * -1);
+                destZ = posCentral.z + (Random.Range(3f, 4.5f) * -1);
+                destX = posCentral.x + (Random.Range(3f, 4.5f) * -1);
                 break;
             case 3:
-                destX = posCentral.x + (Random.Range(2f, 4f));
-                destZ = posCentral.z + (Random.Range(2f, 4f));
+                destX = posCentral.x + (Random.Range(3f, 4.5f));
+                destZ = posCentral.z + (Random.Range(3f, 4.5f));
                 break;
         }
         destino = new Vector3(destX, transform.position.y, destZ);
-        Debug.Log("destino: " + destino);
+        //Debug.Log("destino: " + destino);
     }
     private void FixedUpdate()
     {
@@ -69,7 +70,8 @@ public class enemyController4 : MonoBehaviour
         {
             //atacar
             timerCooldown = stats.cooldownAtaque;
-            Debug.Log("ataque");
+            GameObject explosion = Instantiate(explo, Vector3.zero, Quaternion.identity);
+            explosion.GetComponent<auraExplosion>().dano = stats.danoMelee;
         }
         else
         {
@@ -85,12 +87,12 @@ public class enemyController4 : MonoBehaviour
             {
                 if(Mathf.Abs(player.transform.position.x-transform.position.x) > Mathf.Abs(player.transform.position.z - transform.position.z)){
                     destino.z = posCentral.z + ((destino.z - posCentral.z) * -1);
-                    Debug.Log("destino cuando mas cerca a x: " + destino);
+                    //Debug.Log("destino cuando mas cerca a x: " + destino);
                 }
                 else
                 {
                     destino.x = posCentral.x + ((destino.x - posCentral.x) * -1);
-                    Debug.Log("destino cuando mas cerca a z: " + destino);
+                    //Debug.Log("destino cuando mas cerca a z: " + destino);
                 }
             }
         }
@@ -122,11 +124,11 @@ public class enemyController4 : MonoBehaviour
         knock = false;
         yield return null;
     }
-    private void OnTriggerStay(Collider other)
+    private void OnCollisionStay(Collision collision)
     {
-        if (other.CompareTag("player"))
+        if (collision.transform.CompareTag("player"))
         {
-            other.GetComponent<statsJugador>().recibirDano(this.GetComponent<statsEnemigo4>().danoMelee);
+            collision.transform.GetComponent<statsJugador>().recibirDano(this.GetComponent<statsEnemigo4>().danoMelee);
         }
     }
 }

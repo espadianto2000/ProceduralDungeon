@@ -12,8 +12,8 @@ public class enemyController3 : MonoBehaviour
     private IEnumerator coroutine;
     Vector3 direction;
     public float knockSpeed = 3;
-    List<GameObject> enemigosASeguir = new List<GameObject>();
-    GameObject enemigoASeguir;
+    public List<GameObject> enemigosASeguir = new List<GameObject>();
+    public GameObject enemigoASeguir;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class enemyController3 : MonoBehaviour
         agent.acceleration = stats.velocidad * 2;
         foreach (Transform child in transform.parent)
         {
-            if (child.CompareTag("enemigo") && child != gameObject)
+            if (child.CompareTag("enemigo") && child.gameObject.GetInstanceID() != gameObject.GetInstanceID())
             {
                 enemigosASeguir.Add(child.gameObject);
             }
@@ -31,49 +31,67 @@ public class enemyController3 : MonoBehaviour
         enemigoASeguir = enemigosASeguir[ordenRandom];
     }
 
-    // Update is called once per frame
-
     private void FixedUpdate()
     {
-        if (!(knock))
+        if (!knock)
         {
-            
             if(enemigoASeguir != null)
             {
                 agent.SetDestination(enemigoASeguir.transform.position);
             }
-            else
+            else if(enemigosASeguir.Count > 0)
             {
-                enemigosASeguir.Clear();
-                foreach(Transform child in transform.parent)
+                //enemigosASeguir.Clear();
+                for(int i = 0;i<enemigosASeguir.Count; i++)
                 {
-                    if(child.CompareTag("enemigo") && child!= gameObject)
+                    if (enemigosASeguir[i] == null)
                     {
-                        enemigosASeguir.Add(child.gameObject);
+                        enemigosASeguir.RemoveAt(i);
                     }
                 }
-                enemigoASeguir = enemigosASeguir[Random.Range(0, enemigosASeguir.Count)];
-                agent.SetDestination(enemigoASeguir.transform.position);
-            }
-            foreach(Transform child in transform.parent)
-            {
-                if(child.name == "enemigoV1(Clone)")
+                enemigoASeguir = enemigosASeguir.Count > 0 ? enemigosASeguir[Random.Range(0, enemigosASeguir.Count)] : null;
+                if (enemigoASeguir != null) { agent.SetDestination(enemigoASeguir.transform.position); }
+                /*
+                foreach (GameObject enem in enemigosASeguir)
                 {
-                    statsEnemigo ste = child.GetComponent<statsEnemigo>();
-                    if(ste.vida < ste.vidaMax)
+                    if (enem.name == "enemigoV1(Clone)")
                     {
-                        agent.SetDestination(child.transform.position);
+                        statsEnemigo ste = enem.GetComponent<statsEnemigo>();
+                        if (ste.vida < ste.vidaMax)
+                        {
+                            agent.SetDestination(enem.transform.position);
+                            break;
+                        }
                     }
-                }else if(child.name == "enemigoV2(Clone)")
-                {
-                    statsEnemigo2 ste = child.GetComponent<statsEnemigo2>();
-                    if (ste.vida < ste.vidaMax)
+                    else if (enem.name == "enemigoV2(Clone)")
                     {
-                        agent.SetDestination(child.transform.position);
+                        statsEnemigo2 ste = enem.GetComponent<statsEnemigo2>();
+                        if (ste.vida < ste.vidaMax)
+                        {
+                            agent.SetDestination(enem.transform.position);
+                            break;
+                        }
                     }
-                }
+                    else if (enem.name == "enemigoV3(Clone)")
+                    {
+                        statsEnemigo3 ste = enem.GetComponent<statsEnemigo3>();
+                        if (ste.vida < ste.vidaMax)
+                        {
+                            agent.SetDestination(enem.transform.position);
+                            break;
+                        }
+                    }
+                    else if (enem.name == "enemigoV4(Clone)")
+                    {
+                        statsEnemigo4 ste = enem.GetComponent<statsEnemigo4>();
+                        if (ste.vida < ste.vidaMax)
+                        {
+                            agent.SetDestination(enem.transform.position);
+                            break;
+                        }
+                    }
+                }*/
             }
-            
         }
         else
         {
@@ -119,11 +137,18 @@ public class enemyController3 : MonoBehaviour
         knock = false;
         yield return null;
     }
-    private void OnTriggerStay(Collider other)
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.transform.CompareTag("player"))
+        {
+            collision.transform.GetComponent<statsJugador>().recibirDano(this.GetComponent<statsEnemigo3>().danoMelee);
+        }
+    }
+    /*private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("player"))
         {
             other.GetComponent<statsJugador>().recibirDano(GetComponent<statsEnemigo3>().danoMelee);
         }
-    }
+    }*/
 }

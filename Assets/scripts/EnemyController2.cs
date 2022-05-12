@@ -144,11 +144,15 @@ public class EnemyController2 : MonoBehaviour
         //transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         yield return null;
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.transform.CompareTag("player"))
+        {
+            collision.transform.GetComponent<statsJugador>().recibirDano(this.GetComponent<statsEnemigo2>().danoMelee);
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("player"))
-        {
-            other.GetComponent<statsJugador>().recibirDano(this.GetComponent<statsEnemigo2>().danoMelee);
-        }
+        
     }
 }

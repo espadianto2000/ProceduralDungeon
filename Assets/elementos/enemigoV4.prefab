@@ -183,7 +183,8 @@ MonoBehaviour:
   knock: 0
   destino: {x: 0, y: 0, z: 0}
   knockSpeed: 3
-  timerCooldown: 0
+  timerCooldown: 5
+  explo: {fileID: 2264223234111156395, guid: 7a96c51e8628a6d4fb934f3079c44901, type: 3}
 --- !u!136 &7575635643477997686
 CapsuleCollider:
   m_ObjectHideFlags: 0
