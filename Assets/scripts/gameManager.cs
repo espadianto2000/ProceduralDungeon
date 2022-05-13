@@ -7,7 +7,9 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     public bool InputEnable = true;
     public GameObject panelInfo;
-
+    public Vector2 hotspot;
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.ForceSoftware;
     Ray ray;
     RaycastHit hit;
 
@@ -25,9 +27,19 @@ public class gameManager : MonoBehaviour
             }
             else
             {
-                panelInfo.SetActive(false);
-                Cursor.visible = true;
+                if (panelInfo.active)
+                {
+                    panelInfo.SetActive(false);
+                    Cursor.visible = true;
+                    ajustarMouse();
+                }
+                
             }
         }
+    }
+    public void ajustarMouse()
+    {
+        hotspot = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
+        Cursor.SetCursor(cursorTexture, hotspot, cursorMode);
     }
 }

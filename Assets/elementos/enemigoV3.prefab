@@ -197,7 +197,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 7806567643571461517}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
@@ -282,6 +282,8 @@ MonoBehaviour:
   posicionEstatica: {x: 0, y: 0, z: 0}
   knock: 0
   knockSpeed: 3
+  enemigosASeguir: []
+  enemigoASeguir: {fileID: 0}
 --- !u!136 &6515242919140201142
 CapsuleCollider:
   m_ObjectHideFlags: 0

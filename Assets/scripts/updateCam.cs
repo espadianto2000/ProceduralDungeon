@@ -49,10 +49,12 @@ public class updateCam : MonoBehaviour
         {
             if (!contenidoGenerado)
             {
+                float t1 = Time.realtimeSinceStartup;
                 GetComponent<generarDistribucion>().generarElementos2(30, 3, 5);
                 GetComponent<generarDistribucion>().instanciarElementos();
                 contenidoGenerado = true;
-                
+                float t2 = Time.realtimeSinceStartup;
+                Debug.Log("tiempo de algoritmo inSala: " + (t2 - t1));
             }
             gm.InputEnable = false;
             cam.transform.position = Vector3.MoveTowards(cam.transform.position, transform.position+new Vector3(0,50,0), 10 * Time.deltaTime);

@@ -72,11 +72,11 @@ public class enemyController : MonoBehaviour
         knock = false;
         yield return null;
     }
-    private void OnTriggerStay(Collider other)
+    private void OnCollisionStay(Collision collision)
     {
-        if (other.CompareTag("player"))
+        if (collision.transform.CompareTag("player"))
         {
-            other.GetComponent<statsJugador>().recibirDano(this.GetComponent<statsEnemigo>().danoMelee);
+            collision.transform.GetComponent<statsJugador>().recibirDano(this.GetComponent<statsEnemigo>().danoMelee);
         }
     }
 }

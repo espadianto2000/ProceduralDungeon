@@ -18,7 +18,7 @@ public class proyectil : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("player");
-        Invoke("delete", 5f);
+        Invoke("delete", 7f);
 
     }
 

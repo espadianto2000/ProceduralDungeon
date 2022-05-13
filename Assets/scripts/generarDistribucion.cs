@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Diagnostics;
 
 public class generarDistribucion : MonoBehaviour
 {
@@ -11,8 +10,6 @@ public class generarDistribucion : MonoBehaviour
     public float[,] acumulado3 = new float[10, 10];
     public float[,] acumulado4 = new float[10, 10];
     public float[,] mapeado = new float[10, 10];
-    Stopwatch sw1 = new Stopwatch();
-    Stopwatch sw2 = new Stopwatch();
     public GameObject[] obstaculos;
     public GameObject[] enemigos;
     public GameObject premio;
@@ -62,6 +59,7 @@ public class generarDistribucion : MonoBehaviour
         //sw1.Stop();
         if(transform.position == Vector3.zero)
         {
+            float t1 = Time.realtimeSinceStartup;
             generarElementos2(45, 0, 0);
             /*string fila = "";
             for (int i = 0; i < 10; i++)
@@ -79,6 +77,8 @@ public class generarDistribucion : MonoBehaviour
             UnityEngine.Debug.Log(fila);
             UnityEngine.Debug.Log("----------");*/
             instanciarElementos();
+            float t2 = Time.realtimeSinceStartup;
+            Debug.Log("tiempo de algoritmo inSala principal: " + (t2 - t1));
         }
         //sw2.Start();
 

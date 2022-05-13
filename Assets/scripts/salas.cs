@@ -27,16 +27,18 @@ public class salas : MonoBehaviour
     public GameObject SalaLimite;
     public UnityEngine.AI.NavMeshSurface surface;
 
-    public Texture2D cursorTexture;
-    public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotspot;
+    
+    public gameManager gm;
+
+    public float t1=0;
 
     private void Start()
     {
-        hotspot = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
-        Cursor.SetCursor(cursorTexture, hotspot, cursorMode);
+        gm = GameObject.Find("GameManager").GetComponent<gameManager>();
+        gm.ajustarMouse();
+        t1 = Time.realtimeSinceStartup;
     }
-
+    
     private void Update()
     {
         if (!spawnedBoss)
@@ -81,6 +83,8 @@ public class salas : MonoBehaviour
         {
             borrarSpawners();
             juegoListo = true;
+            float t2 = Time.realtimeSinceStartup;
+            Debug.Log("tiempo de generacíón de salas: " + (t2 - t1));
             //Invoke("refrescarNavMesh", 1f);
         }
         
