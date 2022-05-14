@@ -2994,7 +2994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fdb31100632c844b8608219466cbd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMax: 50
+  vidaMax: 150
   vida: 0
   velocidad: 1
   danoMelee: 2

@@ -1113,7 +1113,7 @@ MonoBehaviour:
   Direccion: 4
   destroyer: 1
   spawned: 1
-  salaGenerada: {fileID: 0}
+  salaGenerada: {fileID: 220584892458672745}
 --- !u!65 &5208885655761637597
 BoxCollider:
   m_ObjectHideFlags: 0

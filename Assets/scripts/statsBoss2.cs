@@ -13,6 +13,7 @@ public class statsBoss2 : MonoBehaviour
     public float rango;
     public bool vulnerable = true;
     public bool muerto;
+    public int rebotesMax;
 
     public GameObject damageInd;
     public GameObject cadaverBoss2;

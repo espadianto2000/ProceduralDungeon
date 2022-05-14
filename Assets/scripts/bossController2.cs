@@ -56,7 +56,7 @@ public class bossController2 : MonoBehaviour
         transform.rotation = Quaternion.Euler(-90, rotacionY, 0);
         if (player != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x + dirx, transform.position.y, transform.position.z + dirZ), (stats.velocidad+((1-(stats.vida/stats.vidaMax))* stats.velocidadExtra))*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x + dirx, 1.17f, transform.position.z + dirZ), (stats.velocidad+((1-(stats.vida/stats.vidaMax))* stats.velocidadExtra))*Time.deltaTime);
         }
         if (transform.position.x > posCentral.x + 4.75f)
         {
@@ -81,7 +81,7 @@ public class bossController2 : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, posCentral.z - 4.75f);
             contadorRebotes++;
         }
-        if(contadorRebotes >= 7)
+        if(contadorRebotes >= stats.rebotesMax)
         {
             contadorRebotes = 0;
             Vector3 newDir = player.transform.position - transform.position;

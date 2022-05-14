@@ -143,15 +143,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6ed3829a9986c49a1a655fd4688580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMax: 50
+  vidaMax: 150
   vida: 0
   velocidad: 4
-  velocidadExtra: 3
+  velocidadExtra: 5
   danoMelee: 1
   danoRango: 1
   rango: 0
   vulnerable: 1
   muerto: 0
+  rebotesMax: 5
   damageInd: {fileID: 1657997380636792352, guid: 12050d6263fa9ea4b967035b2643f5ac, type: 3}
   cadaverBoss2: {fileID: 8636376169184483693, guid: ceba1106ccce31748bc971e780f71d33, type: 3}
 --- !u!114 &2181498312976576079

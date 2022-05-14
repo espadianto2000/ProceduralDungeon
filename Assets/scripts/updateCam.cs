@@ -25,6 +25,7 @@ public class updateCam : MonoBehaviour
     public GameObject salaOut;
     public GameObject boss;
     public bool contenidoGenerado = false;
+    private bool spawnPortal=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +51,7 @@ public class updateCam : MonoBehaviour
             if (!contenidoGenerado)
             {
                 float t1 = Time.realtimeSinceStartup;
-                GetComponent<generarDistribucion>().generarElementos2(30, 3, 5);
+                GetComponent<generarDistribucion>().generarElementos2(30, 4, 5);
                 GetComponent<generarDistribucion>().instanciarElementos();
                 contenidoGenerado = true;
                 float t2 = Time.realtimeSinceStartup;
@@ -63,11 +64,11 @@ public class updateCam : MonoBehaviour
                 gm.InputEnable = true;
                 if (spawnEnemigos && !finalizado)
                 {
-                    
                     if (boss != null)
                     {
                         boss.SetActive(true);
                         contadorEnemigos = 1;
+                        spawnPortal = true;
                     }
                     else
                     {
@@ -109,9 +110,14 @@ public class updateCam : MonoBehaviour
                 }
             }
         }
-        if(contadorEnemigos == 0)
+        if(contadorEnemigos == 0 && !finalizado)
         {
+            salas.salasSuperadas++;
             FinalizarSala();
+            if (spawnPortal)
+            {
+                Instantiate(gm.portal, transform.position, Quaternion.identity);
+            }
         }
     }
     private void OnTriggerEnter(Collider other)

@@ -766,7 +766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c82c14488c7e146a092b5343b7d6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMax: 100
+  vidaMax: 150
   vida: 0
   velocidad: 5
   danoMelee: 1
@@ -776,7 +776,7 @@ MonoBehaviour:
   muerto: 0
   ataqueDistanciaTiempo: 3
   spawnEnemigosTiempo: 15
-  maxEnemigosSpawneados: 3
+  maxEnemigosSpawneados: 5
   maxProyectiles: 5
   velocidadProyectil: 4
   damageInd: {fileID: 1657997380636792352, guid: 12050d6263fa9ea4b967035b2643f5ac, type: 3}

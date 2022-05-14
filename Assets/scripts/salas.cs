@@ -26,7 +26,7 @@ public class salas : MonoBehaviour
     public GameObject player;
     public GameObject SalaLimite;
     public UnityEngine.AI.NavMeshSurface surface;
-
+    public int salasSuperadas = 0;
     
     public gameManager gm;
 
@@ -35,8 +35,10 @@ public class salas : MonoBehaviour
     private void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<gameManager>();
+        player = gm.player;
         gm.ajustarMouse();
         t1 = Time.realtimeSinceStartup;
+        surface = GameObject.Find("NavMesh").GetComponent<UnityEngine.AI.NavMeshSurface>();
     }
     
     private void Update()

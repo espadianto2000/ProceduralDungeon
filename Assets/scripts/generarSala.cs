@@ -6,6 +6,7 @@ public class generarSala : MonoBehaviour
 {
     public int Direccion;
     public bool destroyer = false;
+    public gameManager gm;
 
     private salas salas;
     private int rand;
@@ -14,7 +15,8 @@ public class generarSala : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        salas = GameObject.FindGameObjectWithTag("salas").GetComponent<salas>();
+        gm = GameObject.Find("GameManager").GetComponent<gameManager>();
+        salas = gm.salasActuales;
         Invoke("Spawn", 0.1F);
     }
     

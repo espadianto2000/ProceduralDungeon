@@ -38,7 +38,10 @@ public class statsEnemigo3 : MonoBehaviour
     {
         Vector3 direccion = transform.position - player;
         direccion.y = 0;
-        transform.GetComponent<enemyController3>().knocks(direccion, knockbackMelee, tipoAtaque);
+        if (tipoAtaque == 0)
+        {
+            transform.GetComponent<enemyController3>().knocks(direccion, knockbackMelee, tipoAtaque);
+        }
         vida = vida - dano;
         GameObject ind = Instantiate(damageInd, transform.position, Quaternion.identity);
         ind.GetComponent<DamagePopup>().setDamageValue(dano);

@@ -42,7 +42,8 @@ public class statsJugador : MonoBehaviour
     {
         control.speed = velocidad;
         animations.SetFloat("multipleSpeedMelee", velocidadAtaqueMelee);
-        espada.transform.localScale = new Vector3(espada.transform.localScale.x, rangoMelee, espada.transform.localScale.z);
+        float ancho = (rangoMelee+4.5f)/6;
+        espada.transform.localScale = new Vector3(ancho, rangoMelee, espada.transform.localScale.z);
         vida = vidaMax;
         animations.SetFloat("multipleSpeedThrow", velocidadAtaqueRango);
         float cont = vidaMax / 2;
@@ -225,7 +226,8 @@ public class statsJugador : MonoBehaviour
             rangoMelee = rangoMelee + rangoExtra;
         }
         if (rangoMelee < 1) { rangoMelee = 1; }
-        espada.transform.localScale = new Vector3(espada.transform.localScale.x,rangoMelee, espada.transform.localScale.z);
+        float ancho = (rangoMelee + 4.5f) / 6;
+        espada.transform.localScale = new Vector3(ancho,rangoMelee, espada.transform.localScale.z);
         rangoMeleeUI.text = ((rangoMelee / 0.5) - 1) + "";
     }
     public void cambiarRangoDistancia(float rangoExtra, bool multiplier)
