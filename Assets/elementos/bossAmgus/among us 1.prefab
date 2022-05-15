@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaMax: 150
   vida: 0
-  velocidad: 4
+  velocidad: 3
   velocidadExtra: 5
   danoMelee: 1
   danoRango: 1

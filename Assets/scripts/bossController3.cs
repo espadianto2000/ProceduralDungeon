@@ -141,7 +141,7 @@ public class bossController3 : MonoBehaviour
             float xPos = transform.position.x + Random.Range(-1f, 1f);
             float zPos = transform.position.z + Random.Range(-1f, 1f);
             Vector3 pos = new Vector3(xPos, transform.position.y, zPos);
-            GameObject obj = Instantiate(transform.parent.GetComponentInChildren<generarDistribucion>().enemigos[Random.Range(0, 2)], pos, Quaternion.identity);
+            GameObject obj = Instantiate(transform.parent.GetComponentInChildren<generarDistribucion>().enemigos[Random.Range(0, 4)], pos, Quaternion.identity);
             obj.transform.parent = transform.parent.GetComponentInChildren<updateCam>().transform;
             transform.parent.GetComponentInChildren<updateCam>().contadorEnemigos++;
             transform.parent.GetComponentInChildren<updateCam>().enemigosInstanciados.Add(obj);

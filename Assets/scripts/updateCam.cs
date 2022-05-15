@@ -116,7 +116,7 @@ public class updateCam : MonoBehaviour
             FinalizarSala();
             if (spawnPortal)
             {
-                Instantiate(gm.portal, transform.position, Quaternion.identity);
+                Instantiate(gm.portal, new Vector3(transform.position.x,0.5f,transform.position.z), Quaternion.Euler(new Vector3(-90,0,0)));
             }
         }
     }

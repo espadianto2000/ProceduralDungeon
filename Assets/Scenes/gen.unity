@@ -2385,6 +2385,7 @@ MonoBehaviour:
   modeloSalas: {fileID: 7142666344451894263, guid: 54ebe2cd8f6678f46af64195cec442b0, type: 3}
   salasActuales: {fileID: 1931096722}
   player: {fileID: 327796757}
+  portal: {fileID: 7673417487026151331, guid: 5aed0d5e2bdaa214fb9c9b3318bc853f, type: 3}
 --- !u!4 &973235840
 Transform:
   m_ObjectHideFlags: 0
@@ -6758,6 +6759,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 327796757}
+    - target: {fileID: 7142666344451894260, guid: 54ebe2cd8f6678f46af64195cec442b0, type: 3}
+      propertyPath: Limite1
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7142666344451894260, guid: 54ebe2cd8f6678f46af64195cec442b0, type: 3}
+      propertyPath: Limite2
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7142666344451894261, guid: 54ebe2cd8f6678f46af64195cec442b0, type: 3}
       propertyPath: m_RootOrder
       value: 6
