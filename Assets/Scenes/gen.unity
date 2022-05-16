@@ -6761,11 +6761,11 @@ PrefabInstance:
       objectReference: {fileID: 327796757}
     - target: {fileID: 7142666344451894260, guid: 54ebe2cd8f6678f46af64195cec442b0, type: 3}
       propertyPath: Limite1
-      value: 4
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 7142666344451894260, guid: 54ebe2cd8f6678f46af64195cec442b0, type: 3}
       propertyPath: Limite2
-      value: 4
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 7142666344451894261, guid: 54ebe2cd8f6678f46af64195cec442b0, type: 3}
       propertyPath: m_RootOrder

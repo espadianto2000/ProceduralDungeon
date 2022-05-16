@@ -36,10 +36,6 @@ public class updateCam : MonoBehaviour
         PanelInfo = gm.panelInfo;
         map = GameObject.Find("mapa");
         //Debug.Log(player);
-        if(transform.position == Vector3.zero)
-        {
-            contenidoGenerado = true;
-        }
     }
 
     // Update is called once per frame
@@ -48,15 +44,6 @@ public class updateCam : MonoBehaviour
         
         if (entrada)
         {
-            if (!contenidoGenerado)
-            {
-                float t1 = Time.realtimeSinceStartup;
-                GetComponent<generarDistribucion>().generarElementos2(30, 4, 5);
-                GetComponent<generarDistribucion>().instanciarElementos();
-                contenidoGenerado = true;
-                float t2 = Time.realtimeSinceStartup;
-                Debug.Log("tiempo de algoritmo inSala: " + (t2 - t1));
-            }
             gm.InputEnable = false;
             cam.transform.position = Vector3.MoveTowards(cam.transform.position, transform.position+new Vector3(0,50,0), 10 * Time.deltaTime);
             if(Vector3.Distance(cam.transform.position, transform.position + new Vector3(0, 50, 0))<0.01f)
@@ -124,6 +111,15 @@ public class updateCam : MonoBehaviour
     {
         if (other.CompareTag("player"))
         {
+            if (!contenidoGenerado)
+            {
+                float t1 = Time.realtimeSinceStartup;
+                GetComponent<generarDistribucion>().generarElementos2(30, 4, 5);
+                GetComponent<generarDistribucion>().instanciarElementos();
+                contenidoGenerado = true;
+                float t2 = Time.realtimeSinceStartup;
+                Debug.Log("tiempo de algoritmo inSala: " + (t2 - t1));
+            }
             salaOut.SetActive(false);
             salaIn.SetActive(true);
             entrada = true;

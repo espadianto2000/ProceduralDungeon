@@ -13,6 +13,7 @@ public class generarDistribucion : MonoBehaviour
     public GameObject[] obstaculos;
     public GameObject[] enemigos;
     public GameObject premio;
+    private string archivoGuardar = "datos.csv";
 
     // Start is called before the first frame update
     void Start()
@@ -58,27 +59,40 @@ public class generarDistribucion : MonoBehaviour
         mapeado[9, 5] = 9;
         //sw1.Stop();
         if(transform.position == Vector3.zero)
+        //if(true)
         {
-            float t1 = Time.realtimeSinceStartup;
-            generarElementos2(45, 0, 0);
-            /*string fila = "";
+            /*float t1 = Time.realtimeSinceStartup;
+            generarElementos2(45, 5, 0);
+            string fila = "";
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    if (mapeado[i, j] == 9)
+                    if (mapeado[j, i] == 9)
                     {
                         fila += 1 + ",";
                     }
-                    else fila += mapeado[i, j] + ",";
+                    else fila += mapeado[j, i] + ",";
                 }
+                
                 fila += "\n";
             }
-            UnityEngine.Debug.Log(fila);
-            UnityEngine.Debug.Log("----------");*/
+            try
+            {
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@archivoGuardar, true))
+                {
+                    file.WriteLine(fila);
+                }
+            }
+            catch(System.Exception ex)
+            {
+                Debug.Log(ex);
+            }
+            //UnityEngine.Debug.Log(fila);
+            //UnityEngine.Debug.Log("----------");
             instanciarElementos();
             float t2 = Time.realtimeSinceStartup;
-            Debug.Log("tiempo de algoritmo inSala principal: " + (t2 - t1));
+            Debug.Log("tiempo de algoritmo inSala principal: " + (t2 - t1));*/
         }
         //sw2.Start();
 
