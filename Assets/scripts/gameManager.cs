@@ -69,6 +69,10 @@ public class gameManager : MonoBehaviour
                     obj.transform.rotation = Quaternion.Euler(Vector3.zero);
                     obj.SetActive(false);
                 }
+                else if (obj.name == "dificultad")
+                {
+                    obj.GetComponent<dificultadLineal>().cambiarNivel(obj.GetComponent<dificultadLineal>().nivelDificultad + 1);
+                }
                 else
                 {
                     Destroy(obj);

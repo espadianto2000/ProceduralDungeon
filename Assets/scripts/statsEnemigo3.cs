@@ -10,9 +10,9 @@ public class statsEnemigo3 : MonoBehaviour
     public float vida;
     public float velocidad;
     public int danoMelee;
-    public int danoRango;
-    public int velocidadAtaque;
-    public float rango;
+    //public int danoRango;
+    //public int velocidadAtaque;
+    //public float rango;
     public bool vulnerable = true;
     public float velocidadCrecimiento;
     public float cooldownCuracion;

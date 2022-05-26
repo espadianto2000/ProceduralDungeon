@@ -113,12 +113,13 @@ public class updateCam : MonoBehaviour
         {
             if (!contenidoGenerado)
             {
+                dificultadLineal dl = GameObject.Find("dificultad").GetComponent<dificultadLineal>();
                 float t1 = Time.realtimeSinceStartup;
-                GetComponent<generarDistribucion>().generarElementos2(30, 4, 5);
-                GetComponent<generarDistribucion>().instanciarElementos();
+                GetComponent<generarDistribucion>().generarElementos2(dl.numObs,dl.numEnemigos,dl.numTrampas);
+                GetComponent<generarDistribucion>().instanciarElementos(dl);
                 contenidoGenerado = true;
                 float t2 = Time.realtimeSinceStartup;
-                Debug.Log("tiempo de algoritmo inSala: " + (t2 - t1));
+                //Debug.Log("tiempo de algoritmo inSala: " + (t2 - t1));
             }
             salaOut.SetActive(false);
             salaIn.SetActive(true);

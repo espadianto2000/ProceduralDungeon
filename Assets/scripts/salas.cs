@@ -18,6 +18,7 @@ public class salas : MonoBehaviour
     public bool spawnedBoss = false;
     public GameObject jefeinstanciado;
 
+    public dificultadLineal dl;
     public List<GameObject> salasInstanciadas;
     public GameObject[] boss;
     public GameObject SpawnMuros;
@@ -34,6 +35,9 @@ public class salas : MonoBehaviour
 
     private void Start()
     {
+        dl = GameObject.Find("dificultad").GetComponent<dificultadLineal>();
+        Limite1 = dl.numSalas;
+        Limite2 = dl.numSalas * 2;
         gm = GameObject.Find("GameManager").GetComponent<gameManager>();
         player = gm.player;
         gm.ajustarMouse();
@@ -86,7 +90,7 @@ public class salas : MonoBehaviour
             borrarSpawners();
             juegoListo = true;
             float t2 = Time.realtimeSinceStartup;
-            Debug.Log("tiempo de generacíón de salas: " + (t2 - t1));
+            //Debug.Log("tiempo de generacíón de salas: " + (t2 - t1));
             //Invoke("refrescarNavMesh", 1f);
         }
         

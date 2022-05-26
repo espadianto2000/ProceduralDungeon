@@ -11,7 +11,7 @@ public class statsEnemigo2 : MonoBehaviour
     public float velocidad;
     public int danoMelee;
     public int danoRango;
-    public int velocidadAtaque;
+    public float velocidadAtaque;
     public float velocidadProyectil;
     public float rango;
     public bool vulnerable = true;

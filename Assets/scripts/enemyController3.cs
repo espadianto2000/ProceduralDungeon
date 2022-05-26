@@ -51,46 +51,6 @@ public class enemyController3 : MonoBehaviour
                 }
                 enemigoASeguir = enemigosASeguir.Count > 0 ? enemigosASeguir[Random.Range(0, enemigosASeguir.Count)] : null;
                 if (enemigoASeguir != null) { agent.SetDestination(enemigoASeguir.transform.position); }
-                /*
-                foreach (GameObject enem in enemigosASeguir)
-                {
-                    if (enem.name == "enemigoV1(Clone)")
-                    {
-                        statsEnemigo ste = enem.GetComponent<statsEnemigo>();
-                        if (ste.vida < ste.vidaMax)
-                        {
-                            agent.SetDestination(enem.transform.position);
-                            break;
-                        }
-                    }
-                    else if (enem.name == "enemigoV2(Clone)")
-                    {
-                        statsEnemigo2 ste = enem.GetComponent<statsEnemigo2>();
-                        if (ste.vida < ste.vidaMax)
-                        {
-                            agent.SetDestination(enem.transform.position);
-                            break;
-                        }
-                    }
-                    else if (enem.name == "enemigoV3(Clone)")
-                    {
-                        statsEnemigo3 ste = enem.GetComponent<statsEnemigo3>();
-                        if (ste.vida < ste.vidaMax)
-                        {
-                            agent.SetDestination(enem.transform.position);
-                            break;
-                        }
-                    }
-                    else if (enem.name == "enemigoV4(Clone)")
-                    {
-                        statsEnemigo4 ste = enem.GetComponent<statsEnemigo4>();
-                        if (ste.vida < ste.vidaMax)
-                        {
-                            agent.SetDestination(enem.transform.position);
-                            break;
-                        }
-                    }
-                }*/
             }
         }
         else
@@ -144,11 +104,4 @@ public class enemyController3 : MonoBehaviour
             collision.transform.GetComponent<statsJugador>().recibirDano(this.GetComponent<statsEnemigo3>().danoMelee);
         }
     }
-    /*private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("player"))
-        {
-            other.GetComponent<statsJugador>().recibirDano(GetComponent<statsEnemigo3>().danoMelee);
-        }
-    }*/
 }
