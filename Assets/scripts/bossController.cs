@@ -41,7 +41,7 @@ public class bossController : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
                 targetRotation.x = 0;
                 targetRotation.z = 0;
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 150f * Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, GetComponent<statsBoss1>().velocidadGiro * Time.deltaTime);
                 if (!caminando)
                 {
                     anim.SetTrigger("caminar");

@@ -17,7 +17,8 @@ public class statsEnemigo3 : MonoBehaviour
     public float velocidadCrecimiento;
     public float cooldownCuracion;
     public float curacion;
-
+    public GameObject corazon;
+    public GameObject medioCorazon;
     public GameObject damageInd;
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,17 @@ public class statsEnemigo3 : MonoBehaviour
         if (vida <= 0)
         {
             transform.parent.GetComponent<updateCam>().contadorEnemigos -= 1;
+            int numero = Random.Range(0, 100);
+            if (numero >= 55 && numero <= 82)
+            {
+                GameObject obj = Instantiate(medioCorazon, transform.position, Quaternion.identity);
+                obj.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-2f, 2f), 1.5f, Random.Range(-2f, 2f));
+            }
+            else if (numero > 90)
+            {
+                GameObject obj = Instantiate(corazon, transform.position, Quaternion.identity);
+                obj.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-2f, 2f), 1.5f, Random.Range(-2f, 2f));
+            }
             Destroy(gameObject);
         }
     }

@@ -55,13 +55,13 @@ public class statsJugador : MonoBehaviour
         {
             Instantiate(cuadradoVida, contenedorBarraVida.transform);
         }
-        velocidadUI.text = ((velocidad / 0.5f) - 1) + "";
-        danoMeleeUI.text = (danoMelee / 1.5f) + "";
-        danoRangoUI.text = (danoRango / 0.5f) + "";
-        velocidadAtaqueRangoUI.text = (velocidadAtaqueRango / 0.5f) + "";
+        velocidadUI.text = Math.Round((velocidad / 0.5f) - 1) + "";
+        danoMeleeUI.text = Math.Round(danoMelee / 1.5f) + "";
+        danoRangoUI.text = Math.Round(danoRango / 0.5f) + "";
+        velocidadAtaqueRangoUI.text = Math.Round((velocidadAtaqueRango / 0.1f) - 6) + "";
         cooldownMeleeUI.text = (cooldownMelee + "s");
-        rangoMeleeUI.text = ((rangoMelee/0.5)-1f)+"";
-        rangoRangoUI.text = (Mathf.Log(rangoRango * 10, 2) + 1) + "";
+        rangoMeleeUI.text = Math.Round((rangoMelee/0.5)-1f)+"";
+        rangoRangoUI.text = Math.Round(Mathf.Log(rangoRango * 10, 2) + 1) + "";
         knockbackMeleeUI.text = (Math.Round(knockbackMelee / 0.1f) - 4) + "";
     }
 
@@ -108,7 +108,7 @@ public class statsJugador : MonoBehaviour
         {
             for (int i = 0; i < cont - (Math.Floor(temp)); i++)
             {
-                Destroy(contenedorContenedoresVida.transform.GetChild(0).gameObject);
+                Destroy(contenedorContenedoresVida.transform.GetChild(contenedorContenedoresVida.transform.childCount-(i+1)).gameObject);
             }
             if (vidaAntes > vidaMax)
             {
@@ -123,13 +123,22 @@ public class statsJugador : MonoBehaviour
     }
     public void cambiarVida(int punt)
     {
-        //Debug.Log("se llama al cambiar vida");
         for(int i = 0; i < punt; i++){
-            //Debug.Log("se entra al bucle 1 vez");
             if (vida < vidaMax)
             {
-                //Debug.Log("se suma 1 de vida");
                 vida++;
+            }
+        }
+        if(contenedorBarraVida.transform.childCount > vida)
+        {
+            while(contenedorBarraVida.transform.childCount != vida)
+            {
+                Destroy(contenedorBarraVida.transform.GetChild(contenedorBarraVida.transform.childCount-1).gameObject);
+            }
+        }else if(contenedorBarraVida.transform.childCount < vida)
+        {
+            while (contenedorBarraVida.transform.childCount != vida)
+            {
                 Instantiate(cuadradoVida, contenedorBarraVida.transform);
             }
         }
@@ -147,7 +156,7 @@ public class statsJugador : MonoBehaviour
         }
         if (velocidad < 1) { velocidad = 1; }
         control.speed = velocidad;
-        velocidadUI.text = ((velocidad / 0.5) - 1) + "";
+        velocidadUI.text = Math.Round((velocidad / 0.5f) - 1) + "";
     }
     public void cambiarDanoMelee(float danoExtra, bool multiplier)
     {
@@ -160,7 +169,7 @@ public class statsJugador : MonoBehaviour
             danoMelee = danoMelee + danoExtra;
         }
         if (danoMelee < 1.5f) { danoMelee = 1.5f; }
-        danoMeleeUI.text = (danoMelee / 1.5) + "";
+        danoMeleeUI.text = Math.Round(danoMelee / 1.5f) + "";
     }
     public void cambiarDanoRango(float danoExtra, bool multiplier)
     {
@@ -173,7 +182,7 @@ public class statsJugador : MonoBehaviour
             danoRango = danoRango + danoExtra;
         }
         if (danoRango < 0.5f) { danoRango = 0.5f; }
-        danoRangoUI.text = (danoRango / 0.5) + "";
+        danoRangoUI.text = Math.Round(danoRango / 0.5f) + "";
     }
     public void cambiarVelocidadAtaqueMelee(float velocidadExtra, bool multiplier)
     {
@@ -201,9 +210,9 @@ public class statsJugador : MonoBehaviour
         {
             velocidadAtaqueRango = velocidadAtaqueRango + velocidadExtra;
         }
-        if (velocidadAtaqueRango < 0.5f) { velocidadAtaqueRango = 0.5f; }
+        if (velocidadAtaqueRango < 0.7f) { velocidadAtaqueRango = 0.7f; }
         animations.SetFloat("multipleSpeedThrow", velocidadAtaqueRango);
-        velocidadAtaqueRangoUI.text = (velocidadAtaqueRango / 0.5) + "";
+        velocidadAtaqueRangoUI.text = Math.Round((velocidadAtaqueRango / 0.1f) -6) + "";
     }
     public void cambiarCooldownMelee(float cooldownExtra, bool multiplier)
     {
@@ -233,7 +242,7 @@ public class statsJugador : MonoBehaviour
         if (rangoMelee < 1) { rangoMelee = 1; }
         float ancho = (rangoMelee + 4.5f) / 6;
         espada.transform.localScale = new Vector3(ancho,rangoMelee, espada.transform.localScale.z);
-        rangoMeleeUI.text = ((rangoMelee / 0.5) - 1) + "";
+        rangoMeleeUI.text = Math.Round((rangoMelee / 0.5) - 1) + "";
     }
     public void cambiarRangoDistancia(float rangoExtra, bool multiplier)
     {
@@ -246,7 +255,7 @@ public class statsJugador : MonoBehaviour
             rangoRango = rangoRango + rangoExtra;
         }
         if (rangoRango < 0.1f) { rangoRango = 0.1f; }
-        rangoRangoUI.text = (Mathf.Log(rangoRango * 10, 2) + 1) + "";
+        rangoRangoUI.text = Math.Round(Mathf.Log(rangoRango * 10, 2) + 1) + "";
         // TODO
         // cambiar tiempo de vida de proyectil
     }
@@ -261,7 +270,7 @@ public class statsJugador : MonoBehaviour
             knockbackMelee = knockbackMelee + knockbackExtra;
         }
         if (knockbackMelee < 0.5f) { knockbackMelee = 0.5f; }
-        knockbackMeleeUI.text = (Math.Round(knockbackMelee / 0.1f) - 4) + "";
+        knockbackMeleeUI.text = Math.Round(Math.Round(knockbackMelee / 0.1f) - 4) + "";
     }
     public void recibirDano(int dano)
     {
@@ -272,9 +281,9 @@ public class statsJugador : MonoBehaviour
             Invoke("disolverGracia", 1f);
             for(int i = 0; i < dano; i++)
             {
-                if (contenedorBarraVida.transform.childCount >= 1)
+                if (contenedorBarraVida.transform.childCount-(i+1) >= 0)
                 {
-                    Destroy(contenedorBarraVida.transform.GetChild(0).gameObject);
+                    Destroy(contenedorBarraVida.transform.GetChild(contenedorBarraVida.transform.childCount-(i+1)).gameObject);
                 }
             }
         }

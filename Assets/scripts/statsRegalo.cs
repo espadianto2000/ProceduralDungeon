@@ -23,11 +23,18 @@ public class statsRegalo : MonoBehaviour
     {
         
     }
-    public void pseudoStart()
+    public void pseudoStart(int p = 0)
     {
         //pseudo modelo
         int[] arr = new int[11];
-        puntaje = Random.Range(1, 4);
+        if (p != 0)
+        {
+            puntaje = p;
+        }
+        else
+        {
+            puntaje = Random.Range(1, 4);
+        }
         switch (Random.Range(0, 2))
         {
             case 0:
@@ -62,7 +69,6 @@ public class statsRegalo : MonoBehaviour
         cambiarKnockbackMelee = arr[9];
         recibirDano = arr[10];
     }
-
     
     private void OnTriggerEnter(Collider other)
     {
@@ -74,7 +80,7 @@ public class statsRegalo : MonoBehaviour
             }
             if (cambiarVida != 0)
             {
-                other.GetComponent<statsJugador>().cambiarVida(2 * cambiarVida);
+                other.GetComponent<statsJugador>().cambiarVida(cambiarVida);
             }
             if (cambiarVelocidad != 0)
             {
@@ -90,7 +96,7 @@ public class statsRegalo : MonoBehaviour
             }
             if (cambiarVelocidadAtaqueRango != 0)
             {
-                other.GetComponent<statsJugador>().cambiarVelocidadAtaqueRango(0.5f * cambiarVelocidadAtaqueRango, false);
+                other.GetComponent<statsJugador>().cambiarVelocidadAtaqueRango(0.1f * cambiarVelocidadAtaqueRango, false);
             }
             if (cambiarCooldownMelee != 0)
             {

@@ -18,6 +18,9 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public GameObject portal;
     public bool paused = false;
+    public GameObject cargaNv;
+    public GameObject panelCarga;
+    public GameObject menuPausa;
 
     void Update()
     {
@@ -37,20 +40,17 @@ public class gameManager : MonoBehaviour
                     Cursor.visible = true;
                     ajustarMouse();
                 }
-                
             }
         }
         if (Input.GetKeyDown("p"))
         {
             if (paused)
             {
-                Time.timeScale = 1;
-                paused = false;
+                reanudar();
             }
             else
             {
-                Time.timeScale = 0;
-                paused = true;
+                pausar();
             }
         }
     }
@@ -59,12 +59,25 @@ public class gameManager : MonoBehaviour
         hotspot = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
         Cursor.SetCursor(cursorTexture, hotspot, cursorMode);
     }
+    public void reanudar()
+    {
+        menuPausa.SetActive(false);
+        Time.timeScale = 1;
+        paused = false;
+    }
+    public void pausar()
+    {
+        menuPausa.SetActive(true);
+        Time.timeScale = 0;
+        paused = true;
+    }
     public void NextLevel()
     {
+        InputEnable = false;
         GameObject[] objs = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
         foreach(GameObject obj in objs)
         {
-            if(obj.name != "NavMesh" && obj.name != "GameManager" && obj.name != "Directional Light" && obj.name != "EventSystem" && obj.name != "Canvas")
+            if(obj.name != "NavMesh" && obj.name != "GameManager" && obj.name != "Directional Light" && obj.name != "EventSystem" && obj.name != "Canvas" && obj.name != "cargaNivel")
             {
                 if(obj.name.Contains("salas"))
                 {
@@ -77,13 +90,14 @@ public class gameManager : MonoBehaviour
                 }
                 else if(obj.name == "player")
                 {
-                    obj.transform.position = new Vector3(0, 0.686f, 0);
+                    obj.transform.position = new Vector3(0, 0.5f, 0);
                     obj.transform.rotation = Quaternion.Euler(Vector3.zero);
                     obj.SetActive(false);
                 }
                 else if (obj.name == "dificultad")
                 {
                     obj.GetComponent<dificultadLineal>().cambiarNivel(obj.GetComponent<dificultadLineal>().nivelDificultad + 1);
+                    cargaNv.GetComponent<Camera>().orthographicSize = 30 + (20 * (obj.GetComponent<dificultadLineal>().nivelDificultad - 1));
                 }
                 else
                 {
@@ -93,6 +107,7 @@ public class gameManager : MonoBehaviour
         }
         GameObject sl = Instantiate(modeloSalas, Vector3.zero, Quaternion.Euler(Vector3.zero));
         salasActuales = sl.GetComponent<salas>();
+        panelCarga.GetComponent<panelCarga>().mostrarMapaCarga();
         Instantiate(modeloSalaInicial, Vector3.zero, Quaternion.Euler(Vector3.zero));
     }
 }

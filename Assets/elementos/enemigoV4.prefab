@@ -138,6 +138,8 @@ MonoBehaviour:
   danoMelee: 1
   vulnerable: 1
   cooldownAtaque: 5
+  corazon: {fileID: 5714824091498659291, guid: cd682d8b70e44a24daa034fd82b30ee8, type: 3}
+  medioCorazon: {fileID: 7970804018358713399, guid: 51832c912caf3cb4397d193c92b80eee, type: 3}
   damageInd: {fileID: 1657997380636792352, guid: 12050d6263fa9ea4b967035b2643f5ac, type: 3}
 --- !u!195 &7676951961211232415
 NavMeshAgent:

@@ -83,7 +83,7 @@ public class stBoss3
     public stBoss3(int nivelDificultad)
     {
         this.vidaMax = 30 + (30 * nivelDificultad);
-        this.velocidad = 0.5f + (0.5f * nivelDificultad);
+        this.velocidad = 2f + (0.75f * nivelDificultad);
         this.danoMelee = 2 + (int)Math.Floor(0.34f * nivelDificultad);
         this.danoRango = 2 + (int)Math.Floor(0.34f * nivelDificultad);
         this.rango = 0.6f + (0.1f * nivelDificultad);
@@ -104,9 +104,9 @@ public class stBoss2
     public stBoss2(int nivelDificultad)
     {
         this.vidaMax = 30 + (30 * nivelDificultad);
-        this.velocidad = 1.5f + (0.5f * nivelDificultad);
+        this.velocidad = 3f + (0.75f * nivelDificultad);
         this.danoMelee = 2 + (int)Math.Floor(0.34f * nivelDificultad);
-        this.velocidadExtra = 0.5f + (0.5f * nivelDificultad);
+        this.velocidadExtra = 0.5f + (0.75f * nivelDificultad);
         this.rebotesMax = 10 - (int)Math.Floor(0.75f * nivelDificultad);
     }
 }
@@ -117,6 +117,7 @@ public class stBoss1
     public int danoMelee;
     public int danoRango;
     public float timerAtaq;
+    public float velocidadGiro;
     public stBoss1(int nivelDificultad)
     {
         this.vidaMax = 30 + (30 * nivelDificultad);
@@ -124,6 +125,7 @@ public class stBoss1
         this.danoMelee = 2 + (int)Math.Floor(0.34f * nivelDificultad);
         this.danoRango = 2 + (int)Math.Floor(0.34f * nivelDificultad);
         this.timerAtaq = 6 - (0.75f * (nivelDificultad >= 7 ? 6 : nivelDificultad));
+        this.velocidadGiro = 50 + (20 * nivelDificultad);
     }
 }
 
@@ -134,6 +136,7 @@ public class dificultadLineal : MonoBehaviour
     public int numEnemigos;
     public int numObs;
     public int numTrampas;
+    public int probPremio;
     public statsEnem1 stEn1;
     public statsEnem1 stEn12;
     public statsEnem2 stEn2;
@@ -150,6 +153,7 @@ public class dificultadLineal : MonoBehaviour
     public void cambiarNivel(int nivelNuevo)
     {
         nivelDificultad = nivelNuevo;
+        probPremio = 20 + (int)Math.Floor(7.5f * (nivelDificultad >= 10 ? 9 : nivelDificultad));
         numSalas = 2 + (2 * nivelDificultad);
         numEnemigos = 3 + (int)Math.Floor(0.75f * (nivelDificultad>=8?7:nivelDificultad));
         numObs = 20 + (5 * nivelDificultad >= 5 ? 4 : nivelDificultad);

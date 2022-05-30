@@ -112,11 +112,12 @@ MonoBehaviour:
   timer: 5
   spawnedBoss: 0
   jefeinstanciado: {fileID: 0}
+  dl: {fileID: 0}
   salasInstanciadas: []
   boss:
-  - {fileID: 3791787470559802540, guid: edc18a352a0868e49b4889caa1fafb1a, type: 3}
-  - {fileID: 9062522958490759112, guid: 4c9af94e3e8573749893917453370d9e, type: 3}
   - {fileID: 2517300769757566139, guid: f8d0cc86e1c0f1f4a9683b948397a3ef, type: 3}
+  - {fileID: 9062522958490759112, guid: 4c9af94e3e8573749893917453370d9e, type: 3}
+  - {fileID: 3791787470559802540, guid: edc18a352a0868e49b4889caa1fafb1a, type: 3}
   SpawnMuros: {fileID: 1962552170136533241, guid: 7674411b0a38df34a9f4a4a5c9dfb5b9, type: 3}
   muros: {fileID: 6058240287959539859, guid: af609db8247502f40b5cf27eb3232bb6, type: 3}
   juegoListo: 0

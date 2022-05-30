@@ -14,7 +14,7 @@ public class salas : MonoBehaviour
     public int Limite2;
     public bool lim1=false;
     public bool lim2=false;
-    public float timer = 3;
+    public float timer = 30000;
     public bool spawnedBoss = false;
     public GameObject jefeinstanciado;
 
@@ -28,12 +28,8 @@ public class salas : MonoBehaviour
     public GameObject SalaLimite;
     public UnityEngine.AI.NavMeshSurface surface;
     public int salasSuperadas = 0;
-    
-    
     public gameManager gm;
-
     public float t1=0;
-
     private void Start()
     {
         dl = GameObject.Find("dificultad").GetComponent<dificultadLineal>();
@@ -73,11 +69,11 @@ public class salas : MonoBehaviour
                 salasAba.RemoveRange(1, 8);
                 lim2 = true;
             }
-            if (timer <= 0 && spawnedBoss == false)
+            if (timer <= 0 && spawnedBoss == false && salasInstanciadas.Count>=1)
             {
                 int orden = Random.Range(0, boss.Length);
                 refrescarNavMesh();
-                var jefe = Instantiate(boss[orden], salasInstanciadas[salasInstanciadas.Count - 1].transform.position, Quaternion.identity);
+                GameObject jefe = Instantiate(boss[orden], salasInstanciadas[salasInstanciadas.Count - 1].transform.position, Quaternion.identity);
                 jefe.transform.parent = salasInstanciadas[salasInstanciadas.Count - 1].transform;
                 switch (orden)
                 {
@@ -89,6 +85,7 @@ public class salas : MonoBehaviour
                         jefe.GetComponent<statsBoss1>().danoMelee = stJ11.danoMelee;
                         jefe.GetComponent<statsBoss1>().danoRango = stJ11.danoRango;
                         jefe.GetComponent<statsBoss1>().timerAtaq = Random.Range(stJ11.timerAtaq, stJ12.timerAtaq);
+                        jefe.GetComponent<statsBoss1>().velocidadGiro = Random.Range(stJ11.velocidadGiro, stJ12.velocidadGiro);
                         break;
                     case 1:
                         stBoss2 stJ21 = new stBoss2(dl.nivelDificultad);
@@ -123,14 +120,20 @@ public class salas : MonoBehaviour
             }
         }else if (!juegoListo)
         {
+            Invoke("desvanecerElementos", 2f);
             borrarSpawners();
             juegoListo = true;
             float t2 = Time.realtimeSinceStartup;
             //Debug.Log("tiempo de generacíón de salas: " + (t2 - t1));
-            //Invoke("refrescarNavMesh", 1f);
+            
         }
         
     }
+    private void desvanecerElementos()
+    {
+        gm.panelCarga.GetComponent<panelCarga>().desvanecerElementos();
+    }
+
     void borrarSpawners()
     {
         GameObject[] spawners = GameObject.FindGameObjectsWithTag("SpawnPoint");

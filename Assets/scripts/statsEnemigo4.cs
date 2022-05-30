@@ -15,7 +15,8 @@ public class statsEnemigo4 : MonoBehaviour
     //public float rango;
     public bool vulnerable = true;
     public float cooldownAtaque;
-
+    public GameObject corazon;
+    public GameObject medioCorazon;
     public GameObject damageInd;
     void Start()
     {
@@ -27,6 +28,17 @@ public class statsEnemigo4 : MonoBehaviour
         if (vida <= 0)
         {
             transform.parent.GetComponent<updateCam>().contadorEnemigos -= 1;
+            int numero = Random.Range(0, 100);
+            if (numero >= 75 && numero <= 90)
+            {
+                GameObject obj = Instantiate(medioCorazon, transform.position, Quaternion.identity);
+                obj.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-2f, 2f), 1.5f, Random.Range(-2f, 2f));
+            }
+            else if (numero > 90)
+            {
+                GameObject obj = Instantiate(corazon, transform.position, Quaternion.identity);
+                obj.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-2f, 2f), 1.5f, Random.Range(-2f, 2f));
+            }
             Destroy(gameObject);
         }
     }

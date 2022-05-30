@@ -103,6 +103,12 @@ public class updateCam : MonoBehaviour
             FinalizarSala();
             if (spawnPortal)
             {
+                if (premio != null)
+                {
+                    Destroy(premio.gameObject);
+                }
+                GetComponent<generarDistribucion>().instanciarPremio();
+                premio.SetActive(true);
                 Instantiate(gm.portal, new Vector3(transform.position.x,0.5f,transform.position.z), Quaternion.Euler(new Vector3(-90,0,0)));
             }
         }

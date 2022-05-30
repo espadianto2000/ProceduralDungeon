@@ -37,10 +37,10 @@ public class EnemyController2 : MonoBehaviour
         }
         else
         {
-            /*if (!knock)
+            if (!knock)
             {
-                //agent.ResetPath();
-            }*/
+                agent.ResetPath();
+            }
             if (CooldownDisparo <= 0)
             {
                 //Disparar

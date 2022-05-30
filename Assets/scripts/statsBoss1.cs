@@ -13,6 +13,7 @@ public class statsBoss1 : MonoBehaviour
     public bool vulnerable = true;
     public bool muerto;
     public float timerAtaq;
+    public float velocidadGiro;
 
     public GameObject damageInd;
     // Start is called before the first frame update

@@ -396,7 +396,7 @@ public class generarDistribucion : MonoBehaviour
                 else if (mapeado[x, y] == 7)
                 {
                     int r = Random.Range(0, 100);
-                    if(r <100 && r > 1)
+                    if(r <=100 && r > dl.probPremio)
                     {
                         GameObject prem = Instantiate(premio, new Vector3(posXIni + x, 0.5f, posZIni - y), Quaternion.identity);
                         prem.transform.SetParent(transform);
@@ -406,6 +406,26 @@ public class generarDistribucion : MonoBehaviour
                         prem.GetComponent<statsRegalo>().pseudoStart();
                     }
                     //instanciamos premio posible
+                }
+            }
+        }
+    }
+    public void instanciarPremio()
+    {
+        float posXIni = transform.position.x - 4.5f;
+        float posZIni = transform.position.z + 4.5f;
+        for (int x = 0; x < 10; x++)
+        {
+            for (int y = 0; y < 10; y++)
+            {
+                if (mapeado[x, y] == 7)
+                {
+                    GameObject prem = Instantiate(premio, new Vector3(posXIni + x, 0.5f, posZIni - y), Quaternion.identity);
+                    prem.transform.SetParent(transform);
+                    transform.GetComponent<updateCam>().premio = prem;
+                    prem.transform.rotation = Quaternion.Euler(90, 0, 180);
+                    GetComponent<updateCam>().premio = prem;
+                    prem.GetComponent<statsRegalo>().pseudoStart(4);
                 }
             }
         }

@@ -234,13 +234,12 @@ MonoBehaviour:
   vida: 0
   velocidad: 2
   danoMelee: 1
-  danoRango: 1
-  velocidadAtaque: 0
-  rango: 5
   vulnerable: 1
   velocidadCrecimiento: 5
   cooldownCuracion: 4
   curacion: 2
+  corazon: {fileID: 5714824091498659291, guid: cd682d8b70e44a24daa034fd82b30ee8, type: 3}
+  medioCorazon: {fileID: 7970804018358713399, guid: 51832c912caf3cb4397d193c92b80eee, type: 3}
   damageInd: {fileID: 1657997380636792352, guid: 12050d6263fa9ea4b967035b2643f5ac, type: 3}
 --- !u!195 &6467971377483467359
 NavMeshAgent:
