@@ -52,7 +52,7 @@ public class statsEnem2
         this.danoMelee = 1 + (int)Math.Floor(0.34f * nivelDificultad);
         this.danoRango = 1 + (int)Math.Floor(0.34f * nivelDificultad);
         this.velocidadAtaque = 6f - (0.5f * (nivelDificultad >= 11 ? 10 : nivelDificultad));
-        this.velocidadProyectil = 2 + (1 * nivelDificultad);
+        this.velocidadProyectil = 2 + (0.75f * nivelDificultad);
         this.rango = 0.5f + (0.25f * nivelDificultad);
     }
 }
@@ -66,6 +66,64 @@ public class statsEnem1
         this.vidaMax = 7 + (3 * nivelDificultad);
         this.velocidad = 1.5f + (0.25f * nivelDificultad);
         this.danoMelee = 1 + (int)Math.Floor(0.34f * nivelDificultad);
+    }
+}
+public class stBoss3
+{
+    public float vidaMax;
+    public float velocidad;
+    public int danoMelee;
+    public int danoRango;
+    public float rango;
+    public float ataqueDistanciaTiempo;
+    public float spawnEnemigosTiempo;
+    public int maxEnemigosSpawneados;
+    public int maxProyectiles;
+    public float velocidadProyectil;
+    public stBoss3(int nivelDificultad)
+    {
+        this.vidaMax = 30 + (30 * nivelDificultad);
+        this.velocidad = 0.5f + (0.5f * nivelDificultad);
+        this.danoMelee = 2 + (int)Math.Floor(0.34f * nivelDificultad);
+        this.danoRango = 2 + (int)Math.Floor(0.34f * nivelDificultad);
+        this.rango = 0.6f + (0.1f * nivelDificultad);
+        this.ataqueDistanciaTiempo = 7 - (0.75f * (nivelDificultad >= 9 ? 8 : nivelDificultad));
+        this.spawnEnemigosTiempo = 25 - (2.5f * (nivelDificultad >= 7?6:nivelDificultad));
+        this.maxEnemigosSpawneados = 2 + nivelDificultad;
+        this.maxProyectiles = 2 + nivelDificultad;
+        this.velocidadProyectil = 2 + (0.75f * nivelDificultad);
+    }
+}
+public class stBoss2
+{
+    public float vidaMax;
+    public float velocidad;
+    public int danoMelee;
+    public float velocidadExtra;
+    public int rebotesMax;
+    public stBoss2(int nivelDificultad)
+    {
+        this.vidaMax = 30 + (30 * nivelDificultad);
+        this.velocidad = 1.5f + (0.5f * nivelDificultad);
+        this.danoMelee = 2 + (int)Math.Floor(0.34f * nivelDificultad);
+        this.velocidadExtra = 0.5f + (0.5f * nivelDificultad);
+        this.rebotesMax = 10 - (int)Math.Floor(0.75f * nivelDificultad);
+    }
+}
+public class stBoss1
+{
+    public float vidaMax;
+    public float velocidad;
+    public int danoMelee;
+    public int danoRango;
+    public float timerAtaq;
+    public stBoss1(int nivelDificultad)
+    {
+        this.vidaMax = 30 + (30 * nivelDificultad);
+        this.velocidad = 0.5f + (0.5f * nivelDificultad);
+        this.danoMelee = 2 + (int)Math.Floor(0.34f * nivelDificultad);
+        this.danoRango = 2 + (int)Math.Floor(0.34f * nivelDificultad);
+        this.timerAtaq = 6 - (0.75f * (nivelDificultad >= 7 ? 6 : nivelDificultad));
     }
 }
 

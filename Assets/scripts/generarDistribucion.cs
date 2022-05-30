@@ -123,11 +123,6 @@ public class generarDistribucion : MonoBehaviour
         //instanciarElementos();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void findPathSum(int xIni,int yIni,int xFin, int yFin)
     {
@@ -380,7 +375,7 @@ public class generarDistribucion : MonoBehaviour
                             enem.GetComponent<statsEnemigo3>().danoMelee = dl.stEn3.danoMelee;
                             enem.GetComponent<statsEnemigo3>().velocidadCrecimiento = Random.Range(dl.stEn3.velocidadCrecimiento, dl.stEn32.velocidadCrecimiento);
                             enem.GetComponent<statsEnemigo3>().cooldownCuracion = Random.Range(dl.stEn3.cooldownCuracion, dl.stEn32.cooldownCuracion);
-                            enem.GetComponent<statsEnemigo3>().curacion = Random.Range(dl.stEn3.curacion, dl.stEn32.curacion);
+                            enem.GetComponent<statsEnemigo3>().curacion = Mathf.Round(Random.Range(dl.stEn3.curacion, dl.stEn32.curacion)*100f)/100f;
                             break;
                         case 3:
                             enem.GetComponent<statsEnemigo4>().vidaMax = Random.Range(dl.stEn4.vidaMax, dl.stEn42.vidaMax);

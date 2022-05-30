@@ -9,9 +9,10 @@ public class statsBoss1 : MonoBehaviour
     public float velocidad;
     public int danoMelee;
     public int danoRango;
-    public float rango;
+    //public float rango;
     public bool vulnerable = true;
     public bool muerto;
+    public float timerAtaq;
 
     public GameObject damageInd;
     // Start is called before the first frame update
@@ -28,7 +29,6 @@ public class statsBoss1 : MonoBehaviour
             muerto = true;
             GetComponent<bossController>().timer = 100;
             GetComponent<bossController>().anim.SetTrigger("morir");
-            GetComponent<bossController>().desactivarAreaFuego();
             GetComponent<bossController>().desactivarFuego();
             GetComponent<bossController>().enabled = false;
         }

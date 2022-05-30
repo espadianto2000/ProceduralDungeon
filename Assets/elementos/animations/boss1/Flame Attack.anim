@@ -80446,22 +80446,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.6666667
-    functionName: activarAreaFuego
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 2.3333333
     functionName: desactivarFuego
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 2.5
-    functionName: desactivarAreaFuego
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -68,7 +68,7 @@ public class statsJugador : MonoBehaviour
 // Update is called once per frame
     private void FixedUpdate()
     {
-        if (pGracia)
+        if (pGracia && GetComponent<charController>().vivo)
         {
             if (this.GetComponentInChildren<SkinnedMeshRenderer>().enabled)
             {
@@ -78,6 +78,11 @@ public class statsJugador : MonoBehaviour
             {
                 this.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
             }
+        }
+        if(vida <= 0 && GetComponent<charController>().vivo)
+        {
+            GetComponent<charController>().morir();
+            disolverGracia();
         }
     }
     public void CambiarVidaMax(int vidaExtra)
@@ -118,7 +123,7 @@ public class statsJugador : MonoBehaviour
     }
     public void cambiarVida(int punt)
     {
-        Debug.Log("se llama al cambiar vida");
+        //Debug.Log("se llama al cambiar vida");
         for(int i = 0; i < punt; i++){
             //Debug.Log("se entra al bucle 1 vez");
             if (vida < vidaMax)

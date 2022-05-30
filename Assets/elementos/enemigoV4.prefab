@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6854097625098139469}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2750385, y: 0, z: 1.6013491}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -136,9 +136,6 @@ MonoBehaviour:
   vida: 0
   velocidad: 2
   danoMelee: 1
-  danoRango: 1
-  velocidadAtaque: 0
-  rango: 5
   vulnerable: 1
   cooldownAtaque: 5
   damageInd: {fileID: 1657997380636792352, guid: 12050d6263fa9ea4b967035b2643f5ac, type: 3}

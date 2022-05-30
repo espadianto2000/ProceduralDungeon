@@ -17,7 +17,7 @@ public class bossController : MonoBehaviour
     {
         flama.enableEmission = false;
         flama.GetComponent<datosFuego>().dano = GetComponent<statsBoss1>().danoRango;
-        //flama.transform.GetChild(0).GetComponent<ParticleSystem>().enableEmission = false;
+        timer = GetComponent<statsBoss1>().timerAtaq;
     }
 
     // Update is called once per frame
@@ -86,7 +86,7 @@ public class bossController : MonoBehaviour
     public void cambiarEstado()
     {
         estado = 0;
-        timer = 4;
+        timer = GetComponent<statsBoss1>().timerAtaq;
         atk = false;
     }
     
@@ -127,13 +127,5 @@ public class bossController : MonoBehaviour
     {
         flama.enableEmission = false;
         //flama.transform.GetChild(0).GetComponent<ParticleSystem>().enableEmission = false;
-    }
-    public void activarAreaFuego()
-    {
-        
-    }
-    public void desactivarAreaFuego()
-    {
-        
     }
 }

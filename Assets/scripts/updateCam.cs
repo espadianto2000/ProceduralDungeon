@@ -158,7 +158,7 @@ public class updateCam : MonoBehaviour
                 }
                 else { destZ = posZJ; }
                 destino = new Vector3(destX, other.transform.position.y, destZ);
-                Debug.Log("moviendo hacia: " + destino);
+                //Debug.Log("moviendo hacia: " + destino);
 
                 velocidadTemp = other.GetComponent<charController>().speed;
                 moverjugador = true;

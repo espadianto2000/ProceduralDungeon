@@ -17,14 +17,13 @@ public class gameManager : MonoBehaviour
     public salas salasActuales;
     public GameObject player;
     public GameObject portal;
+    public bool paused = false;
 
     void Update()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            //Debug.Log(hit.collider.name);
-            
             if (hit.collider.CompareTag("present"))
             {
                 panelInfo.SetActive(true);
@@ -39,6 +38,19 @@ public class gameManager : MonoBehaviour
                     ajustarMouse();
                 }
                 
+            }
+        }
+        if (Input.GetKeyDown("p"))
+        {
+            if (paused)
+            {
+                Time.timeScale = 1;
+                paused = false;
+            }
+            else
+            {
+                Time.timeScale = 0;
+                paused = true;
             }
         }
     }

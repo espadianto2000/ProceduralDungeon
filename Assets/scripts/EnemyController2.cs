@@ -32,15 +32,15 @@ public class EnemyController2 : MonoBehaviour
         }
         if (Vector3.Distance(player.transform.position, transform.position) >= 2.5f)
         {
-            agent.Resume();
+            //agent.Resume();
             agent.SetDestination(player.transform.position);
         }
         else
         {
-            if (!knock)
+            /*if (!knock)
             {
-                agent.Stop();
-            }
+                //agent.ResetPath();
+            }*/
             if (CooldownDisparo <= 0)
             {
                 //Disparar
@@ -61,8 +61,6 @@ public class EnemyController2 : MonoBehaviour
 
     void Update()
     {
-
-        
         Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
         targetRotation.x = 0;
         targetRotation.z = 0;
@@ -120,19 +118,7 @@ public class EnemyController2 : MonoBehaviour
             yield return null;
             //transform.GetComponent<Rigidbody>().AddForce(dir.normalized * knockbackMelee, ForceMode.Impulse);
         }
-        /*
-        if(tipoAtaque == 1)
-        {
-            //coroutine = activarKnock(velocidadG, velocidadAngG, 0.03f);
-            //StartCoroutine(coroutine);
-            //Invoke("activarKnock", 0.04f, velocidadG,velocidadAngG);
-        }
-        else if(tipoAtaque == 0)
-        {
-            //coroutine = activarKnock(velocidadG, velocidadAngG, 0.1f);
-            //StartCoroutine(coroutine);
-            //Invoke("activarKnock", 0.1f, velocidadG, velocidadAngG);
-        }*/
+        
     }
     IEnumerator activarKnock(Vector3 velocidadG, Vector3 velocidadAngG, float tiempo)
     {
@@ -146,13 +132,11 @@ public class EnemyController2 : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
+        Debug.Log(collision.transform.name);
         if (collision.transform.CompareTag("player"))
         {
-            collision.transform.GetComponent<statsJugador>().recibirDano(this.GetComponent<statsEnemigo2>().danoMelee);
+            collision.transform.GetComponent<statsJugador>().recibirDano(GetComponent<statsEnemigo2>().danoMelee);
         }
     }
-    private void OnTriggerStay(Collider other)
-    {
-        
-    }
+    
 }

@@ -9,8 +9,6 @@ public class statsBoss2 : MonoBehaviour
     public float velocidad;
     public float velocidadExtra;
     public int danoMelee;
-    public int danoRango;
-    public float rango;
     public bool vulnerable = true;
     public bool muerto;
     public int rebotesMax;

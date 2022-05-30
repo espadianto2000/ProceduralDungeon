@@ -2999,9 +2999,9 @@ MonoBehaviour:
   velocidad: 1
   danoMelee: 2
   danoRango: 1
-  rango: 5
   vulnerable: 1
   muerto: 0
+  timerAtaq: 4
   damageInd: {fileID: 1657997380636792352, guid: 12050d6263fa9ea4b967035b2643f5ac, type: 3}
 --- !u!1 &2517300769757567655
 GameObject:

@@ -21,27 +21,27 @@ public class bossController2 : MonoBehaviour
         switch(Random.Range(1, 3))
         {
             case 1:
-                dirx = dirx * -10;
+                dirx = dirx * -100;
                 break;
             case 2:
-                dirZ = dirx * 10;
+                dirZ = dirx * 100;
                 break;
         }
         switch (Random.Range(1, 3))
         {
             case 1:
-                dirx = dirZ * -10;
+                dirx = dirZ * -100;
                 break;
             case 2:
-                dirZ = dirZ * 10;
+                dirZ = dirZ * 100;
                 break;
         }
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        if(player == null)
+        if (player == null)
         {
             try
             {
@@ -52,41 +52,48 @@ public class bossController2 : MonoBehaviour
 
             }
         }
-        rotacionY += Time.deltaTime*100;
+        rotacionY += Time.fixedDeltaTime * 100;
         transform.rotation = Quaternion.Euler(-90, rotacionY, 0);
-        if (player != null)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x + dirx, 1.17f, transform.position.z + dirZ), (stats.velocidad+((1-(stats.vida/stats.vidaMax))* stats.velocidadExtra))*Time.deltaTime);
-        }
+        
         if (transform.position.x > posCentral.x + 4.75f)
         {
             dirx = -1 * Mathf.Abs(dirx);
-            transform.position = new Vector3(posCentral.x + 4.75f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(posCentral.x + 4.5f, 1.2f, transform.position.z);
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
             contadorRebotes++;
-        }else if(transform.position.x < posCentral.x - 4.75f)
+        }
+        else if (transform.position.x < posCentral.x - 4.75f)
         {
             dirx = Mathf.Abs(dirx);
-            transform.position = new Vector3(posCentral.x - 4.75f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(posCentral.x - 4.5f, 1.2f, transform.position.z);
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
             contadorRebotes++;
         }
+        else transform.position = new Vector3(transform.position.x, 1.2f, transform.position.z);
         if (transform.position.z > posCentral.z + 4.75f)
         {
-            dirZ = -1 * Mathf.Abs(dirx);
-            transform.position = new Vector3(transform.position.x, transform.position.y, posCentral.z + 4.75f);
+            dirZ = -1 * Mathf.Abs(dirZ);
+            transform.position = new Vector3(transform.position.x, 1.2f, posCentral.z + 4.5f);
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
             contadorRebotes++;
         }
-        else if(transform.position.z < posCentral.z - 4.75f)
+        else if (transform.position.z < posCentral.z - 4.75f)
         {
             dirZ = Mathf.Abs(dirZ);
-            transform.position = new Vector3(transform.position.x, transform.position.y, posCentral.z - 4.75f);
+            transform.position = new Vector3(transform.position.x, 1.2f, posCentral.z - 4.5f);
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
             contadorRebotes++;
         }
-        if(contadorRebotes >= stats.rebotesMax)
+        if (contadorRebotes >= stats.rebotesMax)
         {
             contadorRebotes = 0;
             Vector3 newDir = player.transform.position - transform.position;
-            dirx = newDir.normalized.x*1000;
-            dirZ = newDir.normalized.z*1000;
+            dirx = newDir.normalized.x * 1000;
+            dirZ = newDir.normalized.z * 1000;
+        }
+        if (player != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x + dirx, transform.position.y, transform.position.z + dirZ), (stats.velocidad + ((1 - (stats.vida / stats.vidaMax)) * stats.velocidadExtra)) * Time.fixedDeltaTime);
         }
     }
 

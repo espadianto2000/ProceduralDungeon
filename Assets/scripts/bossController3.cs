@@ -117,7 +117,7 @@ public class bossController3 : MonoBehaviour
     }
     private void atacarADistancia()
     {
-        int proyectiles = Random.Range(1, stats.maxProyectiles);
+        int proyectiles = Random.Range(stats.maxProyectiles - 2, stats.maxProyectiles);
         Debug.Log("spawn proyectiles: " + proyectiles);
         for(int i = 0; i<proyectiles; i++)
         {

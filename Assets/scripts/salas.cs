@@ -29,6 +29,7 @@ public class salas : MonoBehaviour
     public UnityEngine.AI.NavMeshSurface surface;
     public int salasSuperadas = 0;
     
+    
     public gameManager gm;
 
     public float t1=0;
@@ -78,6 +79,41 @@ public class salas : MonoBehaviour
                 refrescarNavMesh();
                 var jefe = Instantiate(boss[orden], salasInstanciadas[salasInstanciadas.Count - 1].transform.position, Quaternion.identity);
                 jefe.transform.parent = salasInstanciadas[salasInstanciadas.Count - 1].transform;
+                switch (orden)
+                {
+                    case 0:
+                        stBoss1 stJ11 = new stBoss1(dl.nivelDificultad);
+                        stBoss1 stJ12 = new stBoss1(dl.nivelDificultad+1);
+                        jefe.GetComponent<statsBoss1>().vidaMax = Random.Range(stJ11.vidaMax, stJ12.vidaMax);
+                        jefe.GetComponent<statsBoss1>().velocidad = Random.Range(stJ11.velocidad, stJ12.velocidad);
+                        jefe.GetComponent<statsBoss1>().danoMelee = stJ11.danoMelee;
+                        jefe.GetComponent<statsBoss1>().danoRango = stJ11.danoRango;
+                        jefe.GetComponent<statsBoss1>().timerAtaq = Random.Range(stJ11.timerAtaq, stJ12.timerAtaq);
+                        break;
+                    case 1:
+                        stBoss2 stJ21 = new stBoss2(dl.nivelDificultad);
+                        stBoss2 stJ22 = new stBoss2(dl.nivelDificultad + 1);
+                        jefe.GetComponent<statsBoss2>().vidaMax = Random.Range(stJ21.vidaMax, stJ22.vidaMax);
+                        jefe.GetComponent<statsBoss2>().velocidad = Random.Range(stJ21.velocidad, stJ22.velocidad);
+                        jefe.GetComponent<statsBoss2>().danoMelee = stJ21.danoMelee;
+                        jefe.GetComponent<statsBoss2>().velocidadExtra = Random.Range(stJ21.velocidadExtra, stJ22.velocidadExtra);
+                        jefe.GetComponent<statsBoss2>().rebotesMax = Random.Range(stJ21.rebotesMax, stJ22.rebotesMax);
+                        break;
+                    case 2:
+                        stBoss3 stJ31 = new stBoss3(dl.nivelDificultad);
+                        stBoss3 stJ32 = new stBoss3(dl.nivelDificultad + 1);
+                        jefe.GetComponent<statsBoss3>().vidaMax = Random.Range(stJ31.vidaMax, stJ32.vidaMax);
+                        jefe.GetComponent<statsBoss3>().velocidad = Random.Range(stJ31.velocidad, stJ32.velocidad);
+                        jefe.GetComponent<statsBoss3>().danoMelee = stJ31.danoMelee;
+                        jefe.GetComponent<statsBoss3>().danoRango = stJ31.danoRango;
+                        jefe.GetComponent<statsBoss3>().rango = Random.Range(stJ31.rango, stJ32.rango);
+                        jefe.GetComponent<statsBoss3>().ataqueDistanciaTiempo = Random.Range(stJ31.ataqueDistanciaTiempo, stJ32.ataqueDistanciaTiempo);
+                        jefe.GetComponent<statsBoss3>().spawnEnemigosTiempo = Random.Range(stJ31.spawnEnemigosTiempo, stJ32.spawnEnemigosTiempo);
+                        jefe.GetComponent<statsBoss3>().maxEnemigosSpawneados = stJ31.maxEnemigosSpawneados;
+                        jefe.GetComponent<statsBoss3>().maxProyectiles = stJ31.maxProyectiles;
+                        jefe.GetComponent<statsBoss3>().velocidadProyectil = Random.Range(stJ31.velocidadProyectil, stJ32.velocidadProyectil);
+                        break;
+                }
                 spawnedBoss = true;
                 jefeinstanciado = jefe;
             }
