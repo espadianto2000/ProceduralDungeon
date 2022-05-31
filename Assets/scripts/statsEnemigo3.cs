@@ -36,12 +36,12 @@ public class statsEnemigo3 : MonoBehaviour
             if (numero >= 55 && numero <= 82)
             {
                 GameObject obj = Instantiate(medioCorazon, transform.position, Quaternion.identity);
-                obj.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-2f, 2f), 1.5f, Random.Range(-2f, 2f));
+                obj.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-4f, 4f), 2.5f, Random.Range(-4f, 4f));
             }
-            else if (numero > 90)
+            else if (numero > 83)
             {
                 GameObject obj = Instantiate(corazon, transform.position, Quaternion.identity);
-                obj.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-2f, 2f), 1.5f, Random.Range(-2f, 2f));
+                obj.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-4f, 4f), 2.5f, Random.Range(-4f, 4f));
             }
             Destroy(gameObject);
         }

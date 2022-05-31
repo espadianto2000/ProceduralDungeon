@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3097782016563330745}
   - component: {fileID: 7239568633684405238}
   - component: {fileID: 8811951875512368084}
-  - component: {fileID: 6169610380532096618}
+  - component: {fileID: 5964740397959966439}
   m_Layer: 0
   m_Name: medioCorazon
   m_TagString: Untagged
@@ -140,7 +140,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &6169610380532096618
+--- !u!65 &5964740397959966439
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,5 +151,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.06, y: 0.09, z: 0.17}
-  m_Center: {x: 0.04138692, y: 0.00010082126, z: -0.01313311}
+  m_Size: {x: 0.08, y: 0.05, z: 0.1}
+  m_Center: {x: 0.04, y: 0.0000964012, z: -0.013572559}

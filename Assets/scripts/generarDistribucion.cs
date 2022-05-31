@@ -13,6 +13,7 @@ public class generarDistribucion : MonoBehaviour
     public GameObject[] obstaculos;
     public GameObject[] enemigos;
     public GameObject premio;
+    public GameObject trampa;
     private string archivoGuardar = "datos.csv";
 
     // Start is called before the first frame update
@@ -392,6 +393,8 @@ public class generarDistribucion : MonoBehaviour
                 else if (mapeado[x, y] == 6)
                 {
                     //instanciamos trampa
+                    GameObject tramp = Instantiate(trampa, new Vector3(posXIni + x, 0, posZIni - y), Quaternion.identity);
+                    GetComponent<updateCam>().trampas.Add(tramp);
                 }
                 else if (mapeado[x, y] == 7)
                 {

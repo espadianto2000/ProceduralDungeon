@@ -157,7 +157,7 @@ public class dificultadLineal : MonoBehaviour
         numSalas = 2 + (2 * nivelDificultad);
         numEnemigos = 3 + (int)Math.Floor(0.75f * (nivelDificultad>=8?7:nivelDificultad));
         numObs = 20 + (5 * nivelDificultad >= 5 ? 4 : nivelDificultad);
-        numTrampas = 0 + (int)Math.Floor(0.75f * (nivelDificultad >= 8 ? 7 : nivelDificultad));
+        numTrampas = 2 + (int)Math.Floor(0.75f * (nivelDificultad >= 8 ? 7 : nivelDificultad));
         stEn1 = new statsEnem1(nivelDificultad);
         stEn12 = new statsEnem1(nivelDificultad+1);
         stEn2 = new statsEnem2(nivelDificultad);

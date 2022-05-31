@@ -26,6 +26,7 @@ public class updateCam : MonoBehaviour
     public GameObject boss;
     public bool contenidoGenerado = false;
     private bool spawnPortal=false;
+    public List<GameObject> trampas;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,9 +62,13 @@ public class updateCam : MonoBehaviour
                     {
                         foreach (GameObject en in enemigosInstanciados)
                         {
-                            en.gameObject.SetActive(true);
+                            en.SetActive(true);
                         }
                         contadorEnemigos = enemigosInstanciados.Count;
+                        foreach(GameObject tramp in trampas)
+                        {
+                            tramp.SetActive(true);
+                        }
                     }
                 }
                 entrada = false;
@@ -163,7 +168,7 @@ public class updateCam : MonoBehaviour
                     destZ -= 4.5f;
                 }
                 else { destZ = posZJ; }
-                destino = new Vector3(destX, other.transform.position.y, destZ);
+                destino = new Vector3(destX, 0.6f, destZ);
                 //Debug.Log("moviendo hacia: " + destino);
 
                 velocidadTemp = other.GetComponent<charController>().speed;
