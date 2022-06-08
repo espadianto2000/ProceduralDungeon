@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using Unity.Services.Analytics;
+using UnityEngine.Analytics;
 
 public class gameManager : MonoBehaviour
 {
@@ -21,6 +23,14 @@ public class gameManager : MonoBehaviour
     public GameObject cargaNv;
     public GameObject panelCarga;
     public GameObject menuPausa;
+    public string identificadorMaq;
+    public string identificadorUnico;
+    public bool identificado = false;
+    public float tiempoNivel=0;
+    public AudioManager audio;
+    public int numeroPremiosNivel = 0;
+    public string usuario="";
+    
 
     void Update()
     {
@@ -42,7 +52,7 @@ public class gameManager : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown("p"))
+        if (Input.GetKeyDown("p") && !panelCarga.active)
         {
             if (paused)
             {
@@ -54,6 +64,14 @@ public class gameManager : MonoBehaviour
             }
         }
     }
+    private void FixedUpdate()
+    {
+        tiempoNivel += Time.fixedDeltaTime;
+        if(Time.timeScale == 0)
+        {
+            Debug.Log("timescale 0");
+        }
+    }
     public void ajustarMouse()
     {
         hotspot = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
@@ -61,12 +79,14 @@ public class gameManager : MonoBehaviour
     }
     public void reanudar()
     {
-        menuPausa.SetActive(false);
         Time.timeScale = 1;
+        menuPausa.SetActive(false);
+        audio.desactivarPausa();
         paused = false;
     }
     public void pausar()
     {
+        audio.activarPausa();
         menuPausa.SetActive(true);
         Time.timeScale = 0;
         paused = true;
@@ -74,10 +94,11 @@ public class gameManager : MonoBehaviour
     public void NextLevel()
     {
         InputEnable = false;
+
         GameObject[] objs = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
         foreach(GameObject obj in objs)
         {
-            if(obj.name != "NavMesh" && obj.name != "GameManager" && obj.name != "Directional Light" && obj.name != "EventSystem" && obj.name != "Canvas" && obj.name != "cargaNivel")
+            if(obj.name != "NavMesh" && obj.name != "GameManager" && obj.name != "Directional Light" && obj.name != "EventSystem" && obj.name != "Canvas" && obj.name != "cargaNivel" && obj.name != "AudioManager")
             {
                 if(obj.name.Contains("salas"))
                 {
@@ -109,5 +130,38 @@ public class gameManager : MonoBehaviour
         salasActuales = sl.GetComponent<salas>();
         panelCarga.GetComponent<panelCarga>().mostrarMapaCarga();
         Instantiate(modeloSalaInicial, Vector3.zero, Quaternion.Euler(Vector3.zero));
+    }
+    public void analyticsNextLevel()
+    {
+        /*
+        AnalyticsService.Instance.CustomData("nivelFinalizado", new Dictionary<string, object>
+                {
+                    { "UserRun",identificadorMaq},
+                    { "nivelActual", GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad },
+                    { "tiempo", tiempoNivel },
+                    { "danoRecibido", player.GetComponent<charController>().danoNivel },
+                    { "PremiosNivel", numeroPremiosNivel},
+                    { "salasNivel", GameObject.Find("salas(Clone)").GetComponent<salas>().contadorSalas+1},
+                    { "salasCompletadas", GameObject.Find("salas(Clone)").GetComponent<salas>().salasSuperadas}
+                });
+        try
+        {
+            AnalyticsService.Instance.Flush();
+        }
+        catch
+        {
+
+        }*/
+        Analytics.CustomEvent("nivelFinalizado", new Dictionary<string, object>
+                {
+                    { "UserRun",identificadorMaq},
+                    { "nivelActual", GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad },
+                    { "tiempo", tiempoNivel },
+                    { "danoRecibido", player.GetComponent<charController>().danoNivel },
+                    { "PremiosNivel", numeroPremiosNivel},
+                    { "salasNivel", GameObject.Find("salas(Clone)").GetComponent<salas>().contadorSalas+1},
+                    { "salasCompletadas", GameObject.Find("salas(Clone)").GetComponent<salas>().salasSuperadas}
+                });
+        Analytics.FlushEvents();
     }
 }

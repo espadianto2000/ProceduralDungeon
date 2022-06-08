@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Analytics;
+using System;
+using Unity.Services.Core;
+//using Unity.Services.Analytics;
 public class charController : MonoBehaviour
 {
-    public float speed;
+    //public float speed;
     Vector3 movimiento;
     public CharacterController cont;
     //Vector2 mousePosition;
@@ -19,10 +22,12 @@ public class charController : MonoBehaviour
     public GameObject trail;
     public UnityEngine.UI.Slider sliderMelee;
     public bool vivo = true;
+    public updateCam salaActual;
+    public int danoNivel = 0;
     // Start is called before the first frame update
     void Start()
     {
-        speed = stats.velocidad;
+        //speed = stats.velocidad;
         cam = GameObject.Find("Camara").GetComponent<Camera>();
     }
 
@@ -59,14 +64,13 @@ public class charController : MonoBehaviour
             }
             if (gm.InputEnable)
             {
-                cont.Move(movimiento * speed * Time.deltaTime);
+                cont.Move(movimiento * stats.velocidad * Time.deltaTime);
             }
             if (cooldownMelee > 0)
             {
                 cooldownMelee -= Time.deltaTime;
             }
             else { cooldownMelee = 0; }
-            
         }
     }
     public void morir()
@@ -80,6 +84,50 @@ public class charController : MonoBehaviour
         {
             col.enabled = false;
         }
+        //Debug.Log("Analytics : " + gm.identificadorMaq + "--" + "muerte");
+        /*AnalyticsService.Instance.CustomData("muerteRun", new Dictionary<string, object>
+                {
+                    { "UserRun",gm.identificadorMaq},
+                    { "nivelActual", GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad },
+                });
+        try
+        {
+            AnalyticsService.Instance.Flush();
+        }
+        catch
+        {
+        }
+        //Debug.Log("Analytics : " + gm.usuario + "--" + "muerte");
+        AnalyticsService.Instance.CustomData("muerteUsuario", new Dictionary<string, object>
+                {
+                    { "User",gm.usuario},
+                    { "nivelActual", GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad },
+                });
+        try
+        {
+            AnalyticsService.Instance.Flush();
+        }
+        catch
+        {
+        }*/
+        Debug.Log("muerteRun: " + Analytics.IsCustomEventEnabled("muerteRun"));
+        AnalyticsResult anRes = Analytics.CustomEvent("muerteRun", new Dictionary<string, object>
+                {
+                    { "UserRun",gm.identificadorMaq},
+                    { "nivelActual", GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad },
+                });
+        Debug.Log("analyticsResult muerteRun: " + anRes);
+        Analytics.FlushEvents();
+        Debug.Log("muerteUsuario: " + Analytics.IsCustomEventEnabled("muerteUsuario"));
+        anRes = Analytics.CustomEvent("muerteUsuario", new Dictionary<string, object>
+                {
+                    { "User",gm.usuario},
+                    { "nivelActual", GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad },
+                });
+        Debug.Log("analyticsResult muerteUsuario: " + anRes);
+        Analytics.FlushEvents();
+        Debug.Log("se hizo analytics de muerte");
+        Invoke("habilitarMenu", 1f);
     }
 
     private void FixedUpdate()
@@ -125,5 +173,9 @@ public class charController : MonoBehaviour
                 stats.recibirDano(hit.transform.GetComponent<statsEnemigo4>().danoMelee);
             }
         }
+    }
+    private void habilitarMenu()
+    {
+        gm.pausar();
     }
 }

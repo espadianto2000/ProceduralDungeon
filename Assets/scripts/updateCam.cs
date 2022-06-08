@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
+using Unity.Services.Core;
+//using Unity.Services.Analytics;
 
 public class updateCam : MonoBehaviour
 {
@@ -27,9 +30,14 @@ public class updateCam : MonoBehaviour
     public bool contenidoGenerado = false;
     private bool spawnPortal=false;
     public List<GameObject> trampas;
+    private dificultadLineal dl;
+    public int danoRecibidoEnSala = 0;
+    public float tiempoSala = -1;
+    private AudioManager am;
     // Start is called before the first frame update
     void Start()
     {
+        am = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         gm = GameObject.Find("GameManager").GetComponent<gameManager>();
         cam = GameObject.Find("Camara");
         salas = GameObject.FindGameObjectWithTag("salas").GetComponent<salas>();
@@ -57,9 +65,11 @@ public class updateCam : MonoBehaviour
                         boss.SetActive(true);
                         contadorEnemigos = 1;
                         spawnPortal = true;
+                        
                     }
                     else
                     {
+                        
                         foreach (GameObject en in enemigosInstanciados)
                         {
                             en.SetActive(true);
@@ -99,11 +109,45 @@ public class updateCam : MonoBehaviour
                     pr.Add(puerta2);
                     pr.Add(puerta3);
                     pr.Add(puerta4);
+                    tiempoSala = 0;
                 }
             }
         }
         if(contadorEnemigos == 0 && !finalizado)
         {
+            
+            if (gm.identificado)
+            {
+                //Debug.Log("Analytics : " + gm.identificadorMaq + "--" + "salaFinalizada");
+                /*AnalyticsService.Instance.CustomData("salaFinalizada", new Dictionary<string, object>
+                {
+                    { "UserRun",gm.identificadorMaq},
+                    { "nivelActual", dl.nivelDificultad },
+                    { "tiempo", tiempoSala },
+                    { "danoRecibido", danoRecibidoEnSala },
+                    { "salaJefe", spawnPortal }
+                });
+                try
+                {
+                    AnalyticsService.Instance.Flush();
+                }
+                catch
+                {
+
+                }*/
+                Debug.Log("salaFinalizada: " + Analytics.IsCustomEventEnabled("salaFinalizada"));
+                AnalyticsResult anRes = Analytics.CustomEvent("salaFinalizada", new Dictionary<string, object>
+                {
+                    { "UserRun",gm.identificadorMaq},
+                    { "nivelActual", dl.nivelDificultad },
+                    { "tiempo", tiempoSala },
+                    { "danoRecibido", danoRecibidoEnSala },
+                    { "salaJefe", spawnPortal }
+                });
+                Debug.Log("analyticsResult salaFinalizada: " + anRes);
+                Analytics.FlushEvents();
+                tiempoSala = -1;
+            }
             salas.salasSuperadas++;
             FinalizarSala();
             if (spawnPortal)
@@ -118,18 +162,41 @@ public class updateCam : MonoBehaviour
             }
         }
     }
+    private void FixedUpdate()
+    {
+        tiempoSala += tiempoSala >= 0 ? Time.fixedDeltaTime : 0f;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("player"))
         {
+            if (!finalizado && boss != null)
+            {
+                am.activarBoss();
+            }else if (spawnPortal)
+            {
+                if (am.estado != 3)
+                {
+                    am.activarWin();
+                }
+            }
+            else if(transform.position.x != 0 && transform.position.z != 0)
+            {
+                if (am.estado != 1)
+                {
+                    am.activarGameplay();
+                }
+            }
+            other.GetComponent<charController>().salaActual = this;
             if (!contenidoGenerado)
             {
-                dificultadLineal dl = GameObject.Find("dificultad").GetComponent<dificultadLineal>();
-                float t1 = Time.realtimeSinceStartup;
+                dl = GameObject.Find("dificultad").GetComponent<dificultadLineal>();
+                //float t1 = Time.realtimeSinceStartup;
                 GetComponent<generarDistribucion>().generarElementos2(dl.numObs,dl.numEnemigos,dl.numTrampas);
                 GetComponent<generarDistribucion>().instanciarElementos(dl);
                 contenidoGenerado = true;
-                float t2 = Time.realtimeSinceStartup;
+                //float t2 = Time.realtimeSinceStartup;
+                
                 //Debug.Log("tiempo de algoritmo inSala: " + (t2 - t1));
             }
             salaOut.SetActive(false);
@@ -171,7 +238,7 @@ public class updateCam : MonoBehaviour
                 destino = new Vector3(destX, 0.6f, destZ);
                 //Debug.Log("moviendo hacia: " + destino);
 
-                velocidadTemp = other.GetComponent<charController>().speed;
+                velocidadTemp = other.GetComponent<statsJugador>().velocidad;
                 moverjugador = true;
             }
             map.transform.position = transform.position + new Vector3(0, 60, 0);
@@ -190,6 +257,7 @@ public class updateCam : MonoBehaviour
         finalizado = true;
         if (premio != null)
         {
+            gm.numeroPremiosNivel++;
             premio.SetActive(true);
         }
         foreach (GameObject p in pr)

@@ -32,6 +32,7 @@ public class statsBoss3 : MonoBehaviour
         {
             muerto = true;
             GetComponent<bossController3>().anim.SetTrigger("morir");
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().activarWin();
             destruir();
         }
     }

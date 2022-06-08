@@ -27,6 +27,7 @@ public class statsBoss2 : MonoBehaviour
             //matarBoss
             Instantiate(cadaverBoss2,transform.position,Quaternion.Euler(-90,0,0));
             transform.parent.GetComponentInChildren<updateCam>().contadorEnemigos -= 1;
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().activarWin();
             Destroy(gameObject);
         }
     }

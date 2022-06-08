@@ -10,12 +10,15 @@ public class panelCarga : MonoBehaviour
     public GameObject carga;
     public GameObject titulo1;
     public GameObject titulo2;
+    public GameObject nombre;
     public GameObject boton;
+    public AudioSource audio;
     private bool desvanecer = false;
     public gameManager gm;
     public Color temp1;
     public Color temp2;
     public Color temp3;
+    public AudioManager am;
 
     private void Start()
     {
@@ -28,6 +31,7 @@ public class panelCarga : MonoBehaviour
     {
         if (desvanecer)
         {
+            audio.volume -= Time.deltaTime / 6f;
             temp1.a -= Time.deltaTime / 1.5f;
             temp2.a -= Time.deltaTime / 1.5f;
             temp3.a -= Time.deltaTime / 1.5f;
@@ -36,17 +40,33 @@ public class panelCarga : MonoBehaviour
             GetComponent<Image>().color = temp3;
             if(temp1.a <= 0)
             {
+                audio.Pause();
                 desvanecer = false;
                 gm.InputEnable = true;
                 gameObject.SetActive(false);
             }
         }
+        //Debug.Log(nombre.GetComponent<TMP_InputField>().text);
+        if (nombre.GetComponent<TMP_InputField>().text == "" || nombre.GetComponent<TMP_InputField>().text == "Ingrese usuario..." || nombre.GetComponent<TMP_InputField>().text == null)
+        {
+            boton.GetComponent<Button>().interactable = false;
+            
+        }
+        else
+        {
+            boton.GetComponent<Button>().interactable = true;
+            
+        }
     }
     public void ocultarBotonYTitulo()
     {
+        Debug.Log(nombre.GetComponent<TMP_InputField>().text);
+        gm.usuario = nombre.GetComponent<TMP_InputField>().text;
+        Debug.Log(gm.usuario);
         titulo1.SetActive(false);
         titulo2.SetActive(false);
         boton.SetActive(false);
+        nombre.SetActive(false);
     }
     public void mostrarMapaCarga()
     {
@@ -63,5 +83,6 @@ public class panelCarga : MonoBehaviour
     public void desvanecerElementos()
     {
         desvanecer = true;
+        am.activarGameplay();
     }
 }

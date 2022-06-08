@@ -32,6 +32,7 @@ public class statsBoss1 : MonoBehaviour
             GetComponent<bossController>().anim.SetTrigger("morir");
             GetComponent<bossController>().desactivarFuego();
             GetComponent<bossController>().enabled = false;
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().activarWin();
         }
     }
     public void recibirDano(float dano, Vector3 player, int tipoAtaque)

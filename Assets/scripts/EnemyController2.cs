@@ -132,7 +132,7 @@ public class EnemyController2 : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log(collision.transform.name);
+        //Debug.Log(collision.transform.name);
         if (collision.transform.CompareTag("player"))
         {
             collision.transform.GetComponent<statsJugador>().recibirDano(GetComponent<statsEnemigo2>().danoMelee);

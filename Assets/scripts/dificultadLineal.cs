@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using TMPro;
 
 public class statsEnem4
 {
@@ -145,6 +145,8 @@ public class dificultadLineal : MonoBehaviour
     public statsEnem3 stEn32;
     public statsEnem4 stEn4;
     public statsEnem4 stEn42;
+    public gameManager gm;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -152,12 +154,25 @@ public class dificultadLineal : MonoBehaviour
     }
     public void cambiarNivel(int nivelNuevo)
     {
+        if(nivelNuevo == 1)
+        {
+            if(gm.usuario==""|| gm.usuario == null)
+            {
+                gm.identificadorMaq = gm.panelCarga.GetComponent<panelCarga>().nombre.GetComponent<TMP_InputField>().text + "-|-" + DateTime.Now;
+            }
+            else
+            {
+                gm.identificadorMaq = gm.usuario + "-|-" + DateTime.Now;
+            }
+            gm.identificado = true;
+            player.GetComponent<statsJugador>().reiniciar();
+        }
         nivelDificultad = nivelNuevo;
         probPremio = 20 + (int)Math.Floor(7.5f * (nivelDificultad >= 10 ? 9 : nivelDificultad));
         numSalas = 2 + (2 * nivelDificultad);
         numEnemigos = 3 + (int)Math.Floor(0.75f * (nivelDificultad>=8?7:nivelDificultad));
         numObs = 20 + (5 * nivelDificultad >= 5 ? 4 : nivelDificultad);
-        numTrampas = 2 + (int)Math.Floor(0.75f * (nivelDificultad >= 8 ? 7 : nivelDificultad));
+        numTrampas = 0 + (int)Math.Floor(0.75f * (nivelDificultad >= 8 ? 7 : nivelDificultad));
         stEn1 = new statsEnem1(nivelDificultad);
         stEn12 = new statsEnem1(nivelDificultad+1);
         stEn2 = new statsEnem2(nivelDificultad);

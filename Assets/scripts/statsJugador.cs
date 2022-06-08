@@ -40,27 +40,46 @@ public class statsJugador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        control.speed = velocidad;
+        //control.speed = velocidad;
+        iniciar();
+    }
+    public void reiniciar()
+    {
+        vidaMax = 8;
+        velocidad = 3;
+        danoMelee = 3;
+        danoRango = 1.5f;
+        velocidadAtaqueMelee = 1;
+        velocidadAtaqueRango = 1;
+        cooldownMelee = 5;
+        rangoMelee = 1.5f;
+        rangoRango = 0.1f;
+        knockbackMelee = 1;
+        control.vivo = true;
+        control.cont.enabled = false;
+        Collider[] cols = GetComponentsInChildren<Collider>();
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        foreach (Collider col in cols)
+        {
+            col.enabled = true;
+        }
+        iniciar();
+        
+    }
+    void iniciar()
+    {
         animations.SetFloat("multipleSpeedMelee", velocidadAtaqueMelee);
-        float ancho = (rangoMelee+4.5f)/6;
+        float ancho = (rangoMelee + 4.5f) / 6;
         espada.transform.localScale = new Vector3(ancho, rangoMelee, espada.transform.localScale.z);
         vida = vidaMax;
         animations.SetFloat("multipleSpeedThrow", velocidadAtaqueRango);
-        float cont = vidaMax / 2;
-        for (int i =0; i < Math.Floor(cont); i++)
-        {
-            Instantiate(ContenedorVida, contenedorContenedoresVida.transform);
-        }
-        for(int j = 0; j < vida; j++)
-        {
-            Instantiate(cuadradoVida, contenedorBarraVida.transform);
-        }
+        pintarVida();
         velocidadUI.text = Math.Round((velocidad / 0.5f) - 1) + "";
         danoMeleeUI.text = Math.Round(danoMelee / 1.5f) + "";
         danoRangoUI.text = Math.Round(danoRango / 0.5f) + "";
         velocidadAtaqueRangoUI.text = Math.Round((velocidadAtaqueRango / 0.1f) - 6) + "";
         cooldownMeleeUI.text = (cooldownMelee + "s");
-        rangoMeleeUI.text = Math.Round((rangoMelee/0.5)-1f)+"";
+        rangoMeleeUI.text = Math.Round((rangoMelee / 0.5) - 1f) + "";
         rangoRangoUI.text = Math.Round(Mathf.Log(rangoRango * 10, 2) + 1) + "";
         knockbackMeleeUI.text = (Math.Round(knockbackMelee / 0.1f) - 4) + "";
     }
@@ -87,62 +106,45 @@ public class statsJugador : MonoBehaviour
     }
     public void CambiarVidaMax(int vidaExtra)
     {
-        int cont = contenedorContenedoresVida.transform.childCount;
         vidaMax += vidaExtra;
-        int vidaAntes = vida;
-        if (vidaExtra > 0)
+        if (vidaExtra > 0) { vida += vidaExtra; }
+        else { if (vida > vidaMax) { vida = vidaMax; } }
+        pintarVida();
+    }
+    public void pintarVida()
+    {
+        float cont = vidaMax / 2;
+        foreach (Transform child in contenedorContenedoresVida.transform)
         {
-            vida += vidaExtra;
+            GameObject.Destroy(child.gameObject);
         }
-        float temp = (vidaMax / 2);
-        if (cont < Math.Floor(temp))
+        foreach (Transform child in contenedorBarraVida.transform)
         {
-            for(int i = 0; i < (Math.Floor(temp) - cont); i++)
-            {
-                Instantiate(ContenedorVida, contenedorContenedoresVida.transform);
-                Instantiate(cuadradoVida, contenedorBarraVida.transform);
-                Instantiate(cuadradoVida, contenedorBarraVida.transform);
-            }
+            GameObject.Destroy(child.gameObject);
         }
-        else
+        for (int i = 0; i < Math.Floor(cont); i++)
         {
-            for (int i = 0; i < cont - (Math.Floor(temp)); i++)
-            {
-                Destroy(contenedorContenedoresVida.transform.GetChild(contenedorContenedoresVida.transform.childCount-(i+1)).gameObject);
-            }
-            if (vidaAntes > vidaMax)
-            {
-                Debug.Log("vida antes: " + vidaAntes);
-                for (int j = 0; j < (vidaAntes - vidaMax); j++)
-                {
-                    Destroy(contenedorBarraVida.transform.GetChild(j).gameObject);
-                }
-                vida = vidaMax;
-            }
+            Instantiate(ContenedorVida, contenedorContenedoresVida.transform);
+        }
+        for (int j = 0; j < vida; j++)
+        {
+            Instantiate(cuadradoVida, contenedorBarraVida.transform);
         }
     }
     public void cambiarVida(int punt)
     {
-        for(int i = 0; i < punt; i++){
-            if (vida < vidaMax)
+        for(int i = 0; i < punt; i++)
+        {
+            if (vida == vidaMax)
+            {
+                break;
+            }
+            else
             {
                 vida++;
-            }
-        }
-        if(contenedorBarraVida.transform.childCount > vida)
-        {
-            while(contenedorBarraVida.transform.childCount != vida)
-            {
-                Destroy(contenedorBarraVida.transform.GetChild(contenedorBarraVida.transform.childCount-1).gameObject);
-            }
-        }else if(contenedorBarraVida.transform.childCount < vida)
-        {
-            while (contenedorBarraVida.transform.childCount != vida)
-            {
                 Instantiate(cuadradoVida, contenedorBarraVida.transform);
             }
         }
-        
     }
     public void cambiarVelocidad(float velocidadExtra, bool multiplier)
     {
@@ -155,7 +157,7 @@ public class statsJugador : MonoBehaviour
             velocidad = velocidad + velocidadExtra;
         }
         if (velocidad < 1) { velocidad = 1; }
-        control.speed = velocidad;
+        //control.speed = velocidad;
         velocidadUI.text = Math.Round((velocidad / 0.5f) - 1) + "";
     }
     public void cambiarDanoMelee(float danoExtra, bool multiplier)
@@ -276,6 +278,11 @@ public class statsJugador : MonoBehaviour
     {
         if (!pGracia)
         {
+            if (control.salaActual != null)
+            {
+                control.salaActual.danoRecibidoEnSala += dano;
+                control.danoNivel += dano;
+            }
             pGracia = true;
             vida -= dano;
             Invoke("disolverGracia", 1f);
