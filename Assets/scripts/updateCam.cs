@@ -136,10 +136,10 @@ public class updateCam : MonoBehaviour
 
                 }*/
                 Debug.Log("salaFinalizada: " + Analytics.IsCustomEventEnabled("salaFinalizada"));
-                AnalyticsResult anRes = Analytics.CustomEvent("salaFinalizada", new Dictionary<string, object>
+                AnalyticsResult anRes = Analytics.CustomEvent("salaFinalizada-"+ gm.identificadorMaq +"-"+ dl.nivelDificultad, new Dictionary<string, object>
                 {
-                    { "UserRun",gm.identificadorMaq},
-                    { "nivelActual", dl.nivelDificultad },
+                    /*{ "UserRun",gm.identificadorMaq},
+                    { "nivelActual", dl.nivelDificultad },*/
                     { "tiempo", tiempoSala },
                     { "danoRecibido", danoRecibidoEnSala },
                     { "salaJefe", spawnPortal }

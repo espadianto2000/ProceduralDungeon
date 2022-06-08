@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //using Unity.Services.Analytics;
 using UnityEngine.Analytics;
+using FirebaseWebGL.Scripts.FirebaseBridge;
 
 public class gameManager : MonoBehaviour
 {
@@ -26,12 +27,25 @@ public class gameManager : MonoBehaviour
     public string identificadorMaq;
     public string identificadorUnico;
     public bool identificado = false;
-    public float tiempoNivel=0;
+    public float tiempoNivel = 0;
     public AudioManager audio;
     public int numeroPremiosNivel = 0;
-    public string usuario="";
-    
+    public string usuario = "";
 
+    private void Start()
+    {
+        
+        //FirebaseDatabase.PostJSON("prueba1", "valor1", gameObject.name, "pass", "error");
+        
+    }
+    public void pass(string data)
+    {
+        Debug.Log("se mando a firebase");
+    }
+    public void error(string data)
+    {
+        Debug.Log("errorFirebase: "+data);
+    }
     void Update()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);

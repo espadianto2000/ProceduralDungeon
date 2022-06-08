@@ -111,19 +111,11 @@ public class charController : MonoBehaviour
         {
         }*/
         Debug.Log("muerteRun: " + Analytics.IsCustomEventEnabled("muerteRun"));
-        AnalyticsResult anRes = Analytics.CustomEvent("muerteRun", new Dictionary<string, object>
-                {
-                    { "UserRun",gm.identificadorMaq},
-                    { "nivelActual", GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad },
-                });
+        AnalyticsResult anRes = Analytics.CustomEvent("muerteRun-" + gm.identificadorMaq + "-" + GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad);
         Debug.Log("analyticsResult muerteRun: " + anRes);
         Analytics.FlushEvents();
         Debug.Log("muerteUsuario: " + Analytics.IsCustomEventEnabled("muerteUsuario"));
-        anRes = Analytics.CustomEvent("muerteUsuario", new Dictionary<string, object>
-                {
-                    { "User",gm.usuario},
-                    { "nivelActual", GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad },
-                });
+        anRes = Analytics.CustomEvent("muerteUsuario-" + gm.usuario + "-" + GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad);
         Debug.Log("analyticsResult muerteUsuario: " + anRes);
         Analytics.FlushEvents();
         Debug.Log("se hizo analytics de muerte");

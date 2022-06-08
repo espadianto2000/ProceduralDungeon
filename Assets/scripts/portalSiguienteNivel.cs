@@ -36,10 +36,10 @@ public class portalSiguienteNivel : MonoBehaviour
             {
             }*/
             Debug.Log("nivelFinalizado: "+Analytics.IsCustomEventEnabled("nivelFinalizado"));
-            AnalyticsResult anRes = Analytics.CustomEvent("nivelFinalizado", new Dictionary<string, object>
+            AnalyticsResult anRes = Analytics.CustomEvent("nivelFinalizado-"+ gm.identificadorMaq+"-"+ GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad, new Dictionary<string, object>
                 {
-                    { "UserRun",gm.identificadorMaq},
-                    { "nivelActual", GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad },
+                    /*{ "UserRun",gm.identificadorMaq},
+                    { "nivelActual", GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad },*/
                     { "tiempo", gm.tiempoNivel },
                     { "danoRecibido", other.GetComponent<charController>().danoNivel },
                     { "PremiosNivel", gm.numeroPremiosNivel},
