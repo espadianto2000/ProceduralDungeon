@@ -2750,6 +2750,10 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  valoracionesBoss:
+  - 0
+  - 0
+  - 0
   nivelActual: 0
   factorCrecimiento: 1
 --- !u!114 &632912595
@@ -7524,7 +7528,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 35
+  orthographic size: 60
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

@@ -146,15 +146,16 @@ public class updateCam : MonoBehaviour
 
                 }*/
                 //analytics
-                /*Debug.Log("salaFinalizada: " + Analytics.IsCustomEventEnabled("salaFinalizada"));
-                AnalyticsResult anRes = Analytics.CustomEvent("salaFinalizada-"+ gm.identificadorMaq +"-"+ dl.nivelDificultad, new Dictionary<string, object>
+                Debug.Log("salaFinalizada: " + Analytics.IsCustomEventEnabled("salaFinalizada"));
+                AnalyticsResult anRes = Analytics.CustomEvent("salaFinalizada-"+ gm.identificadorMaq +"-"+ dl.nivel+"dif: "+dl.nivelDificultad+"("+danoEnem1+","+danoEnem2+","+danoEnem3+","+danoEnem4+")", new Dictionary<string, object>
                 {
                     { "tiempo", tiempoSala },
                     { "danoRecibido", danoRecibidoEnSala },
-                    { "salaJefe", spawnPortal }
+                    { "salaJefe", spawnPortal },
+                    {"valoracionesEnemigos","("+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[0]+","+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[1]+","+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[2]+","+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[3]+")" }
                 });
                 Debug.Log("analyticsResult salaFinalizada: " + anRes);
-                Analytics.FlushEvents();*/
+                Analytics.FlushEvents();
                 tiempoSala = -1;
             }
             salas.salasSuperadas++;

@@ -37,17 +37,21 @@ public class portalSiguienteNivel : MonoBehaviour
             }*/
 
             //analytics
-            /*Debug.Log("nivelFinalizado: "+Analytics.IsCustomEventEnabled("nivelFinalizado"));
-            AnalyticsResult anRes = Analytics.CustomEvent("nivelFinalizado-"+ gm.identificadorMaq+"-"+ GameObject.Find("dificultad").GetComponent<dificultadAdaptable>().nivel, new Dictionary<string, object>
+            Debug.Log("nivelFinalizado: "+Analytics.IsCustomEventEnabled("nivelFinalizado"));
+            GameObject dl = GameObject.Find("dificultad");
+            dl.GetComponent<evaluadorDeDesempeño>().pasoNivel(dl.GetComponent<dificultadAdaptable>().nivel + 1);
+            AnalyticsResult anRes = Analytics.CustomEvent("nivelFinalizado-"+ gm.identificadorMaq+"-"+ dl.GetComponent<dificultadAdaptable>().nivel+"dif: "+dl.GetComponent<dificultadAdaptable>().nivelDificultad, new Dictionary<string, object>
                 {
                     { "tiempo", gm.tiempoNivel },
                     { "danoRecibido", other.GetComponent<charController>().danoNivel },
                     { "PremiosNivel", gm.numeroPremiosNivel},
                     { "salasNivel", GameObject.Find("salas(Clone)").GetComponent<salas>().contadorSalas+1},
-                    { "salasCompletadas", GameObject.Find("salas(Clone)").GetComponent<salas>().salasSuperadas}
+                    { "salasCompletadas", GameObject.Find("salas(Clone)").GetComponent<salas>().salasSuperadas},
+                    {"valoracionesEnemigos","("+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[0]+","+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[1]+","+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[2]+","+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[3]+")" },
+                    {"factorDeIncremento",dl.GetComponent<evaluadorDeDesempeño>().factorCrecimiento }
                 });
             Debug.Log("analyticsResult nivelFinalizado: " + anRes);
-            Analytics.FlushEvents();*/
+            Analytics.FlushEvents();
             other.GetComponent<charController>().danoNivel = 0;
             gm.numeroPremiosNivel = 0;
             //Debug.Log("nivel: " + GameObject.Find("dificultad").GetComponent<dificultadAdaptable>().nivel);

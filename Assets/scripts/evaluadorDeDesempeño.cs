@@ -1032,13 +1032,17 @@ public class evaluadorDeDesempeño : MonoBehaviour
         }
         else if(promedio >= -1)
         {
+            factorCrecimiento += (factorCrecimiento>1? -factorCrecimiento/10f:factorCrecimiento/20f);
+        }
+        else if(promedio >= -5)
+        {
             factorCrecimiento += factorCrecimiento / 10f;
             if (factorCrecimiento > 1.25f)
             {
                 factorCrecimiento = 1.25f;
             }
         }
-        else if(promedio >= -5)
+        else if(promedio >= -10)
         {
             factorCrecimiento += factorCrecimiento / 5f;
             if (factorCrecimiento > 1.25f)

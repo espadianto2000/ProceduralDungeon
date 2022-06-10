@@ -78,8 +78,8 @@ public class salas : MonoBehaviour
                 switch (orden)
                 {
                     case 0:
-                        stBoss1 stJ11 = new stBoss1(dl.nivelDificultad);
-                        stBoss1 stJ12 = new stBoss1(dl.nivelDificultad+dl.GetComponent<evaluadorDeDesempeño>().factorCrecimiento);
+                        stBoss1 stJ11 = new stBoss1(dl.nivelDificultad - (0.075f * dl.GetComponent<evaluadorDeDesempeño>().valoracionesBoss[0]));
+                        stBoss1 stJ12 = new stBoss1(dl.nivelDificultad+dl.GetComponent<evaluadorDeDesempeño>().factorCrecimiento - (0.075f * dl.GetComponent<evaluadorDeDesempeño>().valoracionesBoss[0]));
                         jefe.GetComponent<statsBoss1>().vidaMax = Random.Range(stJ11.vidaMax, stJ12.vidaMax);
                         if(jefe.GetComponent<statsBoss1>().vidaMax>player.GetComponent<statsJugador>().danoRango* player.GetComponent<statsJugador>().velocidadAtaqueRango*75f)
                         {
@@ -96,8 +96,8 @@ public class salas : MonoBehaviour
                         jefe.GetComponent<statsBoss1>().velocidadGiro = Random.Range(stJ11.velocidadGiro, stJ12.velocidadGiro);
                         break;
                     case 1:
-                        stBoss2 stJ21 = new stBoss2(dl.nivelDificultad);
-                        stBoss2 stJ22 = new stBoss2(dl.nivelDificultad + dl.GetComponent<evaluadorDeDesempeño>().factorCrecimiento);
+                        stBoss2 stJ21 = new stBoss2(dl.nivelDificultad - (0.075f * dl.GetComponent<evaluadorDeDesempeño>().valoracionesBoss[1]));
+                        stBoss2 stJ22 = new stBoss2(dl.nivelDificultad + dl.GetComponent<evaluadorDeDesempeño>().factorCrecimiento - (0.075f * dl.GetComponent<evaluadorDeDesempeño>().valoracionesBoss[1]));
                         jefe.GetComponent<statsBoss2>().vidaMax = Random.Range(stJ21.vidaMax, stJ22.vidaMax);
                         if (jefe.GetComponent<statsBoss2>().vidaMax > player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 75f)
                         {
@@ -109,8 +109,8 @@ public class salas : MonoBehaviour
                         jefe.GetComponent<statsBoss2>().rebotesMax = Random.Range(stJ21.rebotesMax, stJ22.rebotesMax);
                         break;
                     case 2:
-                        stBoss3 stJ31 = new stBoss3(dl.nivelDificultad);
-                        stBoss3 stJ32 = new stBoss3(dl.nivelDificultad + dl.GetComponent<evaluadorDeDesempeño>().factorCrecimiento);
+                        stBoss3 stJ31 = new stBoss3(dl.nivelDificultad - (0.075f * dl.GetComponent<evaluadorDeDesempeño>().valoracionesBoss[2]));
+                        stBoss3 stJ32 = new stBoss3(dl.nivelDificultad + dl.GetComponent<evaluadorDeDesempeño>().factorCrecimiento - (0.075f * dl.GetComponent<evaluadorDeDesempeño>().valoracionesBoss[2]));
                         jefe.GetComponent<statsBoss3>().vidaMax = Random.Range(stJ31.vidaMax, stJ32.vidaMax);
                         if (jefe.GetComponent<statsBoss3>().vidaMax > player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 75f)
                         {
