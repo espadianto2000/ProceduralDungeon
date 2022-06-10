@@ -432,9 +432,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e40d0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 6ca4fcff1030fdff3a32fdff00ccfeffc6fbfeff4826ffff1e9fffff26fbffffae7e000020800000
+      m_ExpandedIDs: d839ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -734,7 +734,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.043120444, y: -0.95608234, z: 0.20180668, w: -0.20716898}
     speed: 2
-    m_Value: {x: -0.04312912, y: -0.9562747, z: 0.20184729, w: -0.20721066}
+    m_Value: {x: 0.043120444, y: 0.95608234, z: -0.20180668, w: 0.20716898}
   m_Size:
     m_Target: 10
     speed: 2
@@ -1049,22 +1049,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/scripts
+    - Assets/450 DEMO/8 BIT DEMO
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/scripts
+  - Assets/450 DEMO/8 BIT DEMO
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\generationP\proceduralGern
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 329}
-    m_SelectedIDs: c8840000
-    m_LastClickedID: 33992
-    m_ExpandedIDs: 0000000036840000388400003a8400003c8400003e84000040840000428400004484000046840000488400004a8400004c8400004e84000050840000528400005484000056840000588400005a8400005c8400005e84000060840000628400006484000066840000688400006a8400006c8400006e840000728400007484000000ca9a3b
+    scrollPos: {x: 0, y: 29}
+    m_SelectedIDs: 38900100
+    m_LastClickedID: 102456
+    m_ExpandedIDs: 00000000a88f0100aa8f0100ac8f0100ae8f0100b08f0100b28f0100b48f0100b68f0100b88f0100ba8f0100bc8f0100be8f0100c08f0100c28f0100c48f0100c68f0100c88f0100ca8f0100cc8f0100ce8f0100d08f0100d28f0100d48f0100d68f0100d88f0100da8f0100dc8f0100de8f0100e08f0100e28f0100e48f0100ea8f010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1092,7 +1092,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000036840000388400003a8400003c8400003e84000040840000428400004484000046840000488400004a8400004c8400004e84000050840000528400005484000056840000588400005a8400005c8400005e84000060840000628400006484000066840000688400006a8400006c8400006e840000708400007284000074840000
+    m_ExpandedIDs: 00000000a88f0100aa8f0100ac8f0100ae8f0100b08f0100b28f0100b48f0100b68f0100b88f0100ba8f0100bc8f0100be8f0100c08f0100c28f0100c48f0100c68f0100c88f0100ca8f0100cc8f0100ce8f0100d08f0100d28f0100d48f0100d68f0100d88f0100da8f0100dc8f0100de8f0100e08f0100e28f0100e48f0100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300004a760000a26600000c77000008770000086b0000ba3f0300de6e0000f66e0000026f00000e6f0000246f00000c9700000a6b00000c6b0000d06a0000c06a00009080000000000000b0de0000d0220000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
