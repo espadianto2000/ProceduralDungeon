@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
-
 public class statsEnem4
 {
     public float vidaMax;
     public float velocidad;
     public int danoMelee;
     public float cooldownAtaque;
-    public statsEnem4(int nivelDificultad)
+    public statsEnem4(float nivelDificultad)
     {
         this.vidaMax = 5.25f + (2.75f * nivelDificultad);
         this.velocidad = 1.5f + (0.25f * nivelDificultad);
@@ -26,7 +25,7 @@ public class statsEnem3
     public float velocidadCrecimiento;
     public float cooldownCuracion;
     public float curacion;
-    public statsEnem3(int nivelDificultad)
+    public statsEnem3(float nivelDificultad)
     {
         this.vidaMax = 5 + (2.5f * nivelDificultad);
         this.velocidad = 1.5f + (0.25f * nivelDificultad);
@@ -45,7 +44,7 @@ public class statsEnem2
     public float velocidadAtaque;
     public float velocidadProyectil;
     public float rango;
-    public statsEnem2(int nivelDificultad)
+    public statsEnem2(float nivelDificultad)
     {
         this.vidaMax = 5.25f + (2.75f * nivelDificultad);
         this.velocidad = 1.5f + (0.25f * nivelDificultad);
@@ -61,7 +60,7 @@ public class statsEnem1
     public float vidaMax;
     public float velocidad;
     public int danoMelee;
-    public statsEnem1(int nivelDificultad)
+    public statsEnem1(float nivelDificultad)
     {
         this.vidaMax = 7 + (3 * nivelDificultad);
         this.velocidad = 1.5f + (0.25f * nivelDificultad);
@@ -80,7 +79,7 @@ public class stBoss3
     public int maxEnemigosSpawneados;
     public int maxProyectiles;
     public float velocidadProyectil;
-    public stBoss3(int nivelDificultad)
+    public stBoss3(float nivelDificultad)
     {
         this.vidaMax = 30 + (30 * nivelDificultad);
         this.velocidad = 2f + (0.75f * nivelDificultad);
@@ -88,9 +87,9 @@ public class stBoss3
         this.danoRango = 2 + (int)Math.Floor(0.34f * nivelDificultad);
         this.rango = 0.6f + (0.1f * nivelDificultad);
         this.ataqueDistanciaTiempo = 7 - (0.75f * (nivelDificultad >= 9 ? 8 : nivelDificultad));
-        this.spawnEnemigosTiempo = 25 - (2.5f * (nivelDificultad >= 7?6:nivelDificultad));
-        this.maxEnemigosSpawneados = 2 + nivelDificultad;
-        this.maxProyectiles = 2 + nivelDificultad;
+        this.spawnEnemigosTiempo = 25 - (2.5f * (nivelDificultad >= 7 ? 6 : nivelDificultad));
+        this.maxEnemigosSpawneados = 2 + (int)Math.Floor(nivelDificultad);
+        this.maxProyectiles = 2 + (int)Math.Floor(nivelDificultad);
         this.velocidadProyectil = 2 + (0.75f * nivelDificultad);
     }
 }
@@ -101,7 +100,7 @@ public class stBoss2
     public int danoMelee;
     public float velocidadExtra;
     public int rebotesMax;
-    public stBoss2(int nivelDificultad)
+    public stBoss2(float nivelDificultad)
     {
         this.vidaMax = 30 + (30 * nivelDificultad);
         this.velocidad = 3f + (0.75f * nivelDificultad);
@@ -118,7 +117,7 @@ public class stBoss1
     public int danoRango;
     public float timerAtaq;
     public float velocidadGiro;
-    public stBoss1(int nivelDificultad)
+    public stBoss1(float nivelDificultad)
     {
         this.vidaMax = 30 + (30 * nivelDificultad);
         this.velocidad = 0.5f + (0.5f * nivelDificultad);
@@ -129,9 +128,10 @@ public class stBoss1
     }
 }
 
-public class dificultadLineal : MonoBehaviour
+public class dificultadAdaptable : MonoBehaviour
 {
-    public int nivelDificultad;
+    public int nivel;
+    public float nivelDificultad;
     public int numSalas;
     public int numEnemigos;
     public int numObs;
@@ -150,13 +150,13 @@ public class dificultadLineal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cambiarNivel(1);
+        SetearNivel(1);
     }
-    public void cambiarNivel(int nivelNuevo)
+    public void SetearNivel(float nivelNuevo)
     {
-        if(nivelNuevo == 1)
+        if (nivelNuevo == 1)
         {
-            if(gm.usuario==""|| gm.usuario == null)
+            if (gm.usuario == "" || gm.usuario == null)
             {
                 gm.identificadorMaq = gm.panelCarga.GetComponent<panelCarga>().nombre.GetComponent<TMP_InputField>().text + "-|-" + DateTime.Now;
             }
@@ -166,40 +166,40 @@ public class dificultadLineal : MonoBehaviour
             }
             gm.identificado = true;
             player.GetComponent<statsJugador>().reiniciar();
+            GetComponent<evaluadorDeDesempeño>().pasoNivel(1);
+            GetComponent<evaluadorDeDesempeño>().factorCrecimiento = 1;
+            nivel = 1;
+            GetComponent<evaluadorDeDesempeño>().nivelActual = 1;
         }
         nivelDificultad = nivelNuevo;
         probPremio = 20 + (int)Math.Floor(7.5f * (nivelDificultad >= 10 ? 9 : nivelDificultad));
-        numSalas = 2 + (2 * nivelDificultad);
-        numEnemigos = 3 + (int)Math.Floor(0.75f * (nivelDificultad>=8?7:nivelDificultad));
-        numObs = 20 + (5 * nivelDificultad >= 5 ? 4 : nivelDificultad);
+        numSalas = (int)Math.Floor(1 + (2 * nivelDificultad));
+        numEnemigos = 3 + (int)Math.Floor(0.75f * (nivelDificultad >= 8 ? 7 : nivelDificultad));
+        numObs = (int)Math.Floor(20 + (5 * nivelDificultad >= 5 ? 4 : nivelDificultad));
         numTrampas = 0 + (int)Math.Floor(0.75f * (nivelDificultad >= 8 ? 7 : nivelDificultad));
-        stEn1 = new statsEnem1(nivelDificultad);
-        stEn12 = new statsEnem1(nivelDificultad+1);
-        stEn2 = new statsEnem2(nivelDificultad);
-        stEn22 = new statsEnem2(nivelDificultad+1);
-        stEn3 = new statsEnem3(nivelDificultad);
-        stEn32 = new statsEnem3(nivelDificultad+1);
-        stEn4 = new statsEnem4(nivelDificultad);
-        stEn42 = new statsEnem4(nivelDificultad+1);
-        //stEn1.vidaMax = 7 + (3 * nivelDificultad);
-        //stEn1.velocidad = 1.5f + (0.25f * nivelDificultad);
-        //stEn1.danoMelee = 1 + (int)Math.Floor(0.34f * nivelDificultad);
-        //stEn2.vidaMax = 5.25f + (2.75f * nivelDificultad);
-        //stEn2.velocidad = 1.5f + (0.25f * nivelDificultad);
-        //stEn2.danoMelee = 1 + (int)Math.Floor(0.34f * nivelDificultad);
-        //stEn2.danoRango = 1 + (int)Math.Floor(0.34f * nivelDificultad);
-        //stEn2.velocidadAtaque = 6f - (0.5f * (nivelDificultad>=11? 10 : nivelDificultad));
-        //stEn2.velocidadProyectil = 2 + (1 * nivelDificultad);
-        //stEn2.rango = 0.5f + (0.25f * nivelDificultad);
-        //stEn3.vidaMax = 5 + (2.5f * nivelDificultad);
-        //stEn3.velocidad = 1.5f + (0.25f * nivelDificultad);
-        //stEn3.danoMelee = stEn1.danoMelee = 1 + (int)Math.Floor(0.34f * nivelDificultad);
-        //stEn3.velocidadCrecimiento = 3.5f + (0.5f * nivelDificultad);
-        //stEn3.cooldownCuracion = 6.75f - (0.75f * nivelDificultad);
-        //stEn3.curacion = 1.25f + (0.25f * nivelDificultad);
-        //stEn4.vidaMax = 5.25f + (2.75f * nivelDificultad);
-        //stEn4.velocidad = 1.5f + (0.25f * nivelDificultad);
-        //stEn4.danoMelee = 1 + (int)Math.Floor(0.34f * nivelDificultad);
-        //stEn4.cooldownAtaque = 8f - (0.75f * (nivelDificultad >= 9 ? 8 : nivelDificultad));
+        actualizarModelosEnemigos();
+    }
+    public void aumentarNivel(float aumentoNivel)
+    {
+        nivelDificultad += aumentoNivel;
+        GetComponent<evaluadorDeDesempeño>().nivelActual++;
+        nivel++;
+        probPremio = 20 + (int)Math.Floor(7.5f * (nivelDificultad >= 10 ? 9 : nivelDificultad));
+        numSalas = (int)Math.Floor(1 + (2 * nivelDificultad));
+        numEnemigos = 3 + (int)Math.Floor(0.75f * (nivelDificultad >= 8 ? 7 : nivelDificultad));
+        numObs = (int)Math.Floor(20 + (5 * nivelDificultad >= 5 ? 4 : nivelDificultad));
+        numTrampas = 0 + (int)Math.Floor(0.75f * (nivelDificultad >= 8 ? 7 : nivelDificultad));
+        actualizarModelosEnemigos();
+    }
+    public void actualizarModelosEnemigos()
+    {
+        stEn1 = new statsEnem1(nivelDificultad - (0.075f* GetComponent<evaluadorDeDesempeño>().valoraciones[0]));
+        stEn12 = new statsEnem1(nivelDificultad+ GetComponent<evaluadorDeDesempeño>().factorCrecimiento - (0.075f * GetComponent<evaluadorDeDesempeño>().valoraciones[0]));
+        stEn2 = new statsEnem2(nivelDificultad - (0.075f * GetComponent<evaluadorDeDesempeño>().valoraciones[1]));
+        stEn22 = new statsEnem2(nivelDificultad + GetComponent<evaluadorDeDesempeño>().factorCrecimiento - (0.075f * GetComponent<evaluadorDeDesempeño>().valoraciones[1]));
+        stEn3 = new statsEnem3(nivelDificultad - (0.075f * GetComponent<evaluadorDeDesempeño>().valoraciones[2]));
+        stEn32 = new statsEnem3(nivelDificultad + GetComponent<evaluadorDeDesempeño>().factorCrecimiento - (0.075f * GetComponent<evaluadorDeDesempeño>().valoraciones[2]));
+        stEn4 = new statsEnem4(nivelDificultad - (0.075f * GetComponent<evaluadorDeDesempeño>().valoraciones[3]));
+        stEn42 = new statsEnem4(nivelDificultad + GetComponent<evaluadorDeDesempeño>().factorCrecimiento - (0.075f * GetComponent<evaluadorDeDesempeño>().valoraciones[3]));
     }
 }

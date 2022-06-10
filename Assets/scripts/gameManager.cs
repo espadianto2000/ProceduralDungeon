@@ -131,8 +131,8 @@ public class gameManager : MonoBehaviour
                 }
                 else if (obj.name == "dificultad")
                 {
-                    obj.GetComponent<dificultadLineal>().cambiarNivel(obj.GetComponent<dificultadLineal>().nivelDificultad + 1);
-                    cargaNv.GetComponent<Camera>().orthographicSize = 30 + (20 * (obj.GetComponent<dificultadLineal>().nivelDificultad - 1));
+                    obj.GetComponent<dificultadAdaptable>().aumentarNivel(obj.GetComponent<evaluadorDeDesempeño>().factorCrecimiento);
+                    cargaNv.GetComponent<Camera>().orthographicSize = 30 + (20 * (obj.GetComponent<dificultadAdaptable>().nivel));
                 }
                 else
                 {
@@ -145,37 +145,5 @@ public class gameManager : MonoBehaviour
         panelCarga.GetComponent<panelCarga>().mostrarMapaCarga();
         Instantiate(modeloSalaInicial, Vector3.zero, Quaternion.Euler(Vector3.zero));
     }
-    public void analyticsNextLevel()
-    {
-        /*
-        AnalyticsService.Instance.CustomData("nivelFinalizado", new Dictionary<string, object>
-                {
-                    { "UserRun",identificadorMaq},
-                    { "nivelActual", GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad },
-                    { "tiempo", tiempoNivel },
-                    { "danoRecibido", player.GetComponent<charController>().danoNivel },
-                    { "PremiosNivel", numeroPremiosNivel},
-                    { "salasNivel", GameObject.Find("salas(Clone)").GetComponent<salas>().contadorSalas+1},
-                    { "salasCompletadas", GameObject.Find("salas(Clone)").GetComponent<salas>().salasSuperadas}
-                });
-        try
-        {
-            AnalyticsService.Instance.Flush();
-        }
-        catch
-        {
-
-        }*/
-        Analytics.CustomEvent("nivelFinalizado", new Dictionary<string, object>
-                {
-                    { "UserRun",identificadorMaq},
-                    { "nivelActual", GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad },
-                    { "tiempo", tiempoNivel },
-                    { "danoRecibido", player.GetComponent<charController>().danoNivel },
-                    { "PremiosNivel", numeroPremiosNivel},
-                    { "salasNivel", GameObject.Find("salas(Clone)").GetComponent<salas>().contadorSalas+1},
-                    { "salasCompletadas", GameObject.Find("salas(Clone)").GetComponent<salas>().salasSuperadas}
-                });
-        Analytics.FlushEvents();
-    }
+    
 }

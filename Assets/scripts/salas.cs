@@ -18,7 +18,7 @@ public class salas : MonoBehaviour
     public bool spawnedBoss = false;
     public GameObject jefeinstanciado;
 
-    public dificultadLineal dl;
+    public dificultadAdaptable dl;
     public List<GameObject> salasInstanciadas;
     public GameObject[] boss;
     public GameObject SpawnMuros;
@@ -32,7 +32,7 @@ public class salas : MonoBehaviour
     public float t1=0;
     private void Start()
     {
-        dl = GameObject.Find("dificultad").GetComponent<dificultadLineal>();
+        dl = GameObject.Find("dificultad").GetComponent<dificultadAdaptable>();
         Limite1 = dl.numSalas;
         Limite2 = dl.numSalas * 2;
         gm = GameObject.Find("GameManager").GetComponent<gameManager>();
@@ -79,9 +79,17 @@ public class salas : MonoBehaviour
                 {
                     case 0:
                         stBoss1 stJ11 = new stBoss1(dl.nivelDificultad);
-                        stBoss1 stJ12 = new stBoss1(dl.nivelDificultad+1);
+                        stBoss1 stJ12 = new stBoss1(dl.nivelDificultad+dl.GetComponent<evaluadorDeDesempeño>().factorCrecimiento);
                         jefe.GetComponent<statsBoss1>().vidaMax = Random.Range(stJ11.vidaMax, stJ12.vidaMax);
+                        if(jefe.GetComponent<statsBoss1>().vidaMax>player.GetComponent<statsJugador>().danoRango* player.GetComponent<statsJugador>().velocidadAtaqueRango*75f)
+                        {
+                            jefe.GetComponent<statsBoss1>().vidaMax = player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 75f;
+                        }
                         jefe.GetComponent<statsBoss1>().velocidad = Random.Range(stJ11.velocidad, stJ12.velocidad);
+                        if (jefe.GetComponent<statsBoss1>().velocidad > player.GetComponent<statsJugador>().velocidad-0.5f)
+                        {
+                            jefe.GetComponent<statsBoss1>().velocidad = player.GetComponent<statsJugador>().velocidad-0.5f;
+                        }
                         jefe.GetComponent<statsBoss1>().danoMelee = stJ11.danoMelee;
                         jefe.GetComponent<statsBoss1>().danoRango = stJ11.danoRango;
                         jefe.GetComponent<statsBoss1>().timerAtaq = Random.Range(stJ11.timerAtaq, stJ12.timerAtaq);
@@ -89,8 +97,12 @@ public class salas : MonoBehaviour
                         break;
                     case 1:
                         stBoss2 stJ21 = new stBoss2(dl.nivelDificultad);
-                        stBoss2 stJ22 = new stBoss2(dl.nivelDificultad + 1);
+                        stBoss2 stJ22 = new stBoss2(dl.nivelDificultad + dl.GetComponent<evaluadorDeDesempeño>().factorCrecimiento);
                         jefe.GetComponent<statsBoss2>().vidaMax = Random.Range(stJ21.vidaMax, stJ22.vidaMax);
+                        if (jefe.GetComponent<statsBoss2>().vidaMax > player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 75f)
+                        {
+                            jefe.GetComponent<statsBoss2>().vidaMax = player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 75f;
+                        }
                         jefe.GetComponent<statsBoss2>().velocidad = Random.Range(stJ21.velocidad, stJ22.velocidad);
                         jefe.GetComponent<statsBoss2>().danoMelee = stJ21.danoMelee;
                         jefe.GetComponent<statsBoss2>().velocidadExtra = Random.Range(stJ21.velocidadExtra, stJ22.velocidadExtra);
@@ -98,9 +110,17 @@ public class salas : MonoBehaviour
                         break;
                     case 2:
                         stBoss3 stJ31 = new stBoss3(dl.nivelDificultad);
-                        stBoss3 stJ32 = new stBoss3(dl.nivelDificultad + 1);
+                        stBoss3 stJ32 = new stBoss3(dl.nivelDificultad + dl.GetComponent<evaluadorDeDesempeño>().factorCrecimiento);
                         jefe.GetComponent<statsBoss3>().vidaMax = Random.Range(stJ31.vidaMax, stJ32.vidaMax);
+                        if (jefe.GetComponent<statsBoss3>().vidaMax > player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 75f)
+                        {
+                            jefe.GetComponent<statsBoss3>().vidaMax = player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 75f;
+                        }
                         jefe.GetComponent<statsBoss3>().velocidad = Random.Range(stJ31.velocidad, stJ32.velocidad);
+                        if (jefe.GetComponent<statsBoss3>().velocidad > player.GetComponent<statsJugador>().velocidad + 1f)
+                        {
+                            jefe.GetComponent<statsBoss3>().velocidad = player.GetComponent<statsJugador>().velocidad +1f;
+                        }
                         jefe.GetComponent<statsBoss3>().danoMelee = stJ31.danoMelee;
                         jefe.GetComponent<statsBoss3>().danoRango = stJ31.danoRango;
                         jefe.GetComponent<statsBoss3>().rango = Random.Range(stJ31.rango, stJ32.rango);

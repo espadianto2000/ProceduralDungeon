@@ -12,6 +12,7 @@ public class auraExplosion : MonoBehaviour
     public bool decrecer = false;
     public GameObject danoArea;
     public int dano;
+    public GameObject origen;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,7 +64,7 @@ public class auraExplosion : MonoBehaviour
     {
         if (other.CompareTag("player"))
         {
-            other.GetComponent<statsJugador>().recibirDano(dano);
+            other.GetComponent<statsJugador>().recibirDano(dano,origen);
         }
     }
 }

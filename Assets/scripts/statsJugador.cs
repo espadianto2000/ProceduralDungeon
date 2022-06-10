@@ -274,7 +274,7 @@ public class statsJugador : MonoBehaviour
         if (knockbackMelee < 0.5f) { knockbackMelee = 0.5f; }
         knockbackMeleeUI.text = Math.Round(Math.Round(knockbackMelee / 0.1f) - 4) + "";
     }
-    public void recibirDano(int dano)
+    public void recibirDano(int dano, GameObject enemigo = null)
     {
         if (!pGracia)
         {
@@ -282,6 +282,29 @@ public class statsJugador : MonoBehaviour
             {
                 control.salaActual.danoRecibidoEnSala += dano;
                 control.danoNivel += dano;
+                if (enemigo != null)
+                {
+                    Debug.Log("nombreEnemigo: " + enemigo.transform.name);
+                    switch (enemigo.transform.name)
+                    {
+                        case "enemigoV1(Clone)":
+                            Debug.Log("danoEnem1: "+dano);
+                            control.salaActual.danoEnem1+=dano;
+                            break;
+                        case "enemigoV2(Clone)":
+                            Debug.Log("danoEnem2: "+dano);
+                            control.salaActual.danoEnem2 += dano;
+                            break;
+                        case "enemigoV3(Clone)":
+                            Debug.Log("danoEnem3: "+dano);
+                            control.salaActual.danoEnem3 += dano;
+                            break;
+                        case "enemigoV4(Clone)":
+                            Debug.Log("danoEnem4: "+dano);
+                            control.salaActual.danoEnem4 += dano;
+                            break;
+                    }
+                }
             }
             pGracia = true;
             vida -= dano;

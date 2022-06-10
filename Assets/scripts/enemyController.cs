@@ -76,7 +76,7 @@ public class enemyController : MonoBehaviour
     {
         if (collision.transform.CompareTag("player"))
         {
-            collision.transform.GetComponent<statsJugador>().recibirDano(this.GetComponent<statsEnemigo>().danoMelee);
+            collision.transform.GetComponent<statsJugador>().recibirDano(this.GetComponent<statsEnemigo>().danoMelee,gameObject);
         }
     }
 }

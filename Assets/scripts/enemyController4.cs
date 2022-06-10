@@ -72,6 +72,7 @@ public class enemyController4 : MonoBehaviour
             timerCooldown = stats.cooldownAtaque;
             GameObject explosion = Instantiate(explo, Vector3.zero, Quaternion.identity);
             explosion.GetComponent<auraExplosion>().dano = stats.danoMelee;
+            explosion.GetComponent<auraExplosion>().origen = gameObject;
         }
         else
         {
@@ -128,7 +129,7 @@ public class enemyController4 : MonoBehaviour
     {
         if (collision.transform.CompareTag("player"))
         {
-            collision.transform.GetComponent<statsJugador>().recibirDano(GetComponent<statsEnemigo4>().danoMelee);
+            collision.transform.GetComponent<statsJugador>().recibirDano(GetComponent<statsEnemigo4>().danoMelee, gameObject);
         }
     }
     

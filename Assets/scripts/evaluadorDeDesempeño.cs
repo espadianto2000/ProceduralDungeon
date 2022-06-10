@@ -29,31 +29,23 @@ public class evaluadorDeDesempeño : MonoBehaviour
     public List<int> desempenoBoss1 = new List<int>();
     public List<int> desempenoBoss2 = new List<int>();
     public List<int> desempenoBoss3 = new List<int>();
-    public List<List<int>[]> listaDeArrays = new List<List<int>[]>();
+    public List<List<int>[]> listaDeArrays;
     public float[] valoraciones = new float[4];
+    public float[] valoracionesBoss = new float[3];
+    public int nivelActual = 0;
+    public float factorCrecimiento=1;
     // Start is called before the first frame update
     void Start()
     {
-        listaDeArrays.Add(desempenoNiv1);
-        listaDeArrays.Add(desempenoNiv2);
-        listaDeArrays.Add(desempenoNiv3);
-        listaDeArrays.Add(desempenoNiv4);
-        listaDeArrays.Add(desempenoNiv5);
-        listaDeArrays.Add(desempenoNiv6);
-        listaDeArrays.Add(desempenoNiv7);
-        listaDeArrays.Add(desempenoNiv8);
-        listaDeArrays.Add(desempenoNiv9);
-        listaDeArrays.Add(desempenoNiv10);
-        listaDeArrays.Add(desempenoNiv11);
-        listaDeArrays.Add(desempenoNiv12);
-        listaDeArrays.Add(desempenoNiv13);
-        listaDeArrays.Add(desempenoNiv14);
-        listaDeArrays.Add(desempenoNiv15);
-        listaDeArrays.Add(desempenoNiv16);
-        listaDeArrays.Add(desempenoNiv17);
-        listaDeArrays.Add(desempenoNiv18);
-        listaDeArrays.Add(desempenoNiv19);
-        listaDeArrays.Add(desempenoNiv20);
+
+        listaDeArrays = new List<List<int>[]>() { desempenoNiv1, desempenoNiv2, desempenoNiv3, desempenoNiv4, desempenoNiv5, desempenoNiv6, desempenoNiv7, desempenoNiv8, desempenoNiv9, desempenoNiv10, desempenoNiv11, desempenoNiv12, desempenoNiv13, desempenoNiv14, desempenoNiv15, desempenoNiv16, desempenoNiv17, desempenoNiv18, desempenoNiv19, desempenoNiv20 };
+        foreach (List<int>[] arrlist in listaDeArrays)
+        {
+            for(int i = 0; i < arrlist.Length; i++)
+            {
+                arrlist[i] = new List<int>();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -63,12 +55,15 @@ public class evaluadorDeDesempeño : MonoBehaviour
     }
     public void ocurrenciaEnemigo1(int nivel, int danoRecibido)
     {
-        if (listaDeArrays[nivel-1][0].Count >= 20)
+        List<int>[] temp = listaDeArrays[nivel - 1];
+        if (temp[0].Count >= 20)
         {
-            listaDeArrays[nivel - 1][0].RemoveAt(0);
-            listaDeArrays[nivel - 1][0].Add(danoRecibido);
+            temp[0].RemoveAt(0);
+            temp[0].Add(danoRecibido);
         }
-        else { listaDeArrays[nivel - 1][0].Add(danoRecibido); }
+        else { temp[0].Add(danoRecibido); }
+        listaDeArrays[nivel - 1] = temp;
+        ajustarDesempeno(nivel, 0);
         /*switch (nivel)
         {
             case 1:
@@ -277,12 +272,15 @@ public class evaluadorDeDesempeño : MonoBehaviour
     }
     public void ocurrenciaEnemigo2(int nivel, int danoRecibido)
     {
-        if (listaDeArrays[nivel - 1][1].Count >= 20)
+        List<int>[] temp = listaDeArrays[nivel - 1];
+        if (temp[1].Count >= 20)
         {
-            listaDeArrays[nivel - 1][1].RemoveAt(0);
-            listaDeArrays[nivel - 1][1].Add(danoRecibido);
+            temp[1].RemoveAt(0);
+            temp[1].Add(danoRecibido);
         }
-        else { listaDeArrays[nivel - 1][1].Add(danoRecibido); }
+        else { temp[1].Add(danoRecibido); }
+        listaDeArrays[nivel - 1] = temp;
+        ajustarDesempeno(nivel, 1);
         /*switch (nivel)
         {
             case 1:
@@ -491,12 +489,15 @@ public class evaluadorDeDesempeño : MonoBehaviour
     }
     public void ocurrenciaEnemigo3(int nivel, int danoRecibido)
     {
-        if (listaDeArrays[nivel - 1][2].Count >= 20)
+        List<int>[] temp = listaDeArrays[nivel - 1];
+        if (temp[2].Count >= 20)
         {
-            listaDeArrays[nivel - 1][2].RemoveAt(0);
-            listaDeArrays[nivel - 1][2].Add(danoRecibido);
+            temp[2].RemoveAt(0);
+            temp[2].Add(danoRecibido);
         }
-        else { listaDeArrays[nivel - 1][2].Add(danoRecibido); }
+        else { temp[2].Add(danoRecibido); }
+        listaDeArrays[nivel - 1] = temp;
+        ajustarDesempeno(nivel, 2);
         /*switch (nivel)
         {
             case 1:
@@ -705,12 +706,15 @@ public class evaluadorDeDesempeño : MonoBehaviour
     }
     public void ocurrenciaEnemigo4(int nivel, int danoRecibido)
     {
-        if (listaDeArrays[nivel - 1][3].Count >= 20)
+        List<int>[] temp = listaDeArrays[nivel - 1];
+        if (temp[3].Count >= 20)
         {
-            listaDeArrays[nivel - 1][3].RemoveAt(0);
-            listaDeArrays[nivel - 1][3].Add(danoRecibido);
+            temp[3].RemoveAt(0);
+            temp[3].Add(danoRecibido);
         }
-        else { listaDeArrays[nivel - 1][3].Add(danoRecibido); }
+        else { temp[3].Add(danoRecibido); }
+        listaDeArrays[nivel - 1] = temp;
+        ajustarDesempeno(nivel, 3);
         /*switch (nivel)
         {
             case 1:
@@ -920,51 +924,129 @@ public class evaluadorDeDesempeño : MonoBehaviour
     }
     public void ocurrenciaBoss1(int nivel, int danoRecibido)
     {
-        if (desempenoBoss1.Count >= 10)
+        if (desempenoBoss1.Count >= 5)
         {
             desempenoBoss1.RemoveAt(0);
             desempenoBoss1.Add(danoRecibido);
         }
         else { desempenoBoss1.Add(danoRecibido); }
+        ajustarDesempenoBoss(0);
     }
     public void ocurrenciaBoss2(int nivel, int danoRecibido)
     {
-        if (desempenoBoss2.Count >= 10)
+        if (desempenoBoss2.Count >= 5)
         {
             desempenoBoss2.RemoveAt(0);
             desempenoBoss2.Add(danoRecibido);
         }
         else { desempenoBoss2.Add(danoRecibido); }
+        ajustarDesempenoBoss(1);
     }
     public void ocurrenciaBoss3(int nivel, int danoRecibido)
     {
-        if (desempenoBoss3.Count >= 10)
+        if (desempenoBoss3.Count >= 5)
         {
             desempenoBoss3.RemoveAt(0);
             desempenoBoss3.Add(danoRecibido);
         }
         else { desempenoBoss3.Add(danoRecibido); }
+        ajustarDesempenoBoss(2);
     }
     public void ajustarDesempeno(int nivelDificultad, int tipoEnem)
     {
-        int valorInicial = -(int)(Math.Floor(listaDeArrays[nivelDificultad-1][tipoEnem].Count / 5f));
+        List<int>[] temp = listaDeArrays[nivelDificultad - 1];
+        int valorInicial = -(int)Math.Floor(temp[tipoEnem].Count / 2f);
         int cont = 0;
         float peso = 1;
         float valorTotal = 0;
-        for(int i = listaDeArrays[nivelDificultad - 1][tipoEnem].Count-1; i >= 0; i--)
+        for(int i = temp[tipoEnem].Count-1; i >= 0; i--)
         {
             if(cont == 5)
             {
                 peso -= 0.25f;
                 cont = 0;
             }
-            valorTotal += listaDeArrays[nivelDificultad - 1][tipoEnem][i] * peso;
+            valorTotal += temp[tipoEnem][i] * peso;
             cont++;
         }
-        valoraciones[tipoEnem] = valorTotal;
+        valoraciones[tipoEnem] = valorTotal+valorInicial;
+    }
+    public void ajustarDesempenoBoss(int indexBoss)
+    {
+        List<int> desempenoBoss = new List<int>();
+        switch (indexBoss)
+        {
+            case 0:
+                desempenoBoss = desempenoBoss1;
+                break;
+            case 1:
+                desempenoBoss = desempenoBoss2;
+                break;
+            case 2:
+                desempenoBoss = desempenoBoss3;
+                break;
+
+        }
+        int valorInicial = - (int)Math.Floor(desempenoBoss.Count*1.5f);
+        int cont = 0;
+        float peso = 1;
+        float valorTotal = 0;
+        foreach (int i in desempenoBoss)
+        {
+            valorTotal += i * peso;
+            peso -= 0.15f;
+        }
+        valoracionesBoss[indexBoss] = valorTotal+valorInicial;
     }
     public void pasoNivel(int nuevoNivel)
     {
+        if(nuevoNivel > nivelActual && nivelActual != 0)
+        {
+            List<int>[] temp = listaDeArrays[nuevoNivel - 1];
+            if (temp[0].Count == 0 && valoraciones[0] > 2)
+            {
+                listaDeArrays[nuevoNivel - 1] = listaDeArrays[nivelActual - 1];
+            }
+        }
+        float promedio = 0f;
+        foreach(float valor in valoraciones)
+        {
+            promedio += valor;
+        }
+        promedio = promedio / 4f;
+        if (promedio >= 5)
+        {
+            factorCrecimiento -= factorCrecimiento / 5f;
+            if (factorCrecimiento < 0.5f)
+            {
+                factorCrecimiento = 0.5f;
+            }
+        }
+        else if(promedio >2)
+        {
+            factorCrecimiento -= factorCrecimiento / 10f;
+            if (factorCrecimiento < 0.5f)
+            {
+                factorCrecimiento = 0.5f;
+            }
+        }
+        else if(promedio >= -1)
+        {
+            factorCrecimiento += factorCrecimiento / 10f;
+            if (factorCrecimiento > 1.25f)
+            {
+                factorCrecimiento = 1.25f;
+            }
+        }
+        else if(promedio >= -5)
+        {
+            factorCrecimiento += factorCrecimiento / 5f;
+            if (factorCrecimiento > 1.25f)
+            {
+                factorCrecimiento = 1.25f;
+            }
+        }
+        nivelActual = nuevoNivel;
         ajustarDesempeno(nuevoNivel, 0);
         ajustarDesempeno(nuevoNivel, 1);
         ajustarDesempeno(nuevoNivel, 2);

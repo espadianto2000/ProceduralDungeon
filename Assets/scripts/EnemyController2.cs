@@ -75,6 +75,7 @@ public class EnemyController2 : MonoBehaviour
         obj.GetComponent<proyectilEnemigo>().velocidadProyectil = stats.velocidadProyectil;
         obj.GetComponent<proyectilEnemigo>().tiempoVida = stats.rango;
         obj.GetComponent<proyectilEnemigo>().destino = player.transform.position;
+        obj.GetComponent<proyectilEnemigo>().origen = gameObject;
     }
     public void knocks(Vector3 dir, float knockbackMelee, int tipoAtaque)
     {
@@ -135,7 +136,7 @@ public class EnemyController2 : MonoBehaviour
         //Debug.Log(collision.transform.name);
         if (collision.transform.CompareTag("player"))
         {
-            collision.transform.GetComponent<statsJugador>().recibirDano(GetComponent<statsEnemigo2>().danoMelee);
+            collision.transform.GetComponent<statsJugador>().recibirDano(GetComponent<statsEnemigo2>().danoMelee,gameObject);
         }
     }
     

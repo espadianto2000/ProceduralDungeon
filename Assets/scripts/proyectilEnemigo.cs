@@ -15,6 +15,7 @@ public class proyectilEnemigo : MonoBehaviour
     public float timerVida = 0;
     public float tiempoVida;
     public GameObject player;
+    public GameObject origen;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +49,7 @@ public class proyectilEnemigo : MonoBehaviour
     {
         if (other.CompareTag("player"))
         {
-            other.GetComponent<statsJugador>().recibirDano(dano);
+            other.GetComponent<statsJugador>().recibirDano(dano,origen);
             Destroy(gameObject);
         }
     }

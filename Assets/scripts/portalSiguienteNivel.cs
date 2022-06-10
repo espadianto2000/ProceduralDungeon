@@ -35,11 +35,11 @@ public class portalSiguienteNivel : MonoBehaviour
             }catch
             {
             }*/
-            Debug.Log("nivelFinalizado: "+Analytics.IsCustomEventEnabled("nivelFinalizado"));
-            AnalyticsResult anRes = Analytics.CustomEvent("nivelFinalizado-"+ gm.identificadorMaq+"-"+ GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad, new Dictionary<string, object>
+
+            //analytics
+            /*Debug.Log("nivelFinalizado: "+Analytics.IsCustomEventEnabled("nivelFinalizado"));
+            AnalyticsResult anRes = Analytics.CustomEvent("nivelFinalizado-"+ gm.identificadorMaq+"-"+ GameObject.Find("dificultad").GetComponent<dificultadAdaptable>().nivel, new Dictionary<string, object>
                 {
-                    /*{ "UserRun",gm.identificadorMaq},
-                    { "nivelActual", GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad },*/
                     { "tiempo", gm.tiempoNivel },
                     { "danoRecibido", other.GetComponent<charController>().danoNivel },
                     { "PremiosNivel", gm.numeroPremiosNivel},
@@ -47,10 +47,10 @@ public class portalSiguienteNivel : MonoBehaviour
                     { "salasCompletadas", GameObject.Find("salas(Clone)").GetComponent<salas>().salasSuperadas}
                 });
             Debug.Log("analyticsResult nivelFinalizado: " + anRes);
-            Analytics.FlushEvents();
-            //gm.analyticsNextLevel();
+            Analytics.FlushEvents();*/
             other.GetComponent<charController>().danoNivel = 0;
             gm.numeroPremiosNivel = 0;
+            //Debug.Log("nivel: " + GameObject.Find("dificultad").GetComponent<dificultadAdaptable>().nivel);
             gm.NextLevel();
         }
     }

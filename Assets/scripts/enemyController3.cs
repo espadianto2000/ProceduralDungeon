@@ -101,14 +101,14 @@ public class enemyController3 : MonoBehaviour
     {
         if (collision.transform.CompareTag("player"))
         {
-            collision.transform.GetComponent<statsJugador>().recibirDano(GetComponent<statsEnemigo3>().danoMelee);
+            collision.transform.GetComponent<statsJugador>().recibirDano(GetComponent<statsEnemigo3>().danoMelee, gameObject);
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("player"))
         {
-            collision.transform.GetComponent<statsJugador>().recibirDano(GetComponent<statsEnemigo3>().danoMelee);
+            collision.transform.GetComponent<statsJugador>().recibirDano(GetComponent<statsEnemigo3>().danoMelee, gameObject);
         }
     }
 }

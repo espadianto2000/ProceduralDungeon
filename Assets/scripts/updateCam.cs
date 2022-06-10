@@ -28,15 +28,25 @@ public class updateCam : MonoBehaviour
     public GameObject salaOut;
     public GameObject boss;
     public bool contenidoGenerado = false;
-    private bool spawnPortal=false;
+    public bool spawnPortal=false;
     public List<GameObject> trampas;
-    private dificultadLineal dl;
+    private dificultadAdaptable dl;
     public int danoRecibidoEnSala = 0;
+    public int danoEnem1 = 0;
+    public int danoEnem2 = 0;
+    public int danoEnem3 = 0;
+    public int danoEnem4 = 0;
+    public bool[] tipoEnems = new bool[4];
     public float tiempoSala = -1;
     private AudioManager am;
+    public string nombreBoss;
     // Start is called before the first frame update
     void Start()
     {
+        for(int i = 0; i < tipoEnems.Length; i++)
+        {
+            tipoEnems[i] = false;
+        }
         am = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         gm = GameObject.Find("GameManager").GetComponent<gameManager>();
         cam = GameObject.Find("Camara");
@@ -65,7 +75,7 @@ public class updateCam : MonoBehaviour
                         boss.SetActive(true);
                         contadorEnemigos = 1;
                         spawnPortal = true;
-                        
+                        nombreBoss = boss.name;
                     }
                     else
                     {
@@ -135,17 +145,16 @@ public class updateCam : MonoBehaviour
                 {
 
                 }*/
-                Debug.Log("salaFinalizada: " + Analytics.IsCustomEventEnabled("salaFinalizada"));
+                //analytics
+                /*Debug.Log("salaFinalizada: " + Analytics.IsCustomEventEnabled("salaFinalizada"));
                 AnalyticsResult anRes = Analytics.CustomEvent("salaFinalizada-"+ gm.identificadorMaq +"-"+ dl.nivelDificultad, new Dictionary<string, object>
                 {
-                    /*{ "UserRun",gm.identificadorMaq},
-                    { "nivelActual", dl.nivelDificultad },*/
                     { "tiempo", tiempoSala },
                     { "danoRecibido", danoRecibidoEnSala },
                     { "salaJefe", spawnPortal }
                 });
                 Debug.Log("analyticsResult salaFinalizada: " + anRes);
-                Analytics.FlushEvents();
+                Analytics.FlushEvents();*/
                 tiempoSala = -1;
             }
             salas.salasSuperadas++;
@@ -157,9 +166,62 @@ public class updateCam : MonoBehaviour
                     Destroy(premio.gameObject);
                 }
                 GetComponent<generarDistribucion>().instanciarPremio();
+                PanelInfo.GetComponent<seguirMouse>().actualizar(premio);
                 premio.SetActive(true);
                 Instantiate(gm.portal, new Vector3(transform.position.x,0.5f,transform.position.z), Quaternion.Euler(new Vector3(-90,0,0)));
+                mandarEvaluadorBoss();
             }
+            else
+            {
+                mandarEvaluadorEnemigos();
+            }
+            Debug.Log("desempeño enem1: " + dl.GetComponent<evaluadorDeDesempeño>().valoraciones[0]);
+            Debug.Log("desempeño enem2: " + dl.GetComponent<evaluadorDeDesempeño>().valoraciones[1]);
+            Debug.Log("desempeño enem3: " + dl.GetComponent<evaluadorDeDesempeño>().valoraciones[2]);
+            Debug.Log("desempeño enem4: " + dl.GetComponent<evaluadorDeDesempeño>().valoraciones[3]);
+            List<int>[] temp = dl.GetComponent<evaluadorDeDesempeño>().listaDeArrays[dl.nivel];
+            /*for(int i = 0; i < temp.Length; i++)
+            {
+                foreach(int val in temp[i])
+                {
+                    Debug.Log("enem " + i + ": " + val);
+                }
+            }*/
+            dl.actualizarModelosEnemigos();
+        }
+    }
+    public void mandarEvaluadorEnemigos()
+    {
+        if (tipoEnems[0])
+        {
+            dl.GetComponent<evaluadorDeDesempeño>().ocurrenciaEnemigo1(dl.nivel, danoEnem1);
+        }
+        if (tipoEnems[1])
+        {
+            dl.GetComponent<evaluadorDeDesempeño>().ocurrenciaEnemigo2(dl.nivel, danoEnem2);
+        }
+        if (tipoEnems[2])
+        {
+            dl.GetComponent<evaluadorDeDesempeño>().ocurrenciaEnemigo3(dl.nivel, danoEnem3);
+        }
+        if (tipoEnems[3])
+        {
+            dl.GetComponent<evaluadorDeDesempeño>().ocurrenciaEnemigo4(dl.nivel, danoEnem4);
+        }
+    }
+    public void mandarEvaluadorBoss()
+    {
+        if (nombreBoss.Contains("Red"))
+        {
+            dl.GetComponent<evaluadorDeDesempeño>().ocurrenciaBoss1(dl.nivel, danoRecibidoEnSala);
+        }
+        if (nombreBoss.Contains("among us"))
+        {
+            dl.GetComponent<evaluadorDeDesempeño>().ocurrenciaBoss2(dl.nivel, danoRecibidoEnSala);
+        }
+        if (nombreBoss.Contains("GruntPol"))
+        {
+            dl.GetComponent<evaluadorDeDesempeño>().ocurrenciaBoss3(dl.nivel, danoRecibidoEnSala);
         }
     }
     private void FixedUpdate()
@@ -190,7 +252,7 @@ public class updateCam : MonoBehaviour
             other.GetComponent<charController>().salaActual = this;
             if (!contenidoGenerado)
             {
-                dl = GameObject.Find("dificultad").GetComponent<dificultadLineal>();
+                dl = GameObject.Find("dificultad").GetComponent<dificultadAdaptable>();
                 //float t1 = Time.realtimeSinceStartup;
                 GetComponent<generarDistribucion>().generarElementos2(dl.numObs,dl.numEnemigos,dl.numTrampas);
                 GetComponent<generarDistribucion>().instanciarElementos(dl);

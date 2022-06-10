@@ -335,10 +335,11 @@ public class generarDistribucion : MonoBehaviour
         }
         
     }
-    public void instanciarElementos(dificultadLineal dl)
+    public void instanciarElementos(dificultadAdaptable dl)
     {
         float posXIni = transform.position.x - 4.5f;
         float posZIni = transform.position.z + 4.5f;
+        statsJugador player = GameObject.Find("player").GetComponent<statsJugador>();
         int contEnem = 0;
         for(int x = 0; x < 10; x++)
         {
@@ -358,31 +359,67 @@ public class generarDistribucion : MonoBehaviour
                     {
                         case 0:
                             enem.GetComponent<statsEnemigo>().vidaMax = Random.Range(dl.stEn1.vidaMax, dl.stEn12.vidaMax);
+                            if (enem.GetComponent<statsEnemigo>().vidaMax > player.danoRango * player.velocidadAtaqueRango*15f)
+                            {
+                                enem.GetComponent<statsEnemigo>().vidaMax = player.danoRango * player.velocidadAtaqueRango * 15f;
+                            }
                             enem.GetComponent<statsEnemigo>().velocidad = Random.Range(dl.stEn1.velocidad, dl.stEn12.velocidad);
+                            if (enem.GetComponent<statsEnemigo>().velocidad > player.velocidad)
+                            {
+                                enem.GetComponent<statsEnemigo>().velocidad = player.velocidad;
+                            }
                             enem.GetComponent<statsEnemigo>().danoMelee = dl.stEn1.danoMelee;
+                            GetComponent<updateCam>().tipoEnems[0] = true;
                             break;
                         case 1:
                             enem.GetComponent<statsEnemigo2>().vidaMax = Random.Range(dl.stEn2.vidaMax, dl.stEn22.vidaMax);
+                            if (enem.GetComponent<statsEnemigo2>().vidaMax > player.danoRango * player.velocidadAtaqueRango * 15f)
+                            {
+                                enem.GetComponent<statsEnemigo2>().vidaMax = player.danoRango * player.velocidadAtaqueRango * 15f;
+                            }
                             enem.GetComponent<statsEnemigo2>().velocidad = Random.Range(dl.stEn2.velocidad, dl.stEn22.velocidad);
+                            if (enem.GetComponent<statsEnemigo2>().velocidad > player.velocidad)
+                            {
+                                enem.GetComponent<statsEnemigo2>().velocidad = player.velocidad;
+                            }
                             enem.GetComponent<statsEnemigo2>().danoMelee = dl.stEn2.danoMelee;
                             enem.GetComponent<statsEnemigo2>().danoRango = dl.stEn2.danoRango;
                             enem.GetComponent<statsEnemigo2>().velocidadAtaque = Random.Range(dl.stEn2.velocidadAtaque, dl.stEn22.velocidadAtaque);
                             enem.GetComponent<statsEnemigo2>().velocidadProyectil = Random.Range(dl.stEn2.velocidadProyectil, dl.stEn22.velocidadProyectil);
                             enem.GetComponent<statsEnemigo2>().rango = Random.Range(dl.stEn2.rango, dl.stEn22.rango);
+                            GetComponent<updateCam>().tipoEnems[1] = true;
                             break;
                         case 2:
                             enem.GetComponent<statsEnemigo3>().vidaMax = Random.Range(dl.stEn3.vidaMax, dl.stEn32.vidaMax);
+                            if (enem.GetComponent<statsEnemigo3>().vidaMax > player.danoRango * player.velocidadAtaqueRango * 15f)
+                            {
+                                enem.GetComponent<statsEnemigo3>().vidaMax = player.danoRango * player.velocidadAtaqueRango * 15f;
+                            }
                             enem.GetComponent<statsEnemigo3>().velocidad = Random.Range(dl.stEn3.velocidad, dl.stEn32.velocidad);
+                            if (enem.GetComponent<statsEnemigo3>().velocidad > player.velocidad)
+                            {
+                                enem.GetComponent<statsEnemigo3>().velocidad = player.velocidad;
+                            }
                             enem.GetComponent<statsEnemigo3>().danoMelee = dl.stEn3.danoMelee;
                             enem.GetComponent<statsEnemigo3>().velocidadCrecimiento = Random.Range(dl.stEn3.velocidadCrecimiento, dl.stEn32.velocidadCrecimiento);
                             enem.GetComponent<statsEnemigo3>().cooldownCuracion = Random.Range(dl.stEn3.cooldownCuracion, dl.stEn32.cooldownCuracion);
                             enem.GetComponent<statsEnemigo3>().curacion = Mathf.Round(Random.Range(dl.stEn3.curacion, dl.stEn32.curacion)*100f)/100f;
+                            GetComponent<updateCam>().tipoEnems[2] = true;
                             break;
                         case 3:
                             enem.GetComponent<statsEnemigo4>().vidaMax = Random.Range(dl.stEn4.vidaMax, dl.stEn42.vidaMax);
+                            if (enem.GetComponent<statsEnemigo4>().vidaMax > player.danoRango * player.velocidadAtaqueRango * 15f)
+                            {
+                                enem.GetComponent<statsEnemigo4>().vidaMax = player.danoRango * player.velocidadAtaqueRango * 15f;
+                            }
                             enem.GetComponent<statsEnemigo4>().velocidad = Random.Range(dl.stEn4.velocidad, dl.stEn42.velocidad);
+                            if (enem.GetComponent<statsEnemigo4>().velocidad > player.velocidad)
+                            {
+                                enem.GetComponent<statsEnemigo4>().velocidad = player.velocidad;
+                            }
                             enem.GetComponent<statsEnemigo4>().danoMelee = dl.stEn4.danoMelee;
                             enem.GetComponent<statsEnemigo4>().cooldownAtaque = Random.Range(dl.stEn4.cooldownAtaque, dl.stEn42.cooldownAtaque);
+                            GetComponent<updateCam>().tipoEnems[3] = true;
                             break;
                     }
                     contEnem++;

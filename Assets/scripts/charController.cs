@@ -72,6 +72,10 @@ public class charController : MonoBehaviour
             }
             else { cooldownMelee = 0; }
         }
+        if(transform.position.y > 0.6f)
+        {
+            transform.position = new Vector3(transform.position.x, 0.6f, transform.position.z);
+        }
     }
     public void morir()
     {
@@ -83,6 +87,14 @@ public class charController : MonoBehaviour
         foreach(Collider col in cols)
         {
             col.enabled = false;
+        }
+        if (salaActual.spawnPortal)
+        {
+            salaActual.mandarEvaluadorBoss();
+        }
+        else
+        {
+            salaActual.mandarEvaluadorEnemigos();
         }
         //Debug.Log("Analytics : " + gm.identificadorMaq + "--" + "muerte");
         /*AnalyticsService.Instance.CustomData("muerteRun", new Dictionary<string, object>
@@ -110,15 +122,17 @@ public class charController : MonoBehaviour
         catch
         {
         }*/
-        Debug.Log("muerteRun: " + Analytics.IsCustomEventEnabled("muerteRun"));
-        AnalyticsResult anRes = Analytics.CustomEvent("muerteRun-" + gm.identificadorMaq + "-" + GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad);
+        //analytics
+        /*Debug.Log("muerteRun: " + Analytics.IsCustomEventEnabled("muerteRun"));
+        AnalyticsResult anRes = Analytics.CustomEvent("muerteRun-" + gm.identificadorMaq + "-" + GameObject.Find("dificultad").GetComponent<dificultadAdaptable>().nivel);
         Debug.Log("analyticsResult muerteRun: " + anRes);
         Analytics.FlushEvents();
         Debug.Log("muerteUsuario: " + Analytics.IsCustomEventEnabled("muerteUsuario"));
-        anRes = Analytics.CustomEvent("muerteUsuario-" + gm.usuario + "-" + GameObject.Find("dificultad").GetComponent<dificultadLineal>().nivelDificultad);
+        anRes = Analytics.CustomEvent("muerteUsuario-" + gm.usuario + "-" + GameObject.Find("dificultad").GetComponent<dificultadAdaptable>().nivel);
         Debug.Log("analyticsResult muerteUsuario: " + anRes);
         Analytics.FlushEvents();
-        Debug.Log("se hizo analytics de muerte");
+        Debug.Log("se hizo analytics de muerte");*/
+
         Invoke("habilitarMenu", 1f);
     }
 
@@ -150,19 +164,19 @@ public class charController : MonoBehaviour
         {
             if (hit.transform.name.Contains("enemigoV1"))
             {
-                stats.recibirDano(hit.transform.GetComponent<statsEnemigo>().danoMelee);
+                stats.recibirDano(hit.transform.GetComponent<statsEnemigo>().danoMelee,hit.gameObject);
             }
             else if (hit.transform.name.Contains("enemigoV2"))
             {
-                stats.recibirDano(hit.transform.GetComponent<statsEnemigo2>().danoMelee);
+                stats.recibirDano(hit.transform.GetComponent<statsEnemigo2>().danoMelee,hit.gameObject);
             }
             else if (hit.transform.name.Contains("enemigoV3"))
             {
-                stats.recibirDano(hit.transform.GetComponent<statsEnemigo3>().danoMelee);
+                stats.recibirDano(hit.transform.GetComponent<statsEnemigo3>().danoMelee, hit.gameObject);
             }
             else if (hit.transform.name.Contains("enemigoV4"))
             {
-                stats.recibirDano(hit.transform.GetComponent<statsEnemigo4>().danoMelee);
+                stats.recibirDano(hit.transform.GetComponent<statsEnemigo4>().danoMelee, hit.gameObject);
             }
         }
     }
