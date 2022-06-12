@@ -47,7 +47,7 @@ public class portalSiguienteNivel : MonoBehaviour
                     { "PremiosNivel", gm.numeroPremiosNivel},
                     { "salasNivel", GameObject.Find("salas(Clone)").GetComponent<salas>().contadorSalas+1},
                     { "salasCompletadas", GameObject.Find("salas(Clone)").GetComponent<salas>().salasSuperadas},
-                    {"valoracionesEnemigos","("+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[0]+","+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[1]+","+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[2]+","+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[3]+")" },
+                    {"valoracionesEnemigosSigNivel","("+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[0]+","+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[1]+","+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[2]+","+dl.GetComponent<evaluadorDeDesempeño>().valoraciones[3]+")" },
                     {"factorDeIncremento",dl.GetComponent<evaluadorDeDesempeño>().factorCrecimiento }
                 });
             Debug.Log("analyticsResult nivelFinalizado: " + anRes);

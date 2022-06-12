@@ -86,9 +86,9 @@ public class salas : MonoBehaviour
                             jefe.GetComponent<statsBoss1>().vidaMax = player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 75f;
                         }
                         jefe.GetComponent<statsBoss1>().velocidad = Random.Range(stJ11.velocidad, stJ12.velocidad);
-                        if (jefe.GetComponent<statsBoss1>().velocidad > player.GetComponent<statsJugador>().velocidad-0.5f)
+                        if (jefe.GetComponent<statsBoss1>().velocidad > player.GetComponent<statsJugador>().velocidad-0.75f)
                         {
-                            jefe.GetComponent<statsBoss1>().velocidad = player.GetComponent<statsJugador>().velocidad-0.5f;
+                            jefe.GetComponent<statsBoss1>().velocidad = player.GetComponent<statsJugador>().velocidad-0.75f;
                         }
                         jefe.GetComponent<statsBoss1>().danoMelee = stJ11.danoMelee;
                         jefe.GetComponent<statsBoss1>().danoRango = stJ11.danoRango;

@@ -63,6 +63,7 @@ public class statsJugador : MonoBehaviour
         {
             col.enabled = true;
         }
+        GetComponent<charController>().danoNivel = 0;
         iniciar();
         
     }

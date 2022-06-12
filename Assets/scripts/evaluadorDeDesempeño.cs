@@ -1008,6 +1008,11 @@ public class evaluadorDeDesempeño : MonoBehaviour
                 listaDeArrays[nuevoNivel - 1] = listaDeArrays[nivelActual - 1];
             }
         }
+        ajustarDesempeno(nuevoNivel, 0);
+        ajustarDesempeno(nuevoNivel, 1);
+        ajustarDesempeno(nuevoNivel, 2);
+        ajustarDesempeno(nuevoNivel, 3);
+
         float promedio = 0f;
         foreach(float valor in valoraciones)
         {
@@ -1030,9 +1035,9 @@ public class evaluadorDeDesempeño : MonoBehaviour
                 factorCrecimiento = 0.5f;
             }
         }
-        else if(promedio >= -1)
+        else if(promedio >= -2)
         {
-            factorCrecimiento += (factorCrecimiento>1? -factorCrecimiento/10f:factorCrecimiento/20f);
+            factorCrecimiento += (factorCrecimiento>1? -factorCrecimiento/5f:factorCrecimiento/20f);
         }
         else if(promedio >= -5)
         {

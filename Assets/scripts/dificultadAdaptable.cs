@@ -170,6 +170,7 @@ public class dificultadAdaptable : MonoBehaviour
             GetComponent<evaluadorDeDesempeño>().factorCrecimiento = 1;
             nivel = 1;
             GetComponent<evaluadorDeDesempeño>().nivelActual = 1;
+            gm.numeroPremiosNivel = 0;
         }
         nivelDificultad = nivelNuevo;
         probPremio = 20 + (int)Math.Floor(7.5f * (nivelDificultad >= 10 ? 9 : nivelDificultad));
