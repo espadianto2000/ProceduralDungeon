@@ -161,6 +161,7 @@ public class salas : MonoBehaviour
             Destroy(sp.gameObject);
         }
             player.SetActive(true);
+        player.GetComponent<statsJugador>().iniciar();
     }
     void refrescarNavMesh()
     {

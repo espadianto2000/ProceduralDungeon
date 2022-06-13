@@ -72,6 +72,10 @@ public class charController : MonoBehaviour
             }
             else { cooldownMelee = 0; }
         }
+        if(transform.position.y > 0.6f)
+        {
+            transform.position = new Vector3(transform.position.x, 0.6f, transform.position.z);
+        }
     }
     public void morir()
     {
