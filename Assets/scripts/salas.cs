@@ -84,6 +84,9 @@ public class salas : MonoBehaviour
                         if(jefe.GetComponent<statsBoss1>().vidaMax>player.GetComponent<statsJugador>().danoRango* player.GetComponent<statsJugador>().velocidadAtaqueRango*75f)
                         {
                             jefe.GetComponent<statsBoss1>().vidaMax = player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 75f;
+                        }else if(jefe.GetComponent<statsBoss1>().vidaMax < player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 60f)
+                        {
+                            jefe.GetComponent<statsBoss1>().vidaMax = player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 60f;
                         }
                         jefe.GetComponent<statsBoss1>().velocidad = Random.Range(stJ11.velocidad, stJ12.velocidad);
                         if (jefe.GetComponent<statsBoss1>().velocidad > player.GetComponent<statsJugador>().velocidad-0.75f)
@@ -103,6 +106,10 @@ public class salas : MonoBehaviour
                         {
                             jefe.GetComponent<statsBoss2>().vidaMax = player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 75f;
                         }
+                        else if (jefe.GetComponent<statsBoss2>().vidaMax < player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 60f)
+                        {
+                            jefe.GetComponent<statsBoss2>().vidaMax = player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 60f;
+                        }
                         jefe.GetComponent<statsBoss2>().velocidad = Random.Range(stJ21.velocidad, stJ22.velocidad);
                         jefe.GetComponent<statsBoss2>().danoMelee = stJ21.danoMelee;
                         jefe.GetComponent<statsBoss2>().velocidadExtra = Random.Range(stJ21.velocidadExtra, stJ22.velocidadExtra);
@@ -115,6 +122,10 @@ public class salas : MonoBehaviour
                         if (jefe.GetComponent<statsBoss3>().vidaMax > player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 75f)
                         {
                             jefe.GetComponent<statsBoss3>().vidaMax = player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 75f;
+                        }
+                        else if (jefe.GetComponent<statsBoss3>().vidaMax < player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 60f)
+                        {
+                            jefe.GetComponent<statsBoss3>().vidaMax = player.GetComponent<statsJugador>().danoRango * player.GetComponent<statsJugador>().velocidadAtaqueRango * 60f;
                         }
                         jefe.GetComponent<statsBoss3>().velocidad = Random.Range(stJ31.velocidad, stJ32.velocidad);
                         if (jefe.GetComponent<statsBoss3>().velocidad > player.GetComponent<statsJugador>().velocidad + 1f)
@@ -180,7 +191,8 @@ public class salas : MonoBehaviour
         {
             Destroy(sp.gameObject);
         }
-            player.SetActive(true);
+        player.SetActive(true);
+        player.GetComponent<statsJugador>().iniciar();
     }
     void refrescarNavMesh()
     {

@@ -67,7 +67,7 @@ public class statsJugador : MonoBehaviour
         iniciar();
         
     }
-    void iniciar()
+    public void iniciar()
     {
         animations.SetFloat("multipleSpeedMelee", velocidadAtaqueMelee);
         float ancho = (rangoMelee + 4.5f) / 6;

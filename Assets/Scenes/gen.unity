@@ -552,7 +552,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 86.79999, y: 2.199997}
+  m_AnchoredPosition: {x: 86.79999, y: 2.1999817}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &151703992
@@ -1183,7 +1183,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 58.799988, y: 2.199997}
+  m_AnchoredPosition: {x: 58.799988, y: 2.1999817}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &295948650
@@ -2653,7 +2653,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2643603, y: 0.74397856, z: 0.7}
+  m_Size: {x: 0.75, y: 0.74397856, z: 1}
   m_Center: {x: 0.0000000017433958, y: -0.17503978, z: 0.00000009302063}
 --- !u!54 &625346603
 Rigidbody:
@@ -2682,7 +2682,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.2705609, z: 1}
+  m_Size: {x: 1, y: 0.2705609, z: 2}
   m_Center: {x: 0.000000074073824, y: -1.0252702, z: 0.00000048022963}
 --- !u!65 &625346606
 BoxCollider:
@@ -2695,7 +2695,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.38924316, y: 0.34212872, z: 1}
+  m_Size: {x: 0.85, y: 0.34212872, z: 1.5}
   m_Center: {x: 0.000000071015656, y: -0.7182264, z: 0.00000034039678}
 --- !u!1 &632912591
 GameObject:
@@ -4053,7 +4053,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 138.38397, y: 2.199997}
+  m_AnchoredPosition: {x: 138.38397, y: 2.1999817}
   m_SizeDelta: {x: 58.0256, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1011698877

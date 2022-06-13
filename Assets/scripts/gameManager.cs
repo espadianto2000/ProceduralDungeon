@@ -125,7 +125,7 @@ public class gameManager : MonoBehaviour
                 }
                 else if(obj.name == "player")
                 {
-                    obj.transform.position = new Vector3(0, 0.5f, 0);
+                    obj.transform.position = new Vector3(0, 0.6f, 0);
                     obj.transform.rotation = Quaternion.Euler(Vector3.zero);
                     obj.SetActive(false);
                 }

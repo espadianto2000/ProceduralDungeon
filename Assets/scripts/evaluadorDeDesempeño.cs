@@ -1003,7 +1003,7 @@ public class evaluadorDeDesempeño : MonoBehaviour
         if(nuevoNivel > nivelActual && nivelActual != 0)
         {
             List<int>[] temp = listaDeArrays[nuevoNivel - 1];
-            if (temp[0].Count == 0 && valoraciones[0] > 2)
+            if (temp[0].Count == 0 && valoraciones[0] >= 0)
             {
                 listaDeArrays[nuevoNivel - 1] = listaDeArrays[nivelActual - 1];
             }
