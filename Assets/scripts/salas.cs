@@ -156,7 +156,7 @@ public class salas : MonoBehaviour
             juegoListo = true;
             gm.tiempoNivel = 0;
             float t2 = Time.realtimeSinceStartup;
-            //Debug.Log("tiempo de generacíón de salas: " + (t2 - t1));
+            Debug.Log("tiempo de generacíón de salas: " + (t2 - t1));
             
         }
         
