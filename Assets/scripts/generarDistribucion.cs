@@ -404,9 +404,9 @@ public class generarDistribucion : MonoBehaviour
                             enem.GetComponent<statsEnemigo3>().velocidadCrecimiento = Random.Range(dl.stEn3.velocidadCrecimiento, dl.stEn32.velocidadCrecimiento);
                             enem.GetComponent<statsEnemigo3>().cooldownCuracion = Random.Range(dl.stEn3.cooldownCuracion, dl.stEn32.cooldownCuracion);
                             enem.GetComponent<statsEnemigo3>().curacion = Mathf.Round(Random.Range(dl.stEn3.curacion, dl.stEn32.curacion)*100f)/100f;
-                            if (enem.GetComponent<statsEnem3>().curacion > player.danoRango*player.velocidadAtaqueRango * 1.2f)
+                            if (enem.GetComponent<statsEnemigo3>().curacion > player.danoRango*player.velocidadAtaqueRango * 1.2f)
                             {
-                                enem.GetComponent<statsEnem3>().curacion = 1.2f * player.danoRango * player.velocidadAtaqueRango;
+                                enem.GetComponent<statsEnemigo3>().curacion = 1.2f * player.danoRango * player.velocidadAtaqueRango;
                             }
                             GetComponent<updateCam>().tipoEnems[2] = true;
                             break;
