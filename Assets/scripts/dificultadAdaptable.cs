@@ -174,7 +174,7 @@ public class dificultadAdaptable : MonoBehaviour
         }
         nivelDificultad = nivelNuevo;
         probPremio = 20 + (int)Math.Floor(7.5f * (nivelDificultad >= 10 ? 9 : nivelDificultad));
-        numSalas = (int)Math.Floor(1 + (1.5 * nivelDificultad));
+        numSalas = (int)Math.Floor(2 + (2f * nivelDificultad));
         numEnemigos = 3 + (int)Math.Floor(0.75f * (nivelDificultad >= 8 ? 7 : nivelDificultad));
         numObs = (int)Math.Floor(20 + (5 * nivelDificultad >= 5 ? 4 : nivelDificultad));
         numTrampas = 0 + (int)Math.Floor(0.75f * (nivelDificultad >= 8 ? 7 : nivelDificultad));
@@ -186,7 +186,7 @@ public class dificultadAdaptable : MonoBehaviour
         //GetComponent<evaluadorDeDesempeño>().nivelActual++;
         nivel++;
         probPremio = 20 + (int)Math.Floor(7.5f * (nivelDificultad >= 10 ? 9 : nivelDificultad));
-        numSalas = (int)Math.Floor(1 + (1.5 * nivelDificultad));
+        numSalas = (int)Math.Floor(2 + (2f * nivelDificultad));
         numEnemigos = 3 + (int)Math.Floor(0.75f * (nivelDificultad >= 8 ? 7 : nivelDificultad));
         numObs = (int)Math.Floor(20 + (5 * nivelDificultad >= 5 ? 4 : nivelDificultad));
         numTrampas = 0 + (int)Math.Floor(0.75f * (nivelDificultad >= 8 ? 7 : nivelDificultad));

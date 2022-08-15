@@ -14,7 +14,7 @@ public class salas : MonoBehaviour
     public int Limite2;
     public bool lim1=false;
     public bool lim2=false;
-    public float timer = 30000;
+    public float timer = 0.1f;
     public bool spawnedBoss = false;
     public GameObject jefeinstanciado;
 
@@ -30,8 +30,12 @@ public class salas : MonoBehaviour
     public int salasSuperadas = 0;
     public gameManager gm;
     public float t1=0;
+    bool term = false;
+
+    public List<Vector3> posiciones;
     private void Start()
     {
+        //posiciones.Add(new Vector3(0, 0, 0));
         dl = GameObject.Find("dificultad").GetComponent<dificultadAdaptable>();
         Limite1 = dl.numSalas;
         Limite2 = dl.numSalas * 2;
@@ -41,7 +45,23 @@ public class salas : MonoBehaviour
         t1 = Time.realtimeSinceStartup;
         surface = GameObject.Find("NavMesh").GetComponent<UnityEngine.AI.NavMeshSurface>();
     }
-    
+    private void LateUpdate()
+    {
+        term = true;
+        foreach (GameObject sp in GameObject.FindGameObjectsWithTag("SpawnPoint"))
+        {
+            if (!sp.GetComponent<generarSala>().spawned)
+            {
+                if (contadorSalas >= Limite2)
+                {
+                    sp.GetComponent<generarSala>().SpawnMuro();
+                    sp.GetComponent<generarSala>().spawned = true;
+                }
+                term = false;
+            }
+        }
+    }
+
     private void Update()
     {
         if (!spawnedBoss)
@@ -69,7 +89,7 @@ public class salas : MonoBehaviour
                 salasAba.RemoveRange(1, 8);
                 lim2 = true;
             }
-            if (timer <= 0 && spawnedBoss == false && salasInstanciadas.Count>=1)
+            if (timer <= 0 && !spawnedBoss && salasInstanciadas.Count >= 1 && term)
             {
                 int orden = Random.Range(0, boss.Length);
                 refrescarNavMesh();

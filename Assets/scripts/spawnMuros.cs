@@ -9,7 +9,7 @@ public class spawnMuros : MonoBehaviour
     void Start()
     {
         salas = GameObject.FindGameObjectWithTag("salas").GetComponent<salas>();
-        Invoke("spawnMuro", 0.2F);
+        spawnMuro();
     }
 
     // Update is called once per frame
