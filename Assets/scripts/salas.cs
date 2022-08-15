@@ -30,6 +30,9 @@ public class salas : MonoBehaviour
     public int salasSuperadas = 0;
     public gameManager gm;
     public float t1=0;
+    bool term = false;
+
+    public List<Vector3> posiciones;
     private void Start()
     {
         dl = GameObject.Find("dificultad").GetComponent<dificultadLineal>();
@@ -41,7 +44,23 @@ public class salas : MonoBehaviour
         t1 = Time.realtimeSinceStartup;
         surface = GameObject.Find("NavMesh").GetComponent<UnityEngine.AI.NavMeshSurface>();
     }
-    
+    private void LateUpdate()
+    {
+        term = true;
+        foreach (GameObject sp in GameObject.FindGameObjectsWithTag("SpawnPoint"))
+        {
+            if (!sp.GetComponent<generarSala>().spawned)
+            {
+                if (contadorSalas >= Limite2)
+                {
+                    sp.GetComponent<generarSala>().SpawnMuro();
+                    sp.GetComponent<generarSala>().spawned = true;
+                }
+                term = false;
+            }
+        }
+    }
+
     private void Update()
     {
         if (!spawnedBoss)
@@ -69,7 +88,7 @@ public class salas : MonoBehaviour
                 salasAba.RemoveRange(1, 8);
                 lim2 = true;
             }
-            if (timer <= 0 && spawnedBoss == false && salasInstanciadas.Count>=1)
+            if (timer <= 0 && !spawnedBoss && salasInstanciadas.Count >= 1 && term)
             {
                 int orden = Random.Range(0, boss.Length);
                 refrescarNavMesh();
@@ -125,7 +144,7 @@ public class salas : MonoBehaviour
             juegoListo = true;
             gm.tiempoNivel = 0;
             float t2 = Time.realtimeSinceStartup;
-            //Debug.Log("tiempo de generacíón de salas: " + (t2 - t1));
+            Debug.Log("tiempo de generacíón de salas: " + (t2 - t1));
             
         }
         

@@ -169,7 +169,7 @@ public class dificultadLineal : MonoBehaviour
         }
         nivelDificultad = nivelNuevo;
         probPremio = 20 + (int)Math.Floor(7.5f * (nivelDificultad >= 10 ? 9 : nivelDificultad));
-        numSalas = 1 + (int)(Mathf.Round(1.5f * nivelDificultad));
+        numSalas = 2 + (int)(Mathf.Round(2f * nivelDificultad));
         numEnemigos = 3 + (int)Math.Floor(0.75f * (nivelDificultad>=8?7:nivelDificultad));
         numObs = 20 + (5 * nivelDificultad >= 5 ? 4 : nivelDificultad);
         numTrampas = 0 + (int)Math.Floor(0.75f * (nivelDificultad >= 8 ? 7 : nivelDificultad));
